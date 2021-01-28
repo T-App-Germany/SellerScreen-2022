@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace SamplesCommon
+namespace SellerScreen_2022
 {
     public class InverseAppThemeConverter : IValueConverter
     {

@@ -17,7 +17,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\sellerscreen.ico" />
+    <None Remove="Resources\tappgermany.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\sellerscreen.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\tappgermany.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dragablz" Version="0.0.3.223" />
+    <PackageReference Include="FluentWPF" Version="0.8.0" />
     <PackageReference Include="ModernWpfUI" Version="0.9.3" />
   </ItemGroup>
 
@@ -26,10 +41,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="Resources\SellerScreen.png">
+    <Content Include="Resources\SellerScreen.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

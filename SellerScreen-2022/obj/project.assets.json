@@ -11,6 +11,18 @@
           "lib/netcoreapp3.0/Dragablz.dll": {}
         }
       },
+      "FluentWPF/0.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/FluentWPF.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/FluentWPF.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "Microsoft.NETCore.Platforms/3.0.0": {
         "type": "package",
         "compile": {
@@ -520,6 +532,20 @@
         "src/netcoreapp3.0/obj/Release/netcoreapp3.0/GeneratedInternalTypeHelper.g.cs"
       ]
     },
+    "FluentWPF/0.8.0": {
+      "sha512": "Yq/GjRtlNRjE5lLf99NWqJ+9kSeuhSrt55/Is1wgZwSL6s2oZWxfT1C6bnz7O+kzb/aAWEZD94X0MP5mW4H+qQ==",
+      "type": "package",
+      "path": "fluentwpf/0.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "fluentwpf.0.8.0.nupkg.sha512",
+        "fluentwpf.nuspec",
+        "lib/net45/FluentWPF.dll",
+        "lib/netcoreapp3.0/FluentWPF.dll"
+      ]
+    },
     "Microsoft.NETCore.Platforms/3.0.0": {
       "sha512": "TsETIgVJb/AKoYfSP+iCxkuly5d3inZjTdx/ItZLk2CxY85v8083OBS3uai84kK3/baLnS5/b5XGs6zR7SuuHQ==",
       "type": "package",
@@ -937,6 +963,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Dragablz >= 0.0.3.223",
+      "FluentWPF >= 0.8.0",
       "ModernWpfUI >= 0.9.3"
     ]
   },
@@ -982,6 +1009,10 @@
           "Dragablz": {
             "target": "Package",
             "version": "[0.0.3.223, )"
+          },
+          "FluentWPF": {
+            "target": "Package",
+            "version": "[0.8.0, )"
           },
           "ModernWpfUI": {
             "target": "Package",
