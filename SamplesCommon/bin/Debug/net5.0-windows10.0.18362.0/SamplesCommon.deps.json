@@ -1,0 +1,112 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "SamplesCommon/1.0.0": {
+        "dependencies": {
+          "ModernWpf": "1.0.0",
+          "ModernWpfUI": "0.9.3",
+          "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.18362.12"
+        },
+        "runtime": {
+          "SamplesCommon.dll": {}
+        }
+      },
+      "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.18362.12": {
+        "runtime": {
+          "Microsoft.Windows.SDK.NET.dll": {
+            "assemblyVersion": "10.0.18362.10",
+            "fileVersion": "10.0.18362.12"
+          },
+          "WinRT.Runtime.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.33641"
+          }
+        }
+      },
+      "ModernWpf/1.0.0": {
+        "runtime": {
+          "ModernWpf.dll": {}
+        },
+        "resources": {
+          "cs/ModernWpf.resources.dll": {
+            "locale": "cs"
+          },
+          "de/ModernWpf.resources.dll": {
+            "locale": "de"
+          },
+          "es/ModernWpf.resources.dll": {
+            "locale": "es"
+          },
+          "fa/ModernWpf.resources.dll": {
+            "locale": "fa"
+          },
+          "fr/ModernWpf.resources.dll": {
+            "locale": "fr"
+          },
+          "it/ModernWpf.resources.dll": {
+            "locale": "it"
+          },
+          "ja/ModernWpf.resources.dll": {
+            "locale": "ja"
+          },
+          "ko/ModernWpf.resources.dll": {
+            "locale": "ko"
+          },
+          "pl/ModernWpf.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/ModernWpf.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/ModernWpf.resources.dll": {
+            "locale": "ru"
+          },
+          "tr/ModernWpf.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/ModernWpf.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/ModernWpf.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "ModernWpfUI/0.9.3": {
+        "dependencies": {
+          "ModernWpf": "1.0.0"
+        },
+        "runtime": {
+          "ModernWpf.Controls.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SamplesCommon/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.18362.12": {
+      "type": "runtimepack",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ModernWpf/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ModernWpfUI/0.9.3": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -22,13 +22,6 @@ namespace SellerScreen_2022
         public MainWindow()
         {
             InitializeComponent();
-
-            TabView.NewItemFactory = () =>
-            {
-                var newItem = new TabItem { Header = "New Document" };
-                TabItemHelper.SetIcon(newItem, new SymbolIcon(Symbol.Document));
-                return newItem;
-            };
         }
     }
 }

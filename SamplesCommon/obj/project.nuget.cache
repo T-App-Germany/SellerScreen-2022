@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "dgSpecHash": "kMLEx/1wx88m5HEsGh0fv+gocjfCx6roWmbw3JfQDphemY8iGFri0nlGvC2jedCyX/yfaQd1dHSFrJHu5Iuyaw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\SamplesCommon\\SamplesCommon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.18362.12\\microsoft.windows.sdk.net.ref.10.0.18362.12.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Das Projekt \"C:\\Users\\Tom Mohr\\Documents\\GitHub\\ModernWpf.Controls\\ModernWpf.Controls.csproj\" wurde nicht gefunden. Stellen Sie sicher, dass der Projektverweis gültig und die Projektdatei vorhanden ist.",
+      "libraryId": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\ModernWpf.Controls\\ModernWpf.Controls.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1",
+        ".NETFramework,Version=v4.5",
+        ".NETFramework,Version=v4.6.2",
+        "net5.0-windows10.0.18362"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Das Projekt \"C:\\Users\\Tom Mohr\\Documents\\GitHub\\ModernWpf\\ModernWpf.csproj\" wurde nicht gefunden. Stellen Sie sicher, dass der Projektverweis gültig und die Projektdatei vorhanden ist.",
+      "libraryId": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\ModernWpf\\ModernWpf.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1",
+        ".NETFramework,Version=v4.5",
+        ".NETFramework,Version=v4.6.2",
+        "net5.0-windows10.0.18362"
+      ]
+    }
+  ]
+}
