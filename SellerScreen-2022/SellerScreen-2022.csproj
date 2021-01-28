@@ -6,11 +6,24 @@
     <RootNamespace>SellerScreen_2022</RootNamespace>
     <UseWPF>true</UseWPF>
     <UserSecretsId>b751a974-f148-479b-b771-ad10f41b6b7c</UserSecretsId>
+    <Authors>T-App Germany</Authors>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>SellerScreen is a high-performance desktop application for Windows. It helps manage employees, warehouses, publicly available devices, sales and expenses.</Description>
+    <Copyright>Copyright © 2021</Copyright>
+    <StartupObject>SellerScreen_2022.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dragablz" Version="0.0.3.223" />
     <PackageReference Include="ModernWpfUI" Version="0.9.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

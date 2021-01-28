@@ -11,8 +11,11 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("SellerScreen-2022")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("T-App Germany")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2021")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("SellerScreen is a high-performance desktop application for Windows. It helps mana" +
+    "ge employees, warehouses, publicly available devices, sales and expenses.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SellerScreen-2022")]
