@@ -1,0 +1,28 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Dragablz/0.0.3.223": {
+        "runtime": {
+          "lib/netcoreapp3.0/Dragablz.dll": {
+            "assemblyVersion": "0.0.3.223",
+            "fileVersion": "0.0.3.223"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Dragablz/0.0.3.223": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nSDrLkQniVmvCvg4JlbtMYBD3UtHbJkX64vJ701TZT+IfOqfEA7cQU5da5NqACY9GuwK7R6VbtPp4WGZK1uTaQ==",
+      "path": "dragablz/0.0.3.223",
+      "hashPath": "dragablz.0.0.3.223.nupkg.sha512"
+    }
+  }
+}

@@ -5,6 +5,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SellerScreen_2022</RootNamespace>
     <UseWPF>true</UseWPF>
+    <UserSecretsId>b751a974-f148-479b-b771-ad10f41b6b7c</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dragablz" Version="0.0.3.223" />
+  </ItemGroup>
 
 </Project>

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QnXjw5zKosgp8OpSQqsRTmgGDF8LsIKooHK7ywDz4htvuBMTNUr1e73rWIhx/Cq87ypNtkSwEcnpgaCrFhdF9w==",
+  "dgSpecHash": "KI5ixokbOUVk2B0MmPTMi4ZK7SA+LhOpx//mdd33WbHNhRNxxTbLhZJ8R3aS3STrQ1rjSu8iFq1bHbGe5qcZWw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\dragablz\\0.0.3.223\\dragablz.0.0.3.223.nupkg.sha512"
+  ],
   "logs": []
 }
