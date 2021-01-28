@@ -12,7 +12,6 @@
     ui:TitleBar.ExtendViewIntoTitleBar="True" ui:WindowHelper.UseModernWindowStyle="True" ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged">
 
     <fw:AcrylicWindow.Resources>
-        <local:InverseAppThemeConverter x:Key="InverseAppThemeConverter" />
         <Storyboard x:Name="NavViewOpen" x:Key="NavViewOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(FrameworkElement.Height)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="50"/>

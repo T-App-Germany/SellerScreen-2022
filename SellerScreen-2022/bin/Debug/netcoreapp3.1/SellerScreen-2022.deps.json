@@ -8,20 +8,11 @@
     ".NETCoreApp,Version=v3.1": {
       "SellerScreen-2022/1.0.0": {
         "dependencies": {
-          "Dragablz": "0.0.3.223",
           "FluentWPF": "0.8.0",
           "ModernWpfUI": "0.9.3"
         },
         "runtime": {
           "SellerScreen-2022.dll": {}
-        }
-      },
-      "Dragablz/0.0.3.223": {
-        "runtime": {
-          "lib/netcoreapp3.0/Dragablz.dll": {
-            "assemblyVersion": "0.0.3.223",
-            "fileVersion": "0.0.3.223"
-          }
         }
       },
       "FluentWPF/0.8.0": {
@@ -116,13 +107,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Dragablz/0.0.3.223": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-nSDrLkQniVmvCvg4JlbtMYBD3UtHbJkX64vJ701TZT+IfOqfEA7cQU5da5NqACY9GuwK7R6VbtPp4WGZK1uTaQ==",
-      "path": "dragablz/0.0.3.223",
-      "hashPath": "dragablz.0.0.3.223.nupkg.sha512"
     },
     "FluentWPF/0.8.0": {
       "type": "package",
