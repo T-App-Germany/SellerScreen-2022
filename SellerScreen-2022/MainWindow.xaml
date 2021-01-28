@@ -53,5 +53,6 @@
                 </ui:TabItemHelper.Icon>
             </TabItem>
         </local:TabablzControlEx>
+        <Grid x:Name="MainPageGrid" Grid.Row="1"/>
     </Grid>
 </Window>
