@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "KI5ixokbOUVk2B0MmPTMi4ZK7SA+LhOpx//mdd33WbHNhRNxxTbLhZJ8R3aS3STrQ1rjSu8iFq1bHbGe5qcZWw==",
+  "dgSpecHash": "hEKENAuXjNu490xgjtMsMMgm5dtTiB4yHFITH44y3hvn8ezaw3izBuCTQ9AVbbuTuBmemjAsSRCRZqUOv5rfHw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\dragablz\\0.0.3.223\\dragablz.0.0.3.223.nupkg.sha512"
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\dragablz\\0.0.3.223\\dragablz.0.0.3.223.nupkg.sha512",
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\modernwpfui\\0.9.3\\modernwpfui.0.9.3.nupkg.sha512",
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\Tom Mohr\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }

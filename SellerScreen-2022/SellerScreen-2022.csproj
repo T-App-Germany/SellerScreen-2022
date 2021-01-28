@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dragablz" Version="0.0.3.223" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.3" />
   </ItemGroup>
 
 </Project>

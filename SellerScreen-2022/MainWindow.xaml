@@ -4,12 +4,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SellerScreen_2022"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        ui:WindowHelper.UseModernWindowStyle="True">
+
     <Grid>
-        <dragablz:TabablzControl ShowDefaultAddButton="True" ShowDefaultCloseButton="True">
-            <TabItem Header="test"/>
-        </dragablz:TabablzControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Height, ElementName=MainMenu}"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="{Binding Background, ElementName=TabView}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton ToolTip="Startseite" Margin="10,0,5,0">
+                <ui:SymbolIcon Symbol="Home"/>
+            </ToggleButton>
+            <Menu x:Name="MainMenu" Grid.Column="1" VerticalAlignment="Top">
+                <MenuItem Header="Datei">
+                    <MenuItem Header="Datei"/>
+                    <MenuItem Header="Datei"/>
+                    <MenuItem Header="Datei"/>
+                    <MenuItem Header="Datei"/>
+                </MenuItem>
+                <MenuItem Header="Bearbeiten"/>
+            </Menu>
+        </Grid>
+        <local:TabablzControlEx x:Name="TabView" Grid.Row="1">
+            <local:TabablzControlEx.InterTabController>
+                <dragablz:InterTabController/>
+            </local:TabablzControlEx.InterTabController>
+            <TabItem Header="Kasse">
+                <ui:TabItemHelper.Icon>
+                    <ui:SymbolIcon Symbol="Shop" />
+                </ui:TabItemHelper.Icon>
+            </TabItem>
+            <TabItem Header="Lager">
+                <ui:TabItemHelper.Icon>
+                    <ui:SymbolIcon Symbol="AllApps" />
+                </ui:TabItemHelper.Icon>
+            </TabItem>
+            <TabItem Header="Statistiken">
+                <ui:TabItemHelper.Icon>
+                    <ui:SymbolIcon Symbol="ShowResults" />
+                </ui:TabItemHelper.Icon>
+            </TabItem>
+        </local:TabablzControlEx>
     </Grid>
 </Window>

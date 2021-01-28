@@ -43,6 +43,10 @@
             "Dragablz": {
               "target": "Package",
               "version": "[0.0.3.223, )"
+            },
+            "ModernWpfUI": {
+              "target": "Package",
+              "version": "[0.9.3, )"
             }
           },
           "imports": [
