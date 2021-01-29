@@ -1,0 +1,688 @@
+﻿<Page x:Class="SellerScreen_2022.Pages.Home.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SellerScreen_2022.Pages.Home"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+      mc:Ignorable="d" 
+      d:DesignWidth="800" d:Background="White"
+      Title="HomePage">
+
+    <Grid>
+        <Image x:Name="BackLogo" Visibility="Collapsed"/>
+        <fw:ParallaxView Source="{Binding ElementName=ContentPanel}" VerticalShift="500">
+            <Grid HorizontalAlignment="Center">
+                <Grid.Effect>
+                    <BlurEffect/>
+                </Grid.Effect>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </StackPanel>
+                <StackPanel Grid.Column="4">
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="{Binding Source, ElementName=BackLogo}" Stretch="Uniform" Opacity="0.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </StackPanel>
+            </Grid>
+        </fw:ParallaxView>
+        <ScrollViewer x:Name="ContentPanel">
+            <StackPanel>
+                <TextBlock Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="50,50,50,1000" FontSize="45" FontWeight="Thin"/>
+                <Border HorizontalAlignment="Stretch" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                    <Grid Margin="10" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Source="/Resources/logo-qu3.png" Height="400"/>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" VerticalAlignment="Center" Margin="5">
+                                <TextBlock Text="SellerScreen-2022 Enterprise" FontSize="30" TextWrapping="Wrap"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:SymbolIcon Symbol="Accept" Margin="5"/>
+                                    <TextBlock Text="Lizenz gültig" FontSize="15" TextWrapping="Wrap" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="5">
+                                    <TextBlock Text="Version" FontSize="20" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" Text="Produkt-ID" FontSize="20" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="5">
+                                    <TextBlock Text="0.0.0" FontSize="20" TextWrapping="Wrap"/>
+                                    <TextBlock Text="xxxxxxxxxx" FontSize="20" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Grid.Row="2" VerticalAlignment="Center" Margin="5">
+                                <TextBlock Text="Dieses Produkt ist lizensiert für:" FontSize="20" TextWrapping="Wrap"/>
+                                <TextBlock Text="T-App Germany" FontSize="20" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <TextBlock Grid.Row="3" Text="Copyright © 2021 - T-App Germany" FontSize="20" TextWrapping="Wrap" Margin="5"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

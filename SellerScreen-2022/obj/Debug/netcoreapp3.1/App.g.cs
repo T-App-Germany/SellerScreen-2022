@@ -80,6 +80,8 @@ namespace SellerScreen_2022 {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.2.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("resources/splashscreen.png");
+            splashScreen.Show(true);
             SellerScreen_2022.App app = new SellerScreen_2022.App();
             app.InitializeComponent();
             app.Run();

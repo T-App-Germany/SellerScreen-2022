@@ -7,7 +7,32 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\Home\HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\NotFoundPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Settings\SettingsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Home\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\NotFoundPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

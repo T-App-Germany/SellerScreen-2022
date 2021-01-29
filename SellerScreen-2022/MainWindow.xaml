@@ -81,9 +81,9 @@
         <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=TitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing">
+        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged">
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Icon="Home" Content="Startseite" IsSelected="True"/>
+                <ui:NavigationViewItem Icon="Home" Content="Startseite" Tag="home" IsSelected="True"/>
                 <ui:NavigationViewItemSeparator/>
                 <ui:NavigationViewItem Icon="Shop" Content="Kasse" />
                 <ui:NavigationViewItem Icon="AllApps" Content="Lager" />
@@ -98,9 +98,8 @@
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
-            <Frame x:Name="MainFrame"/>
+            <ui:Frame x:Name="ContentFrame" WindowChrome.IsHitTestVisibleInChrome="True" Margin="2"/>
         </ui:NavigationView>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="524,249,0,191" Width="91"/>
         <Grid x:Name="TitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
             <Grid HorizontalAlignment="Left" Width="240">
                 <Grid.ColumnDefinitions>

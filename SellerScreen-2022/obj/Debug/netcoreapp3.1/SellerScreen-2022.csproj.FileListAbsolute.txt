@@ -41,3 +41,14 @@ C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\tappgermany.png
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022_Content.g.cs
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\SellerScreen.png
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.csprojAssemblyReference.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Home\HomePage.g.cs
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Home\HomePage.baml
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\SettingsPage.g.cs
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\SettingsPage.baml
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\NotFoundPage.g.cs
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\NotFoundPage.baml
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\logo-qu.png
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\logo-qu2.png
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\logo-qu-t.png
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\logo-qu3.png

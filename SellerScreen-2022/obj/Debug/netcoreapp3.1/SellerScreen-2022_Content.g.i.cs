@@ -8,8 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/logo-qu.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/sellerscreen.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/tappgermany.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/sellerscreen.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/logo-qu-t.png")]
 
 

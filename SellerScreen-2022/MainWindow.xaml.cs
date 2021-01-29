@@ -1,29 +1,75 @@
 ﻿using ModernWpf;
 using ModernWpf.Controls;
-using ModernWpf.Controls.Primitives;
+using SellerScreen_2022.Pages;
+using SellerScreen_2022.Pages.Home;
+using SellerScreen_2022.Pages.Settings;
+using SellerScreen_2022.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SellerScreen_2022
 {
     public partial class MainWindow
     {
+        private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
+        {
+            ("404", typeof(NotFoundPage)),
+            ("home", typeof(HomePage)),
+            ("settings", typeof(SettingsPage)),
+        };
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+
+            DispatcherHelper.RunOnMainThread(() =>
+            {
+                if (this == Application.Current.MainWindow)
+                {
+                    this.SetPlacement(Settings.Default.MainWindowPlacement);
+                }
+            });
+
+            MainNavView_Navigate("home");
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            if (!e.Cancel)
+            {
+                DispatcherHelper.RunOnMainThread(() =>
+                {
+                    if (this == Application.Current.MainWindow)
+                    {
+                        Settings.Default.MainWindowPlacement = this.GetPlacement();
+                        Settings.Default.Save();
+                    }
+                });
+            }
+        }
+
+        private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
+        {
+            if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Light)
+            {
+                Background = (Brush)new BrushConverter().ConvertFrom("#CCFFFFFF");
+            }
+            else
+            {
+                Background = (Brush)new BrushConverter().ConvertFrom("#CC282828");
+            }
         }
 
         private void MainNavView_PaneOpening(NavigationView sender, object args)
@@ -38,15 +84,39 @@ namespace SellerScreen_2022
             BeginStoryboard(sb);
         }
 
-        private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
+        private void MainNavView_Navigate(string navItemTag)
         {
-            if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Light)
+            Type _page = null;
+            if (!string.IsNullOrEmpty(navItemTag))
             {
-                Background = (Brush)new BrushConverter().ConvertFrom("#CCFFFFFF");
+                var item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
+                _page = item.Page;
             }
             else
             {
-                Background = (Brush)new BrushConverter().ConvertFrom("#CC282828");
+                var item = _pages.FirstOrDefault(p => p.Tag.Equals("404"));
+                _page = item.Page;
+            }
+
+            if (!(_page is null))
+            {
+                ContentFrame.Navigate(_page);
+            }
+        }
+
+        private void MainNavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.SelectedItemContainer != null)
+            {
+                if (!(args.SelectedItemContainer.Tag is null))
+                {
+                    var navItemTag = args.SelectedItemContainer.Tag.ToString();
+                    MainNavView_Navigate(navItemTag);
+                }
+                else
+                {
+                    MainNavView_Navigate("");
+                }
             }
         }
     }
