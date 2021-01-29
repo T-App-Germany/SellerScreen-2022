@@ -8,7 +8,7 @@
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
       mc:Ignorable="d" 
       d:DesignWidth="800" d:Background="White"
-      Title="HomePage">
+      Title="HomePage" Loaded="Page_Loaded">
 
     <Grid>
         <Image x:Name="BackLogo" Visibility="Collapsed"/>
@@ -638,15 +638,29 @@
         </fw:ParallaxView>
         <ScrollViewer x:Name="ContentPanel">
             <StackPanel>
-                <TextBlock Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="50,50,50,1000" FontSize="45" FontWeight="Thin"/>
+                <TextBlock x:Name="TitleTxt" Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="0,50,0,50" FontSize="45" FontWeight="Thin"/>
+                <Grid x:Name="DistancePanel1" Height="250"/>
+                <WrapPanel x:Name="LogoPanel" HorizontalAlignment="Center">
+                    <Image Source="/Resources/SellerScreen.png" Height="200" Margin="20" VerticalAlignment="Center">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="3" Opacity="0.79" Direction="315" BlurRadius="30" RenderingBias="Performance"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image Source="/Resources/tappgermany.png" Height="200" Margin="20" VerticalAlignment="Center">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="3" Opacity="0.79" Direction="315" BlurRadius="30" RenderingBias="Performance"/>
+                        </Image.Effect>
+                    </Image>
+                </WrapPanel>
+                <Grid x:Name="DistancePanel2" Height="400"/>
                 <Border HorizontalAlignment="Stretch" Background="{DynamicResource SystemAltMediumLowColorBrush}">
                     <Grid Margin="10" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Source="/Resources/logo-qu3.png" Height="400"/>
-                        <Grid Grid.Column="1">
+                        <Image Grid.Column="0" Source="/Resources/logo-qu.png" Margin="0,0,50,0" MaxHeight="350"/>
+                        <Grid x:Name="grid" Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -660,7 +674,7 @@
                                     <TextBlock Text="Lizenz gültig" FontSize="15" TextWrapping="Wrap" Margin="5"/>
                                 </StackPanel>
                             </StackPanel>
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="1" VerticalAlignment="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>

@@ -7,8 +7,8 @@
     xmlns:local="clr-namespace:SellerScreen_2022"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-    mc:Ignorable="d" Title="MainWindow" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    WindowStyle="None" Background="#CCFFFFFF" ui:ThemeManager.IsThemeAware="True"
+    mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
+    WindowStyle="None" Background="#CCFFFFFF" ui:ThemeManager.IsThemeAware="True" MinHeight="478" MinWidth="850"
     ui:TitleBar.ExtendViewIntoTitleBar="True" ui:WindowHelper.UseModernWindowStyle="True" ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged">
 
     <fw:AcrylicWindow.Resources>
@@ -98,7 +98,7 @@
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
-            <ui:Frame x:Name="ContentFrame" WindowChrome.IsHitTestVisibleInChrome="True" Margin="2"/>
+            <ui:Frame x:Name="ContentFrame" WindowChrome.IsHitTestVisibleInChrome="True" Margin="0,0,2,2"/>
         </ui:NavigationView>
         <Grid x:Name="TitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
             <Grid HorizontalAlignment="Left" Width="240">
