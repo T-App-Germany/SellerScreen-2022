@@ -120,5 +120,10 @@ namespace SellerScreen_2022
                 }
             }
         }
+
+        private void acrylicWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            HomePage.ParentHeight = ContentFrame.ActualHeight;
+        }
     }
 }
