@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -43,10 +44,12 @@ namespace SellerScreen_2022.Pages.Home
                 await Task.Delay(50);
             }
         }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ChangeDistancePanels().ConfigureAwait(false);
+
+            var sb = (Storyboard)FindResource("BottomArrowAni");
+            BeginStoryboard(sb);
         }
     }
 }
