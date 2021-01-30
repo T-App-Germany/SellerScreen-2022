@@ -4,11 +4,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SellerScreen_2022.Pages"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="NotFoundPage">
 
-    <Grid>
-        
+    <Grid Margin="50" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}" />
+        <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+        <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="&#xf618;" FontFamily="Segoe MDL2 Assets" FontSize="100" Margin="50"/>
+                <Grid Grid.Column="1" Margin="40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="404" FontSize="80" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Text="Seite nicht gefunden" FontSize="50" TextWrapping="Wrap"/>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
