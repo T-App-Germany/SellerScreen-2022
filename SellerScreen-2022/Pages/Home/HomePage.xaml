@@ -49,7 +49,7 @@
     <Grid>
         <ScrollViewer x:Name="ContentPanel">
             <StackPanel>
-                <TextBlock x:Name="TitleTxt" Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="0,50,0,50" FontSize="45" FontWeight="Thin"/>
+                <TextBlock x:Name="TitleTxt" Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="0,50,0,50" Style="{StaticResource HeaderTextBlockStyle}"/>
                 <Grid x:Name="DistancePanel1" Height="400"/>
                 <WrapPanel x:Name="LogoPanel" HorizontalAlignment="Center">
                     <Image x:Name="AppLogo" Source="/Resources/SellerScreen.png" Height="200" Margin="20" VerticalAlignment="Center" Width="{Binding Width, ElementName=CompanyLogo}" >
@@ -79,7 +79,6 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" VerticalAlignment="Center" Margin="5">
                                 <TextBlock Text="SellerScreen-2022 Enterprise" FontSize="30" TextWrapping="Wrap"/>
@@ -88,25 +87,13 @@
                                     <TextBlock Text="Lizenz gültig" FontSize="15" TextWrapping="Wrap" Margin="5"/>
                                 </StackPanel>
                             </StackPanel>
-                            <Grid Grid.Row="1" VerticalAlignment="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" Margin="5">
-                                    <TextBlock Text="Version" FontSize="20" TextWrapping="Wrap"/>
-                                    <TextBlock Grid.Row="1" Text="Produkt-ID" FontSize="20" TextWrapping="Wrap"/>
-                                </StackPanel>
-                                <StackPanel Grid.Column="1" Margin="5">
-                                    <TextBlock Text="0.0.0" FontSize="20" TextWrapping="Wrap"/>
-                                    <TextBlock Text="xxxxxxxxxx" FontSize="20" TextWrapping="Wrap"/>
-                                </StackPanel>
-                            </Grid>
-                            <StackPanel Grid.Row="2" VerticalAlignment="Center" Margin="5">
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="5">
                                 <TextBlock Text="Dieses Produkt ist lizensiert für:" FontSize="20" TextWrapping="Wrap"/>
                                 <TextBlock Text="T-App Germany" FontSize="20" TextWrapping="Wrap"/>
                             </StackPanel>
-                            <TextBlock Grid.Row="3" Text="Copyright © 2021 - T-App Germany" FontSize="20" TextWrapping="Wrap" Margin="5"/>
+                            <TextBlock Grid.Row="2" FontSize="20" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center">
+                                <Run Text="Copyright © 2021"/><LineBreak/><Run Text="T-App Germany"/>
+                            </TextBlock>
                         </Grid>
                     </Grid>
                 </Border>

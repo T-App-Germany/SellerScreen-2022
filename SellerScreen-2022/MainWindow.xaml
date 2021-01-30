@@ -8,7 +8,7 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    Background="#CCFFFFFF" ui:ThemeManager.IsThemeAware="True" MinHeight="638" MinWidth="850"
+    Background="#CCFFFFFF" MinHeight="638" MinWidth="850"
     ui:TitleBar.ExtendViewIntoTitleBar="True" ui:WindowHelper.UseModernWindowStyle="True" ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged" SizeChanged="acrylicWindow_SizeChanged">
 
     <fw:AcrylicWindow.Resources>

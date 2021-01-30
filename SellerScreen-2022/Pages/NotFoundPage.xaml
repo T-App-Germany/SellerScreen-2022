@@ -23,8 +23,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="404" FontSize="80" TextWrapping="Wrap"/>
-                    <TextBlock Grid.Row="1" Text="Seite nicht gefunden" FontSize="50" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="0" Text="404" FontSize="70" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Text="Seite nicht gefunden" FontSize="40" TextWrapping="Wrap"/>
                 </Grid>
             </Grid>
         </Border>
