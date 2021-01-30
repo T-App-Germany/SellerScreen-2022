@@ -217,6 +217,15 @@
             "rid": "win"
           }
         }
+      },
+      "InternalShared/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/InternalShared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InternalShared.dll": {}
+        }
       }
     }
   },
@@ -647,11 +656,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "InternalShared/1.0.0": {
+      "type": "project",
+      "path": "../InternalShared/InternalShared.csproj",
+      "msbuildProject": "../InternalShared/InternalShared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FluentWPF >= 0.8.0",
+      "InternalShared >= 1.0.0",
       "ModernWpfUI >= 0.9.3"
     ]
   },
@@ -681,7 +696,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj": {
+              "projectPath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

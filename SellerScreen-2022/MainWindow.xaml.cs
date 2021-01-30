@@ -108,7 +108,8 @@ namespace SellerScreen_2022
         {
             if (args.SelectedItemContainer != null)
             {
-                if (!(args.SelectedItemContainer.Tag is null))
+                if (args.IsSettingsSelected) MainNavView_Navigate("settings");
+                else if (!(args.SelectedItemContainer.Tag is null))
                 {
                     var navItemTag = args.SelectedItemContainer.Tag.ToString();
                     MainNavView_Navigate(navItemTag);
@@ -118,6 +119,11 @@ namespace SellerScreen_2022
                     MainNavView_Navigate("");
                 }
             }
+        }
+
+        private void acrylicWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            HomePage.ParentHeight = ContentFrame.ActualHeight;
         }
     }
 }

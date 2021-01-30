@@ -9,6 +9,7 @@
       "SellerScreen-2022/1.0.0": {
         "dependencies": {
           "FluentWPF": "0.8.0",
+          "InternalShared": "1.0.0",
           "ModernWpfUI": "0.9.3"
         },
         "runtime": {
@@ -99,6 +100,11 @@
           "Microsoft.NETCore.Platforms": "3.0.0",
           "System.Runtime.WindowsRuntime": "4.6.0"
         }
+      },
+      "InternalShared/1.0.0": {
+        "runtime": {
+          "InternalShared.dll": {}
+        }
       }
     }
   },
@@ -149,6 +155,11 @@
       "sha512": "sha512-r4tNw5v5kqRJ9HikWpcyNf3suGw7DjX93svj9iBjtdeLqL8jt9Z+7f+s4wrKZJr84u8IMsrIjt8K6jYvkRqMSg==",
       "path": "system.runtime.windowsruntime.ui.xaml/4.6.0",
       "hashPath": "system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
+    },
+    "InternalShared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

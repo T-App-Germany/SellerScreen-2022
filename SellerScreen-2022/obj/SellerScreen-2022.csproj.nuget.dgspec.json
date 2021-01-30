@@ -4,6 +4,16 @@
     "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj",
+        "projectName": "InternalShared",
+        "projectPath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj"
+      },
+      "frameworks": {
+        "net45": {}
+      }
+    },
     "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +37,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj": {
+                "projectPath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\InternalShared\\InternalShared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
