@@ -1,0 +1,11 @@
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\bin\Debug\netcoreapp3.1\Translations.deps.json
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\bin\Debug\netcoreapp3.1\Translations.dll
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\bin\Debug\netcoreapp3.1\Translations.pdb
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.csprojAssemblyReference.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.Strings.de.Resource.resources
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.csproj.GenerateResource.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.AssemblyInfoInputs.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.AssemblyInfo.cs
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.csproj.CoreCompileInputs.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.dll
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\Translations\obj\Debug\netcoreapp3.1\Translations.pdb

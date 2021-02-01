@@ -17,8 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\github-dark.png" />
-    <None Remove="Resources\github-light.png" />
     <None Remove="Resources\logo-qu-t.png" />
     <None Remove="Resources\logo-qu.png" />
     <None Remove="Resources\sellerscreen.ico" />
@@ -68,15 +66,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InternalShared\InternalShared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\github-dark.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\github-light.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -8,10 +8,16 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    Background="#CCFFFFFF" MinHeight="638" MinWidth="850"
-    ui:TitleBar.ExtendViewIntoTitleBar="True" ui:WindowHelper.UseModernWindowStyle="True" ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged" SizeChanged="acrylicWindow_SizeChanged">
+    Background="#CCFFFFFF" MinHeight="638" MinWidth="850" SizeChanged="acrylicWindow_SizeChanged"
+    ui:WindowHelper.UseModernWindowStyle="True"
+    ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
+    ui:TitleBar.ExtendViewIntoTitleBar="True"
+    ui:TitleBar.Style="{DynamicResource AppTitleBarStyle}"
+    ui:TitleBar.ButtonStyle="{DynamicResource AppTitleBarButtonStyle}">
 
     <fw:AcrylicWindow.Resources>
+        <local:PixelsToGridLengthConverter x:Key="PixelsToGridLength" />
+
         <Storyboard x:Name="NavViewOpen" x:Key="NavViewOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(FrameworkElement.Height)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="50"/>
@@ -39,6 +45,13 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="4"/>
             </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="AppTitleBar" Storyboard.TargetProperty="(Grid.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="260,0,0,0">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="NavViewClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(FrameworkElement.Height)">
@@ -75,6 +88,13 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="AppTitleBar" Storyboard.TargetProperty="(Grid.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="0,0,0,0">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
     </fw:AcrylicWindow.Resources>
     <WindowChrome.WindowChrome>
@@ -100,6 +120,33 @@
             </ui:NavigationView.MenuItems>
             <ui:Frame x:Name="ContentFrame" WindowChrome.IsHitTestVisibleInChrome="True" Margin="0,0,2,2"/>
         </ui:NavigationView>
+        <Grid x:Name="AppTitleBar" Background="{DynamicResource SystemControlBackgroundAccentBrush}" VerticalAlignment="Top" Margin="260,0,0,0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="TextElement.Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActive, ElementName=Window}" Value="False">
+                            <Setter Property="TextElement.Foreground" Value="{DynamicResource SystemControlDisabledBaseMediumLowBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayLeftInset), Converter={StaticResource PixelsToGridLength}}" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <ui:TitleBarButton Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Width="125">
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock x:Name="LicensUserTxt" x:Uid="String1" Text="Company Name"/>
+                        </StackPanel>
+                    </ui:TitleBarButton>
+                </StackPanel>
+            </Grid>
+        </Grid>
         <Grid x:Name="TitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
             <Grid HorizontalAlignment="Left" Width="240">
                 <Grid.ColumnDefinitions>
@@ -108,7 +155,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="WindowIconImg" Grid.Column="0" Source="/Resources/SellerScreen.png" Height="50" Margin="10" HorizontalAlignment="Left">
                     <Image.Effect>
-                        <DropShadowEffect ShadowDepth="4" BlurRadius="50"/>
+                        <DropShadowEffect/>
                     </Image.Effect>
                 </Image>
                 <TextBlock x:Name="WindowTitleTxt" Grid.Column="1" Text="SellerScreen-2022 Enterprise" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" VerticalAlignment="Center"/>
