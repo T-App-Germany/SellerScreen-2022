@@ -13,5 +13,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/tappgermany.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/sellerscreen.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/logo-qu-t.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/github-dark.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/github-light.png")]
 
 

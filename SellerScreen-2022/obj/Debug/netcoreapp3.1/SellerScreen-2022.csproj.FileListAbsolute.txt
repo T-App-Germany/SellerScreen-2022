@@ -54,3 +54,5 @@ C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\InternalShared.pdb
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\AboutPage.g.cs
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\AboutPage.baml
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\github-dark.png
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Resources\github-light.png

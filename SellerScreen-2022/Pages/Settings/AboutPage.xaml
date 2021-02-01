@@ -9,92 +9,135 @@
       d:Background="White"
       Title="Über">
 
-    <Grid HorizontalAlignment="Left">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}" Margin="20"/>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="/Resources/SellerScreen.png" Margin="20" Height="100">
-                <Image.Effect>
-                    <DropShadowEffect ShadowDepth="3" Opacity="0.79" Direction="315" BlurRadius="30" RenderingBias="Performance"/>
-                </Image.Effect>
-            </Image>
-            <Grid Grid.Column="1" Margin="20" VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="SellerScreen-2022" FontWeight="Thin" FontSize="25" Margin="5,5,5,0"/>
-                <TextBlock Grid.Row="1" Text="Enterprise" FontWeight="Thin" FontSize="15" Margin="5,0,5,5"/>
-                <Grid Grid.Row="2" VerticalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="5">
-                        <TextBlock Text="Version" TextWrapping="Wrap"/>
-                        <TextBlock Grid.Row="1" Text="Produkt-ID" TextWrapping="Wrap"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Margin="5">
-                        <TextBlock Text="0.0.0.0" TextWrapping="Wrap"/>
-                        <TextBlock Text="xxxxxxxxxx" TextWrapping="Wrap"/>
-                    </StackPanel>
+    <ScrollViewer>
+        <Grid HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}" Margin="20"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="/Resources/SellerScreen.png" Margin="20" Height="120">
+                    <Image.Effect>
+                        <DropShadowEffect ShadowDepth="3" Opacity="0.79" Direction="315" BlurRadius="30" RenderingBias="Performance"/>
+                    </Image.Effect>
+                </Image>
+                <Grid Grid.Column="1" Margin="20" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="SellerScreen-2022" FontWeight="Thin" FontSize="25" Margin="5,5,5,0"/>
+                    <TextBlock Grid.Row="1" Text="Enterprise" FontWeight="Thin" FontSize="15" Margin="5,0,5,5"/>
+                    <Grid Grid.Row="2" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="5">
+                            <TextBlock Text="Version" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Row="1" Text="Produkt-ID" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="5">
+                            <TextBlock Text="0.0.0.0" TextWrapping="Wrap"/>
+                            <TextBlock Text="xxxxxxxxxx" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Grid.Row="3" Text="Copyrigth © 2021" Margin="5"/>
                 </Grid>
             </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+                <Button Content="Auf Updates prüfen" Margin="10" Style="{StaticResource AccentButtonStyle}"/>
+                <Button Content="Nutzungsbedingungen anzeigen" Margin="10"/>
+            </StackPanel>
+            <Grid Grid.Row="3" Margin="20,10,20,10" VerticalAlignment="Center">
+                <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Lizenz" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5">
+                            <TextBlock Text="Schlüssel:" TextWrapping="Wrap"/>
+                            <TextBlock Text="Server:" TextWrapping="Wrap"/>
+                            <TextBlock Text="Empfänger:" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+                            <TextBlock Text="****-****-****-xxxx" TextWrapping="Wrap"/>
+                            <TextBlock Text="n/a" TextWrapping="Wrap"/>
+                            <TextBlock Text="n/a" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <ui:HyperlinkButton Grid.Row="2" Content="Lizenz ändern" Margin="5"/>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="4" Margin="20,10,20,10" VerticalAlignment="Center">
+                <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Abhängigkeiten" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <StackPanel Grid.Row="1">
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <ui:HyperlinkButton Grid.Row="1" Content="FluentWPF ⭧" Margin="5,0,0,0" NavigateUri="https://github.com/sourcechord/FluentWPF" ToolTip="GitHub" Cursor="Hand"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5,0,5,5">
+                                <ui:HyperlinkButton Grid.Row="1" Content="ModernWpf ⭧" Margin="5,0,0,0" NavigateUri="https://github.com/Kinnara/ModernWpf" ToolTip="GitHub"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="5" Margin="20,10,20,10" VerticalAlignment="Center">
+                <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Herausgeber" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <Grid Grid.Row="1" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Grid.Row="1" Margin="5">
+                                <Image Source="/Resources/tappgermany.png" HorizontalAlignment="Left" Height="100"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+                                <TextBlock Text="T-App Germany" FontSize="18" Margin="5,5,5,0"/>
+                                <TextBlock Text="Copyrigth © 2021" Margin="5,0,5,5"/>
+                                <ui:HyperlinkButton Content="Website ⭧" Margin="5,0,0,0" NavigateUri="https://t-app-germany.com" ToolTip="t-app-germany.com"/>
+                                <ui:HyperlinkButton Content="E-Mail" Margin="5,0,0,0" NavigateUri="mailto:info@t-app-germany.com" ToolTip="info@t-app-germany.com"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
-        <Grid Grid.Row="2" Margin="20" VerticalAlignment="Center">
-            <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
-            <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
-            <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="5">
-                        <TextBlock Text="Lizenzschlüssel:" TextWrapping="Wrap"/>
-                        <TextBlock Text="Produkt-ID:" TextWrapping="Wrap"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Margin="5">
-                        <TextBlock Text="****-****-****-xxxx" TextWrapping="Wrap"/>
-                        <TextBlock Text="xxxxxxxxxx" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </Grid>
-        <Grid Grid.Row="3" Margin="20" VerticalAlignment="Center">
-            <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
-            <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
-            <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Column="0" Margin="5">
-                        <TextBlock Text="Lizenz-Server:" TextWrapping="Wrap"/>
-                        <TextBlock Text="Lizenz Empfänger:" TextWrapping="Wrap"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Margin="5">
-                        <TextBlock Text="n/a" TextWrapping="Wrap"/>
-                        <TextBlock Text="n/a" TextWrapping="Wrap"/>
-                    </StackPanel>
-                    <ui:HyperlinkButton Grid.Row="1" Content="Lizenz ändern" Margin="5"/>
-                </Grid>
-            </Border>
-        </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>
