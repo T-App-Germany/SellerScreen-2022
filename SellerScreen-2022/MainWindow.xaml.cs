@@ -62,6 +62,21 @@ namespace SellerScreen_2022
             }
         }
 
+        private void OnThemeButtonClick(object sender, RoutedEventArgs e)
+        {
+            DispatcherHelper.RunOnMainThread(() =>
+            {
+                if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark)
+                {
+                    ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+                }
+                else
+                {
+                    ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+                }
+            });
+        }
+
         private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
         {
             if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Light)
