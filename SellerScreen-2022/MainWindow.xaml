@@ -8,7 +8,7 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    Background="#CCFFFFFF" MinHeight="638" MinWidth="850" SizeChanged="acrylicWindow_SizeChanged"
+    d:Background="#CCFFFFFF" MinHeight="638" MinWidth="850" SizeChanged="acrylicWindow_SizeChanged"
     ui:WindowHelper.UseModernWindowStyle="True"
     ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
     ui:TitleBar.ExtendViewIntoTitleBar="True">
@@ -133,15 +133,21 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}"/>
                 </Grid.ColumnDefinitions>
 
-                <ui:TitleBarButton Grid.Column="0" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnThemeButtonClick">
+                <ui:TitleBarButton Grid.Column="0" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnSizeButtonClick">
+                    <StackPanel Orientation="Horizontal">
+                        <ui:FontIcon Glyph="&#xec19;" Margin="2,2,2,2" />
+                    </StackPanel>
+                </ui:TitleBarButton>
+                <ui:TitleBarButton Grid.Column="1" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnThemeButtonClick">
                     <StackPanel Orientation="Horizontal">
                         <ui:FontIcon Glyph="&#xE771;" Margin="2,-2,2,2" />
                     </StackPanel>
                 </ui:TitleBarButton>
-                <ui:TitleBarButton Grid.Column="1" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0">
+                <ui:TitleBarButton Grid.Column="2" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0">
                     <StackPanel Orientation="Horizontal">
                         <ui:FontIcon Glyph="&#xe77b;" Margin="2" />
                     </StackPanel>

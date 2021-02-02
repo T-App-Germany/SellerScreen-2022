@@ -143,5 +143,11 @@ namespace SellerScreen_2022
             HomePage.ParentHeight = ContentFrame.ActualHeight;
             StoragePage.ParentHeight = ContentFrame.ActualHeight;
         }
+
+        private void OnSizeButtonClick(object sender, RoutedEventArgs e)
+        {
+            Height = 768;
+            Width = 1024;
+        }
     }
 }
