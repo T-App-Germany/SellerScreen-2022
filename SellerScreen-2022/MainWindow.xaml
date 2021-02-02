@@ -101,16 +101,16 @@
     <Grid>
         <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged">
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Icon="Home" Content="Startseite" Tag="home" IsSelected="True"/>
+                <ui:NavigationViewItem Icon="Home" Content="Startseite" FontSize="20" Tag="home" IsSelected="True"/>
                 <ui:NavigationViewItemSeparator/>
-                <ui:NavigationViewItem Icon="Shop" Content="Kasse" />
-                <ui:NavigationViewItem Icon="AllApps" Content="Lager" Tag="storage"/>
-                <ui:NavigationViewItem Content="Statistiken">
+                <ui:NavigationViewItem Icon="Shop" Content="Kasse" FontSize="20"/>
+                <ui:NavigationViewItem Icon="AllApps" Content="Lager" FontSize="20" Tag="storage"/>
+                <ui:NavigationViewItem Content="Statistiken" FontSize="20">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE9D9;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="PlugIn-Manager">
+                <ui:NavigationViewItem Content="PlugIn-Manager" FontSize="20">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA86;"/>
                     </ui:NavigationViewItem.Icon>

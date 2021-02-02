@@ -63,7 +63,7 @@
             <Grid Grid.Row="3" Margin="20,10,20,10" VerticalAlignment="Center">
                 <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
                 <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
-                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -92,7 +92,7 @@
             <Grid Grid.Row="4" Margin="20,10,20,10" VerticalAlignment="Center">
                 <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
                 <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
-                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -113,7 +113,7 @@
             <Grid Grid.Row="5" Margin="20,10,20,10" VerticalAlignment="Center">
                 <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
                 <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
-                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumLowColorBrush}">
+                <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
