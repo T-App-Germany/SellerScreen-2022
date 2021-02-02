@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<ProjectGuidesConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectItemGuides>
+    <ProjectItemGuide TargetFile="Pages\Storage\StoragePage.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Left" Position="20" />
+            <Guide Alignment="Left" Position="92" />
+            <Guide Alignment="Left" Position="60" />
+            <Guide Alignment="Left" Position="158" />
+            <Guide Alignment="Left" Position="288" />
+            <Guide Alignment="Left" Position="390" />
+            <Guide Alignment="Left" Position="464" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+  </ProjectItemGuides>
+</ProjectGuidesConfiguration>

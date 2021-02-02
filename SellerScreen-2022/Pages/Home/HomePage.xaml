@@ -8,7 +8,7 @@
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
       mc:Ignorable="d" 
       d:DesignWidth="800" d:Background="White"
-      Title="HomePage" Loaded="Page_Loaded">
+      Title="Startseite" Loaded="Page_Loaded">
     <Page.Resources>
         <Storyboard x:Key="BottomArrowAni" RepeatBehavior="Forever">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="fontIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">

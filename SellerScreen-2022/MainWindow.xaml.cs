@@ -3,6 +3,7 @@ using ModernWpf.Controls;
 using SellerScreen_2022.Pages;
 using SellerScreen_2022.Pages.Home;
 using SellerScreen_2022.Pages.Settings;
+using SellerScreen_2022.Pages.Storage;
 using SellerScreen_2022.Properties;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace SellerScreen_2022
         {
             ("404", typeof(NotFoundPage)),
             ("home", typeof(HomePage)),
+            ("storage", typeof(StoragePage)),
             ("settings", typeof(SettingsPage)),
         };
 
@@ -124,6 +126,7 @@ namespace SellerScreen_2022
         private void acrylicWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             HomePage.ParentHeight = ContentFrame.ActualHeight;
+            StoragePage.ParentHeight = ContentFrame.ActualHeight;
         }
     }
 }

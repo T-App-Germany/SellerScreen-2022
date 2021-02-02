@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
-5-829554833
+6546027655
 5-1556615120
-16-409914938
+171193941503
 283443029972
-MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;
+MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Storage\StoragePage.xaml;
 resources\splashscreen.png
 False
 
