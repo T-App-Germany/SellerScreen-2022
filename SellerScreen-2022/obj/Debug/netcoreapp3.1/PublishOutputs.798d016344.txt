@@ -25,3 +25,5 @@ C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\publi
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\publish\tr\ModernWpf.resources.dll
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\publish\zh-Hans\ModernWpf.resources.dll
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\publish\zh-Hant\ModernWpf.resources.dll
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\publish\InternalShared.dll
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\publish\InternalShared.pdb

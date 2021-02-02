@@ -14,6 +14,7 @@
     <StartupObject>SellerScreen_2022.App</StartupObject>
     <PackageIcon>SellerScreen.png</PackageIcon>
     <ApplicationIcon>Resources\sellerscreen.ico</ApplicationIcon>
+    <Configurations>Debug;Release;Debug extern</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

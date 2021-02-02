@@ -1,0 +1,6 @@
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Debug extern\InternalShared.dll
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Debug extern\InternalShared.pdb
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug extern\InternalShared.csprojAssemblyReference.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug extern\InternalShared.csproj.CoreCompileInputs.cache
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug extern\InternalShared.dll
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug extern\InternalShared.pdb

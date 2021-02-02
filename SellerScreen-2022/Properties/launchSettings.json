@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "SellerScreen-2022": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "authenticationMode": "Windows"
+    },
+    "Extern": {
+      "commandName": "Executable",
+      "remoteDebugEnabled": false
+    }
+  }
+}

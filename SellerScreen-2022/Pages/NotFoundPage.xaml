@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       Title="NotFoundPage">
 
-    <Grid Margin="50" VerticalAlignment="Top" HorizontalAlignment="Left">
+    <Grid Margin="50" VerticalAlignment="Center" HorizontalAlignment="Center">
         <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}" />
         <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
         <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
@@ -23,8 +23,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="404" FontSize="80" TextWrapping="Wrap"/>
-                    <TextBlock Grid.Row="1" Text="Seite nicht gefunden" FontSize="50" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="0" Text="404" FontSize="70" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Text="Seite nicht gefunden" FontSize="40" TextWrapping="Wrap"/>
                 </Grid>
             </Grid>
         </Border>

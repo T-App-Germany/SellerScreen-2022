@@ -5,7 +5,7 @@ C:\Users\Tom Mohr\Downloads\Post_Plugins in WPF MvvM with MEF (0)\WPF_MEF_App\In
 C:\Users\Tom Mohr\Downloads\Post_Plugins in WPF MvvM with MEF (0)\WPF_MEF_App\InternalShared\obj\Debug\InternalShared.pdb
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Debug\InternalShared.dll
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Debug\InternalShared.pdb
-C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.csprojAssemblyReference.cache
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.csproj.CoreCompileInputs.cache
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.dll
 C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.pdb
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.csprojAssemblyReference.cache

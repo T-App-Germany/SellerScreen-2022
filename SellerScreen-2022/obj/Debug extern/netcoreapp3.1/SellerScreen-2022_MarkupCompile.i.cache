@@ -1,0 +1,20 @@
+﻿SellerScreen-2022
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug extern\netcoreapp3.1\
+SellerScreen_2022
+none
+false
+TRACE;DEBUG_EXTERN;NETCOREAPP;NETCOREAPP3_1;
+C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
+6546027655
+5-1556615120
+19-1304036641
+283286706756
+MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Storage\StoragePage.xaml;
+resources\splashscreen.png
+False
+
