@@ -20,13 +20,15 @@ namespace SellerScreen_2022.Pages.Storage
     public partial class StoragePage : Page
     {
         public static double ParentHeight { get; set; }
+
+        public static double[] ItemWidth = new double[5];
         
         public StoragePage()
         {
             InitializeComponent();
         }
 
-        private async Task ChangeDistancePanels()
+        private async Task ChangeStorageItemViewHeigth()
         {
             double before = 0;
             while (true)
@@ -45,7 +47,42 @@ namespace SellerScreen_2022.Pages.Storage
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ChangeDistancePanels().ConfigureAwait(false);
+            ChangeStorageItemViewHeigth().ConfigureAwait(false);
+        }
+
+        private void Item_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (sender is Grid item)
+            {
+                for (int i = 0; i < ItemWidth.Length; i++)
+                {
+                    if (item.ColumnDefinitions[i].ActualWidth < ItemWidth[i])
+                    {
+                        ItemWidth[i] = item.ColumnDefinitions[i].ActualWidth;
+
+                        switch (i)
+                        {
+                            case 0:
+                                HeaderNumberTxt.Width = ItemWidth[i];
+                                break;
+                            case 1:
+                                //HeaderStatusTxt.Width = ItemWidth[i];
+                                break;
+                            case 2:
+                                //HeaderNameTxt.Width = ItemWidth[i];
+                                break;
+                            case 3:
+                                //HeaderAvailibleTxt.Width = ItemWidth[i];
+                                break;
+                            case 4:
+                                //HeaderPriceTxt.Width = ItemWidth[i];
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

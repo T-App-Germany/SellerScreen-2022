@@ -8,7 +8,7 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    d:Background="#CCFFFFFF" MinHeight="638" MinWidth="850" SizeChanged="acrylicWindow_SizeChanged"
+    d:Background="#CCFFFFFF" MinHeight="768" MinWidth="1024" SizeChanged="acrylicWindow_SizeChanged"
     ui:WindowHelper.UseModernWindowStyle="True"
     ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
     ui:TitleBar.ExtendViewIntoTitleBar="True">
@@ -99,7 +99,7 @@
         <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=TitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged">
+        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="1200">
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Icon="Home" Content="Startseite" FontSize="20" Tag="home" IsSelected="True"/>
                 <ui:NavigationViewItemSeparator/>

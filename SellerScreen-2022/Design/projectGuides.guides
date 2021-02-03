@@ -6,12 +6,14 @@
         <GuideModel>
           <Guides>
             <Guide Alignment="Left" Position="20" />
-            <Guide Alignment="Left" Position="92" />
-            <Guide Alignment="Left" Position="60" />
-            <Guide Alignment="Left" Position="158" />
-            <Guide Alignment="Left" Position="288" />
-            <Guide Alignment="Left" Position="390" />
-            <Guide Alignment="Left" Position="464" />
+            <Guide Alignment="Left" Position="74" />
+            <Guide Alignment="Left" Position="150" />
+            <Guide Alignment="Left" Position="282" />
+            <Guide Alignment="Left" Position="394" />
+            <Guide Alignment="Left" Position="484" />
+            <Guide Alignment="Top" Position="288" />
+            <Guide Alignment="Top" Position="323" />
+            <Guide Alignment="Left" Position="32" />
           </Guides>
         </GuideModel>
       </GuideModels>
