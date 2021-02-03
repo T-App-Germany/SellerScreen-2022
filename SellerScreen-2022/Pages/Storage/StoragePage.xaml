@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="StorageHeaderSelectTxt" Grid.Column="0" FontSize="20" FontWeight="DemiBold" MinWidth="34" Margin="10,0,0,0"/>
+                    <CheckBox x:Name="StorageHeaderSelectTxt" Grid.Column="0" FontSize="20" FontWeight="DemiBold" MinWidth="34" Margin="10,0,0,0" IsThreeState="True"/>
                     <TextBlock x:Name="StorageHeaderIdTxt" Grid.Column="1" Text="ID" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="42"/>
                     <TextBlock x:Name="StorageHeaderStatusTxt" Grid.Column="2" Text="Status" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="76"/>
                     <TextBlock x:Name="StorageHeaderNameTxt" Grid.Column="3" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="132"/>
