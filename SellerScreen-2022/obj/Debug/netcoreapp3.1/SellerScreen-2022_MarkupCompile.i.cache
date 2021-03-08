@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\
 SellerScreen_2022
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
 6546027655
 5-1556615120
 201330806068
-283443029972
+283-2877155
 MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Storage\StoragePage.xaml;
 resources\splashscreen.png
 True

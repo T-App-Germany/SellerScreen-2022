@@ -4,10 +4,6 @@
       "commandName": "Project",
       "remoteDebugEnabled": false,
       "authenticationMode": "Windows"
-    },
-    "Extern": {
-      "commandName": "Executable",
-      "remoteDebugEnabled": false
     }
   }
 }
