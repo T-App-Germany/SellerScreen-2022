@@ -37,7 +37,7 @@ namespace SellerScreen_2022.Data
         {
             using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Open);
             XmlSerializer XML = new XmlSerializer(typeof(Storage));
-            return (Task<Storage>)XML.Deserialize(stream);
+            return Task.FromResult((Storage)XML.Deserialize(stream));
         }
     }
 }

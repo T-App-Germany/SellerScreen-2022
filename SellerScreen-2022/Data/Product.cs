@@ -79,7 +79,7 @@ namespace SellerScreen_2022.Data
         {
             using FileStream stream = new FileStream(Paths.productsPath + $"{id}.xml", FileMode.Open);
             XmlSerializer XML = new XmlSerializer(typeof(Product));
-            return (Task<Product>)XML.Deserialize(stream);
+            return Task.FromResult((Product)XML.Deserialize(stream));
         }
 
         public Task<ulong> Save()

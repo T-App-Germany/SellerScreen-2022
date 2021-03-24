@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace SellerScreen_2022.Data
@@ -16,18 +17,19 @@ namespace SellerScreen_2022.Data
             set => _AutoUpdateChecker = value;
         }
 
-        public void Save()
+        public Task Save()
         {
             using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Create);
             XmlSerializer XML = new XmlSerializer(typeof(Settings));
             XML.Serialize(stream, this);
+            return Task.CompletedTask;
         }
 
-        public static Settings Load()
+        public static Task<Settings> Load()
         {
             using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Open);
             XmlSerializer XML = new XmlSerializer(typeof(Settings));
-            return (Settings)XML.Deserialize(stream);
+            return Task.FromResult((Settings)XML.Deserialize(stream));
         }
     }
 }

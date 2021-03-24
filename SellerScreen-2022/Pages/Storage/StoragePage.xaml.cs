@@ -245,7 +245,7 @@ namespace SellerScreen_2022.Pages.Storage
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
