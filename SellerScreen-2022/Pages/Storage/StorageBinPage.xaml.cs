@@ -15,7 +15,6 @@ namespace SellerScreen_2022.Pages.Storage
 {
     public partial class StorageBinPage : Page
     {
-        public static double ParentHeight { get; set; }
         private bool reloading = false;
         private readonly Dictionary<short, double> widthId = new Dictionary<short, double>();
         private readonly Dictionary<short, double> widthName = new Dictionary<short, double>();
@@ -32,27 +31,22 @@ namespace SellerScreen_2022.Pages.Storage
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            _ = ChangeStorageItemViewHeigth();
-
             await LoadBin();
             await BuildBin();
         }
 
-        private async Task ChangeStorageItemViewHeigth()
+        private void Viewbox_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            double before = 0;
-            while (true)
+            if (sender is Viewbox box)
             {
-                if (ParentHeight != before)
+                double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
+                double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
+                double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
+                double space = box.ActualHeight - header - cmdBar - columns - BinItemView.Margin.Top - BinItemView.Margin.Bottom - 200;
+                if (space > 0)
                 {
-                    before = ParentHeight;
-                    double title_heigth = HeaderTxt.ActualHeight + HeaderTxt.Margin.Top + HeaderTxt.Margin.Bottom;
-                    double logo_heigth = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
-                    double columns_heigth = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
-                    double space = ParentHeight - title_heigth - logo_heigth - columns_heigth - BinItemView.Margin.Top - BinItemView.Margin.Bottom;
-                    BinItemView.MaxHeight = space - 200;
+                    BinItemView.MaxHeight = space;
                 }
-                await Task.Delay(50);
             }
         }
 
@@ -160,6 +154,7 @@ namespace SellerScreen_2022.Pages.Storage
                 EmptyTxt.Visibility = Visibility.Visible;
                 ListViewGrid.Visibility = Visibility.Collapsed;
                 ChangeSelectionModeBtn.IsEnabled = false;
+                ChangeSelectionModeBtn.IsChecked = false;
                 return false;
             }
         }
@@ -193,28 +188,33 @@ namespace SellerScreen_2022.Pages.Storage
             return Task.CompletedTask;
         }
 
-        private async Task LoadBin(bool loadProducts = false)
+        private async Task<bool> LoadBin()
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Laden...";
-            Data.Storage storage = await Data.Storage.Load();
-            Bin.Clear();
-            for (int i = 0; i < storage.Bin.Count; i++)
+            try
             {
-                Product product = await Product.Load(storage.Bin[i]);
-                Bin.Add(product.Id, product);
-            }
-            if (loadProducts)
-            {
+                Data.Storage storage = await Data.Storage.Load();
+                Bin.Clear();
+                for (int i = 0; i < storage.Bin.Count; i++)
+                {
+                    Product product = await Product.Load(storage.Bin[i]);
+                    Bin.Add(product.Id, product);
+                }
                 Products.Clear();
                 for (int i = 0; i < storage.Products.Count; i++)
                 {
                     Product product = await Product.Load(storage.Products[i]);
                     Products.Add(product.Id, product);
                 }
+                Bin.OrderBy(key => key.Value.Id);
             }
-            Bin.OrderBy(key => key.Value.Id);
+            catch (Exception)
+            {
+                return false;
+            }
             InfoTxt.Visibility = Visibility.Collapsed;
+            return true;
         }
 
         private async Task<bool> SaveBin()
@@ -235,6 +235,47 @@ namespace SellerScreen_2022.Pages.Storage
                 }
 
                 await storage.Save();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            InfoTxt.Visibility = Visibility.Collapsed;
+            return true;
+        }
+
+        private async Task<bool> RestoreProduct(ulong id)
+        {
+            InfoTxt.Visibility = Visibility.Visible;
+            InfoTxt.Text = "Wiederherstellen...";
+            try
+            {
+                Data.Storage storage = await Data.Storage.Load();
+                Products.Add(id, Bin[id]);
+                Bin.Remove(id);
+                storage.Bin.Remove(id);
+                storage.Products.Add(id);
+                await storage.Save();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            InfoTxt.Visibility = Visibility.Collapsed;
+            return true;
+        }
+
+        private async Task<bool> DeleteProduct(ulong id)
+        {
+            InfoTxt.Visibility = Visibility.Visible;
+            InfoTxt.Text = "Löschen...";
+            try
+            {
+                File.Delete(Paths.productsPath + id.ToString() + ".xml");
+                Bin.Remove(id);
+                await SaveBin();
             }
             catch (Exception)
             {
@@ -280,13 +321,6 @@ namespace SellerScreen_2022.Pages.Storage
             }
         }
 
-        private async void AddItemBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Product product = new Product("n/a", false, 0, 0);
-            await product.Save();
-            AddItemToBin(product);
-        }
-
         private void AddItemToBin(Product product)
         {
             ItemTempName.Text = product.Name;
@@ -320,20 +354,45 @@ namespace SellerScreen_2022.Pages.Storage
 
         private async void DelItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            await DelDialog.ShowAsync();
             try
             {
-                await LoadBin(true);
                 IList list = BinItemView.SelectedItems;
-                foreach (Grid item in list)
+                for (int i = 0; i < list.Count; i++)
                 {
-                    File.Delete(Paths.productsPath + item.Tag.ToString() + ".xml");
-                    Bin.Remove(ulong.Parse(item.Tag.ToString()));
-                    BinItemView.Items.Remove(item);
+                    Grid grid = (Grid)list[i];
+                    ulong id = ulong.Parse(grid.Tag.ToString());
+                    if (await DeleteProduct(id))
+                    {
+                        BinItemView.Items.Remove(grid);
+                        CheckForItems();
+                    }
+                    i--;
                 }
-                await SaveBin();
             }
-            catch (Exception ex)
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async void RestoreItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                IList list = BinItemView.SelectedItems;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    Grid grid = (Grid)list[i];
+                    ulong id = ulong.Parse(grid.Tag.ToString());
+                    if (await RestoreProduct(id))
+                    {
+                        BinItemView.Items.Remove(grid);
+                        CheckForItems();
+                    }
+                    i--;
+                }
+            }
+            catch (Exception)
             {
 
             }

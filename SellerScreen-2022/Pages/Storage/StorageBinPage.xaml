@@ -18,7 +18,7 @@
         </Storyboard>
     </Page.Resources>
     <Grid>
-        <Viewbox>
+        <Viewbox SizeChanged="Viewbox_SizeChanged">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -26,7 +26,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Margin="20">
+                <Grid x:Name="HeaderGrid" Grid.Row="0" Margin="20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -59,7 +59,7 @@
                             <ui:FontIcon Glyph="&#xe74d;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="RestoreItemBtn" Label="Wiederherstellen" Click="AddItemBtn_Click" IsEnabled="False">
+                    <ui:AppBarButton x:Name="RestoreItemBtn" Label="Wiederherstellen" Click="RestoreItemBtn_Click" IsEnabled="False">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe97a;"/>
                         </ui:AppBarButton.Icon>
@@ -82,7 +82,7 @@
                         <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
                     </Grid>
                 </Grid>
-                <ui:ListView x:Name="BinItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Single" HorizontalAlignment="Left" SelectionChanged="StorageItemView_SelectionChanged"/>
+                <ui:ListView x:Name="BinItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" HorizontalAlignment="Left" SelectionChanged="StorageItemView_SelectionChanged" SelectionMode="Extended"/>
                 <Grid Visibility="Collapsed">
                     <Grid x:Name="ItemTemplate">
                         <Grid.ContextMenu>
@@ -109,6 +109,6 @@
                 </Grid>
             </Grid>
         </Viewbox>
-        <ui:ContentDialog x:Name="DelDialog" PrimaryButtonText="Ja" SecondaryButtonText="Nein" Title="Produkte endgültig löschen?" Content="Sie sind dabei {0} Produkte zu löschen. Diese Aktion ist unwiderruflich! Möchten Sie wirklich Fortfahren?" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ui:ContentDialog x:Name="DelDialog" PrimaryButtonText="Ja" CloseButtonText="Nein" Title="Produkte endgültig löschen?" Content="Sie sind dabei {0} Produkte zu löschen. Diese Aktion ist unwiderruflich! Möchten Sie wirklich Fortfahren?" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
     </Grid>
 </Page>

@@ -33,11 +33,11 @@ namespace SellerScreen_2022.Data
             return Task.CompletedTask;
         }
 
-        public static async Task<Storage> Load()
+        public static Task<Storage> Load()
         {
             using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Open);
             XmlSerializer XML = new XmlSerializer(typeof(Storage));
-            return (Storage)XML.Deserialize(stream);
+            return (Task<Storage>)XML.Deserialize(stream);
         }
     }
 }

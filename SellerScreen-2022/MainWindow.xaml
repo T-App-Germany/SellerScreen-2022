@@ -8,14 +8,13 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    d:Background="#CCFFFFFF" MinHeight="768" MinWidth="1024" SizeChanged="acrylicWindow_SizeChanged"
+    d:Background="#CCFFFFFF" MinHeight="768" MinWidth="1024"
     ui:WindowHelper.UseModernWindowStyle="True"
     ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
     ui:TitleBar.ExtendViewIntoTitleBar="True">
 
     <fw:AcrylicWindow.Resources>
         <local:PixelsToGridLengthConverter x:Key="PixelsToGridLength" />
-
         <Storyboard x:Name="NavViewOpen" x:Key="NavViewOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(FrameworkElement.Height)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="50"/>
@@ -30,7 +29,7 @@
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="TitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="OwnTitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="30,10,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut"/>
@@ -73,7 +72,7 @@
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="TitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="OwnTitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="5">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut"/>
@@ -96,7 +95,7 @@
         </Storyboard>
     </fw:AcrylicWindow.Resources>
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=TitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
+        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=OwnTitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
     </WindowChrome.WindowChrome>
     <Grid>
         <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="1200">
@@ -160,7 +159,7 @@
                 </ui:TitleBarButton>
             </Grid>
         </Grid>
-        <Grid x:Name="TitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
+        <Grid x:Name="OwnTitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
             <Grid HorizontalAlignment="Left" Width="240">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

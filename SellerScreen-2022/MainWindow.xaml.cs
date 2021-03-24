@@ -144,23 +144,11 @@ namespace SellerScreen_2022
             }
         }
 
-        private void acrylicWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            HomePage.ParentHeight = ContentFrame.ActualHeight;
-            //StoragePage.ParentHeight = ContentFrame.ActualHeight;
-            StorageBinPage.ParentHeight = ContentFrame.ActualHeight;
-        }
-
         private void OnSizeButtonClick(object sender, RoutedEventArgs e)
         {
             Height = 768;
             Width = 1024;
             WindowState = WindowState.Normal;
-        }
-
-        private void TitleBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void OnDataButtonClick(object sender, RoutedEventArgs e)

@@ -130,3 +130,5 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemRemovePage.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageBinPage.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageBinPage.g.cs
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Error\ViewErrorPage.g.cs
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Error\ViewErrorPage.baml

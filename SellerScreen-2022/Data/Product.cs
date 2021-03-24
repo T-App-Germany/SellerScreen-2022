@@ -75,11 +75,11 @@ namespace SellerScreen_2022.Data
             return (ulong)DateTime.UtcNow.Ticks / 1000000;
         }
 
-        public static async Task<Product> Load(ulong id)
+        public static Task<Product> Load(ulong id)
         {
             using FileStream stream = new FileStream(Paths.productsPath + $"{id}.xml", FileMode.Open);
             XmlSerializer XML = new XmlSerializer(typeof(Product));
-            return (Product)XML.Deserialize(stream);
+            return (Task<Product>)XML.Deserialize(stream);
         }
 
         public Task<ulong> Save()

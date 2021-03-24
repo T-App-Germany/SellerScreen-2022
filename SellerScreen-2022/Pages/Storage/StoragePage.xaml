@@ -79,58 +79,12 @@
                     <TextBlock x:Name="HeaderPriceTxt" Grid.Column="5" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
                 </Grid>
             </Grid>
-            <ui:ListView x:Name="StorageItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Single" SelectionChanged="StorageItemView_SelectionChanged" HorizontalAlignment="Left">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderStatusTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderNameTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderAvailibleTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderPriceTxt}"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Text="1" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                    <ui:FontIcon Grid.Column="1" Glyph="&#xe7ba;" Margin="10" Foreground="Orange" ToolTip="Warnung"/>
-                    <TextBlock Grid.Column="2" Text="Name" FontSize="20" Margin="0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" Padding="10,0,0,0" SizeChanged="ItemName_SizeChanged" Tag="0" HorizontalAlignment="Left"/>
-                    <TextBlock Grid.Column="3" Text="00" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Text="00,00€" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderStatusTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderNameTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderAvailibleTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderPriceTxt}"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Text="2" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                    <ui:FontIcon Grid.Column="1" Glyph="&#xf78a;" Margin="10" Foreground="Red" ToolTip="Fehler"/>
-                    <TextBlock Grid.Column="2" Text="Name" FontSize="20" Margin="0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" Padding="10,0,0,0" SizeChanged="ItemName_SizeChanged" Tag="0" HorizontalAlignment="Left"/>
-                    <TextBlock Grid.Column="3" Text="00" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Text="00,00€" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderStatusTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderNameTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderAvailibleTxt}"/>
-                        <ColumnDefinition Width="Auto" MinWidth="{Binding ActualWidth, ElementName=HeaderPriceTxt}"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Text="3" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                    <ui:FontIcon Grid.Column="1" Glyph="&#xe7e8;" Margin="10" Foreground="Gray" ToolTip="Deaktiviert"/>
-                    <TextBlock Grid.Column="2" Text="Name" FontSize="20" Margin="0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" Padding="10,0,0,0" SizeChanged="ItemName_SizeChanged" Tag="0" HorizontalAlignment="Left"/>
-                    <TextBlock Grid.Column="3" Text="00" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Text="00,00€" FontSize="20" Margin="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" HorizontalAlignment="Center"/>
-                </Grid>
-            </ui:ListView>
+            <ui:ListView x:Name="StorageItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Extended" SelectionChanged="StorageItemView_SelectionChanged" HorizontalAlignment="Left"/>
             <Grid Visibility="Collapsed">
-                <ui:FontIcon x:Name="TempIconOk" Grid.Column="1" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
-                <ui:FontIcon x:Name="TempIconWarn" Grid.Column="1" Glyph="&#xe7ba;" Margin="10" Foreground="Orange" ToolTip="Warnung"/>
-                <ui:FontIcon x:Name="TempIconError" Grid.Column="1" Glyph="&#xf78a;" Margin="10" Foreground="Red" ToolTip="Fehler"/>
-                <ui:FontIcon x:Name="TempIconOff" Grid.Column="1" Glyph="&#xe7e8;" Margin="10" Foreground="Gray" ToolTip="Deaktiviert"/>
+                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
+                <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="Warnung"/>
+                <ui:FontIcon x:Name="TempIconError" Glyph="&#xf78a;" Foreground="Red" ToolTip="Fehler"/>
+                <ui:FontIcon x:Name="TempIconOff" Glyph="&#xe7e8;" Foreground="Gray" ToolTip="Deaktiviert"/>
                 <Grid x:Name="ItemTemplate">
                     <Grid.ContextMenu>
                         <ContextMenu>

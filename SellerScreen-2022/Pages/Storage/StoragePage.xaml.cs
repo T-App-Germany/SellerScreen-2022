@@ -44,6 +44,21 @@ namespace SellerScreen_2022.Pages.Storage
             //MessageBox.Show(proc.PrivateMemorySize64.ToString());
         }
 
+        private void Viewbox_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (sender is Viewbox box)
+            {
+                double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
+                double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
+                double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
+                double space = box.ActualHeight - header - cmdBar - columns - StorageItemView.Margin.Top - StorageItemView.Margin.Bottom - 200;
+                if (space > 0)
+                {
+                    StorageItemView.MaxHeight = space;
+                }
+            }
+        }
+
         private void ChangeSelectionModeBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!(bool)ChangeSelectionModeBtn.IsChecked)
@@ -176,6 +191,7 @@ namespace SellerScreen_2022.Pages.Storage
                 EmptyTxt.Visibility = Visibility.Visible;
                 ListViewGrid.Visibility = Visibility.Collapsed;
                 ChangeSelectionModeBtn.IsEnabled = false;
+                ChangeSelectionModeBtn.IsChecked = false;
                 return false;
             }
         }
@@ -301,6 +317,90 @@ namespace SellerScreen_2022.Pages.Storage
             return true;
         }
 
+        private ProductHealth CheckProductHealth(Product product)
+        {
+            if (!string.IsNullOrEmpty(product.Name) && product.Availible > 10)
+            {
+                return ProductHealth.Ok;
+            }
+            else if (!string.IsNullOrEmpty(product.Name) && product.Availible > 0)
+            {
+                return ProductHealth.Warning;
+            }
+            else
+            {
+                return ProductHealth.Error;
+            }
+        }
+
+        private void AddItemToStorage(Product product)
+        {
+            ItemTempName.Text = product.Name;
+            ItemTempAvailible.Text = product.Availible.ToString();
+            ItempTempPrice.Text = product.Price.ToString("C");
+
+            if (product.Status)
+            {
+                switch (CheckProductHealth(product))
+                {
+                    case ProductHealth.Ok:
+                        ItemTempIcon.Glyph = TempIconOk.Glyph;
+                        ItemTempIcon.Foreground = TempIconOk.Foreground;
+                        ItemTempIcon.ToolTip = TempIconOk.ToolTip;
+                        break;
+                    case ProductHealth.Warning:
+                        ItemTempIcon.Glyph = TempIconWarn.Glyph;
+                        ItemTempIcon.Foreground = TempIconWarn.Foreground;
+                        ItemTempIcon.ToolTip = TempIconWarn.ToolTip;
+                        break;
+                    case ProductHealth.Error:
+                        ItemTempIcon.Glyph = TempIconError.Glyph;
+                        ItemTempIcon.Foreground = TempIconError.Foreground;
+                        ItemTempIcon.ToolTip = TempIconError.ToolTip;
+                        break;
+                }
+            }
+            else
+            {
+                ItemTempIcon.Glyph = TempIconOff.Glyph;
+                ItemTempIcon.Foreground = TempIconOff.Foreground;
+                ItemTempIcon.ToolTip = TempIconOff.ToolTip;
+            }
+
+            ItemTempNumber.Text = (StorageItemView.Items.Count + 1).ToString();
+            ItemTemplate.Tag = product.Id;
+
+            string[] tag = { product.Id.ToString(), "" };
+
+            string xamlString = XamlWriter.Save(ItemTemplate);
+            StringReader stringReader = new StringReader(xamlString);
+            XmlReader xmlReader = XmlReader.Create(stringReader);
+            Grid item = (Grid)XamlReader.Load(xmlReader);
+            MenuItem menuItem = (MenuItem)item.ContextMenu.Items[0];
+            menuItem.Click += new RoutedEventHandler(ShowItemInfo);
+            for (int i = 2; i < item.ContextMenu.Items.Count; i++)
+            {
+                menuItem = (MenuItem)item.ContextMenu.Items[i];
+                menuItem.Click += new RoutedEventHandler(EditItemDialog);
+            }
+            menuItem = null;
+
+            TextBlock txt = (TextBlock)item.Children[0];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemId_SizeChanged);
+            txt = (TextBlock)item.Children[2];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemName_SizeChanged);
+            txt = (TextBlock)item.Children[3];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemAvailible_SizeChanged);
+            txt = (TextBlock)item.Children[4];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemPrice_SizeChanged);
+            txt = null;
+
+            tag[1] = StorageItemView.Items.Add(item).ToString();
+            item.ContextMenu.Tag = tag;
+
+            CheckForItems();
+        }
+        
         private async void AddItemBtn_Click(object sender, RoutedEventArgs e)
         {
             Product product = new Product("n/a", false, 0, 0);
@@ -326,6 +426,7 @@ namespace SellerScreen_2022.Pages.Storage
                     StorageItemView.Items.Remove(grid);
                     CheckForItems();
                 }
+                i--;
             }
         }
 
@@ -371,79 +472,8 @@ namespace SellerScreen_2022.Pages.Storage
                 FontIcon icon = (FontIcon)item.Children[1];
                 icon.Glyph = TempIconOff.Glyph;
                 icon.Foreground = TempIconOff.Foreground;
+                icon.ToolTip = TempIconOff.ToolTip;
             }
-        }
-
-        private ProductHealth CheckProductHealth(Product product)
-        {
-            if (!string.IsNullOrEmpty(product.Name) && product.Availible > 10)
-            {
-                return ProductHealth.Ok;
-            }
-            else if (!string.IsNullOrEmpty(product.Name) && product.Availible > 0)
-            {
-                return ProductHealth.Warning;
-            }
-            else
-            {
-                return ProductHealth.Error;
-            }
-        }
-
-        private void AddItemToStorage(Product product)
-        {
-            ItemTempName.Text = product.Name;
-            ItemTempAvailible.Text = product.Availible.ToString();
-            ItempTempPrice.Text = product.Price.ToString("C");
-
-            switch (CheckProductHealth(product))
-            {
-                case ProductHealth.Ok:
-                    ItemTempIcon.Glyph = TempIconOk.Glyph;
-                    ItemTempIcon.Foreground = TempIconOk.Foreground;
-                    break;
-                case ProductHealth.Warning:
-                    ItemTempIcon.Glyph = TempIconWarn.Glyph;
-                    ItemTempIcon.Foreground = TempIconWarn.Foreground;
-                    break;
-                case ProductHealth.Error:
-                    ItemTempIcon.Glyph = TempIconError.Glyph;
-                    ItemTempIcon.Foreground = TempIconError.Foreground;
-                    break;
-            }
-
-            ItemTempNumber.Text = (StorageItemView.Items.Count + 1).ToString();
-            ItemTemplate.Tag = product.Id;
-
-            string[] tag = { product.Id.ToString(), "" };
-
-            string xamlString = XamlWriter.Save(ItemTemplate);
-            StringReader stringReader = new StringReader(xamlString);
-            XmlReader xmlReader = XmlReader.Create(stringReader);
-            Grid item = (Grid)XamlReader.Load(xmlReader);
-            MenuItem menuItem = (MenuItem)item.ContextMenu.Items[0];
-            menuItem.Click += new RoutedEventHandler(ShowItemInfo);
-            for (int i = 2; i < item.ContextMenu.Items.Count; i++)
-            {
-                menuItem = (MenuItem)item.ContextMenu.Items[i];
-                menuItem.Click += new RoutedEventHandler(EditItemDialog);
-            }
-            menuItem = null;
-
-            TextBlock txt = (TextBlock)item.Children[0];
-            txt.SizeChanged += new SizeChangedEventHandler(ItemId_SizeChanged);
-            txt = (TextBlock)item.Children[2];
-            txt.SizeChanged += new SizeChangedEventHandler(ItemName_SizeChanged);
-            txt = (TextBlock)item.Children[3];
-            txt.SizeChanged += new SizeChangedEventHandler(ItemAvailible_SizeChanged);
-            txt = (TextBlock)item.Children[4];
-            txt.SizeChanged += new SizeChangedEventHandler(ItemPrice_SizeChanged);
-            txt = null;
-
-            tag[1] = StorageItemView.Items.Add(item).ToString();
-            item.ContextMenu.Tag = tag;
-
-            CheckForItems();
         }
 
         private void ShowItemInfo(object sender, RoutedEventArgs e)
@@ -516,19 +546,6 @@ namespace SellerScreen_2022.Pages.Storage
                 await BuildStorage();
                 sb.Stop();
                 reloading = false;
-            }
-        }
-
-        private void Viewbox_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (sender is Viewbox box)
-            {
-                double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
-                double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
-                double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
-                double space = box.ActualHeight - header - cmdBar - columns - StorageItemView.Margin.Top - StorageItemView.Margin.Bottom - 200;
-                if (space > 0)
-                    StorageItemView.MaxHeight = space;
             }
         }
     }

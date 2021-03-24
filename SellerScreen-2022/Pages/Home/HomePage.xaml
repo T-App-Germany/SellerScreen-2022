@@ -45,8 +45,7 @@
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
-
-    <Grid>
+    <Grid SizeChanged="Grid_SizeChanged">
         <ScrollViewer x:Name="ContentPanel">
             <StackPanel>
                 <TextBlock x:Name="TitleTxt" Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="0,50,0,50" Style="{StaticResource HeaderTextBlockStyle}"/>
