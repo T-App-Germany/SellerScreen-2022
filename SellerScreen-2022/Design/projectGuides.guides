@@ -11,8 +11,6 @@
             <Guide Alignment="Left" Position="282" />
             <Guide Alignment="Left" Position="394" />
             <Guide Alignment="Left" Position="484" />
-            <Guide Alignment="Top" Position="288" />
-            <Guide Alignment="Top" Position="323" />
             <Guide Alignment="Left" Position="32" />
           </Guides>
         </GuideModel>

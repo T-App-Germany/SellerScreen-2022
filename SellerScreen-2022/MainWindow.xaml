@@ -104,7 +104,15 @@
                 <ui:NavigationViewItem Icon="Home" Content="Startseite" FontSize="20" Tag="home" IsSelected="True"/>
                 <ui:NavigationViewItemSeparator/>
                 <ui:NavigationViewItem Icon="Shop" Content="Kasse" FontSize="20"/>
-                <ui:NavigationViewItem Icon="AllApps" Content="Lager" FontSize="20" Tag="storage"/>
+                <ui:NavigationViewItem Icon="AllApps" Content="Lager" FontSize="20" Tag="storage" IsExpanded="True">
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem x:Name="StorageBinItem" Content="Papierkorb" FontSize="20" Tag="storage_bin">
+                            <ui:NavigationViewItem.Icon>
+                                <ui:FontIcon Glyph="&#xe74d;"/>
+                            </ui:NavigationViewItem.Icon>
+                        </ui:NavigationViewItem>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="Statistiken" FontSize="20">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE9D9;"/>
@@ -134,23 +142,21 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}"/>
                 </Grid.ColumnDefinitions>
 
-                <ui:TitleBarButton Grid.Column="0" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnSizeButtonClick">
-                    <StackPanel Orientation="Horizontal">
-                        <ui:FontIcon Glyph="&#xec19;" Margin="2,2,2,2" />
-                    </StackPanel>
+                <ui:TitleBarButton Grid.Column="0" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnDataButtonClick">
+                    <ui:FontIcon Glyph="&#xf61e;" Margin="2,2,2,2" />
                 </ui:TitleBarButton>
-                <ui:TitleBarButton Grid.Column="1" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnThemeButtonClick">
-                    <StackPanel Orientation="Horizontal">
-                        <ui:FontIcon Glyph="&#xE771;" Margin="2,-2,2,2" />
-                    </StackPanel>
+                <ui:TitleBarButton Grid.Column="1" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnSizeButtonClick">
+                    <ui:FontIcon Glyph="&#xec19;" Margin="2,2,2,2" />
                 </ui:TitleBarButton>
-                <ui:TitleBarButton Grid.Column="2" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0">
-                    <StackPanel Orientation="Horizontal">
-                        <ui:FontIcon Glyph="&#xe77b;" Margin="2" />
-                    </StackPanel>
+                <ui:TitleBarButton Grid.Column="2" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnThemeButtonClick">
+                    <ui:FontIcon Glyph="&#xE771;" Margin="2,-2,2,2" />
+                </ui:TitleBarButton>
+                <ui:TitleBarButton Grid.Column="3" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0">
+                    <ui:FontIcon Glyph="&#xe77b;" Margin="2" />
                 </ui:TitleBarButton>
             </Grid>
         </Grid>

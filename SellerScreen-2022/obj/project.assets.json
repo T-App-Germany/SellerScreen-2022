@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "FluentWPF/0.8.0": {
+      "FluentWPF/0.9.0": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.0/FluentWPF.dll": {}
@@ -230,15 +230,15 @@
     }
   },
   "libraries": {
-    "FluentWPF/0.8.0": {
-      "sha512": "Yq/GjRtlNRjE5lLf99NWqJ+9kSeuhSrt55/Is1wgZwSL6s2oZWxfT1C6bnz7O+kzb/aAWEZD94X0MP5mW4H+qQ==",
+    "FluentWPF/0.9.0": {
+      "sha512": "h8AUlCSOg11477H6fRSM30mxqdX3/ETu1Ksso2fuLrCD7rHK2TZPma2SuQHMcidsFq5GJZe1BkKbPdkKoTeAUQ==",
       "type": "package",
-      "path": "fluentwpf/0.8.0",
+      "path": "fluentwpf/0.9.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "fluentwpf.0.8.0.nupkg.sha512",
+        "fluentwpf.0.9.0.nupkg.sha512",
         "fluentwpf.nuspec",
         "lib/net45/FluentWPF.dll",
         "lib/netcoreapp3.0/FluentWPF.dll"
@@ -665,7 +665,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "FluentWPF >= 0.8.0",
+      "FluentWPF >= 0.9.0",
       "InternalShared >= 1.0.0",
       "ModernWpfUI >= 0.9.3"
     ]
@@ -720,7 +720,7 @@
         "dependencies": {
           "FluentWPF": {
             "target": "Package",
-            "version": "[0.8.0, )"
+            "version": "[0.9.0, )"
           },
           "ModernWpfUI": {
             "target": "Package",
@@ -745,7 +745,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

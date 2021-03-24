@@ -1,0 +1,42 @@
+﻿<Window x:Class="SellerScreen_2022.StorageEditItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SellerScreen_2022"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        mc:Ignorable="d" 
+        d:Background="White"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
+        Title="Produkt ID: " WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Height="250" Width="535" WindowStyle="ToolWindow">
+    <Grid>
+        <ui:NavigationView x:Name="MainNavView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="0" OpenPaneLength="0" AlwaysShowHeader="False" IsPaneToggleButtonVisible="False" IsTabStop="True" IsTitleBarAutoPaddingEnabled="False" Margin="0,0,0,47">
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem x:Name="nameItem" Content="Bezeichnung" Tag="0" IsSelected="True">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Edit"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem x:Name="priceItem" Content="Preis" Tag="1">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe8c7;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem x:Name="addItem" Content="Auffüllen" Tag="2">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe74a;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem x:Name="removeItem" Content="Entsorgen" Tag="3">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe74b;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            <ui:Frame x:Name="ContentFrame"/>
+        </ui:NavigationView>
+        <Button x:Name="SaveBtn" Content="Speichern und Schließen" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="SaveBtn_Click"/>
+    </Grid>
+</Window>

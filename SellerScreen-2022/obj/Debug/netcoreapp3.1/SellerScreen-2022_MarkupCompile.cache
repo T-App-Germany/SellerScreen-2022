@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
-6546027655
-5-1556615120
-182056444043
-283-2877155
-MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Storage\StoragePage.xaml;
+13928295598
+5-1475728319
+291774421795
+2831688177147
+MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml;Pages\Storage\Editor\StorageEditItemNamePage.xaml;Pages\Storage\Editor\StorageEditItemPricePage.xaml;Pages\Storage\Editor\StorageEditItemRemovePage.xaml;Pages\Storage\StorageBinPage.xaml;Pages\Storage\StorageEditItemWindow.xaml;Pages\Storage\StoragePage.xaml;Pages\Storage\StorageViewItemWindow.xaml;
 resources\splashscreen.png
 False
 
