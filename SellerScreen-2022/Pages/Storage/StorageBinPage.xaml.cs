@@ -42,11 +42,9 @@ namespace SellerScreen_2022.Pages.Storage
                 double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
                 double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
                 double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
-                double space = box.ActualHeight - header - cmdBar - columns - BinItemView.Margin.Top - BinItemView.Margin.Bottom - 200;
-                if (space > 0)
-                {
-                    BinItemView.MaxHeight = space;
-                }
+                double space = box.ActualHeight - header - cmdBar - columns - BinItemView.Margin.Top - BinItemView.Margin.Bottom - 100;
+                if (space < 0) space = 0;
+                BinItemView.MaxHeight = space;
             }
         }
 

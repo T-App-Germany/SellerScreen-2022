@@ -11,7 +11,7 @@
     d:Background="#CCFFFFFF" MinHeight="768" MinWidth="1024"
     ui:WindowHelper.UseModernWindowStyle="True"
     ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
-    ui:TitleBar.ExtendViewIntoTitleBar="True">
+    ui:TitleBar.ExtendViewIntoTitleBar="True" Loaded="Window_Loaded">
 
     <fw:AcrylicWindow.Resources>
         <local:PixelsToGridLengthConverter x:Key="PixelsToGridLength" />
@@ -114,12 +114,17 @@
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="Statistiken" FontSize="20">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE9D9;"/>
+                        <ui:FontIcon Glyph="&#xE9D9;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="PlugIn-Manager" FontSize="20">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA86;"/>
+                        <ui:FontIcon Glyph="&#xEA86;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Fehlerliste" FontSize="20" Tag="errors">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xf78a;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>

@@ -51,11 +51,13 @@ namespace SellerScreen_2022.Pages.Storage
                 double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
                 double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
                 double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
-                double space = box.ActualHeight - header - cmdBar - columns - StorageItemView.Margin.Top - StorageItemView.Margin.Bottom - 200;
-                if (space > 0)
+                double space = box.ActualHeight - header - cmdBar - columns - StorageItemView.Margin.Top - StorageItemView.Margin.Bottom - 100;
+                if (space < 0)
                 {
-                    StorageItemView.MaxHeight = space;
+                    space = 0;
                 }
+
+                StorageItemView.MaxHeight = space;
             }
         }
 
@@ -245,7 +247,7 @@ namespace SellerScreen_2022.Pages.Storage
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -400,7 +402,7 @@ namespace SellerScreen_2022.Pages.Storage
 
             CheckForItems();
         }
-        
+
         private async void AddItemBtn_Click(object sender, RoutedEventArgs e)
         {
             Product product = new Product("n/a", false, 0, 0);

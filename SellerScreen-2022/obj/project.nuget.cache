@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "5nFhHumJrrhiHhpo9mIG59pJg6LtFqblmxBl0cSOvL3d7OMA9pLDEzuQYK78TKeJrT2Ewo3J2WV22TbtoRvFvA==",
+  "dgSpecHash": "E3e6hp7w6nkbZ4s7VS8qPO1iFzE6MEcDMfskafGEIvmfQGfzYD1wPRMykjmY60r+uM9FKaoIGutrHI+6Bhrf0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tom M\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tom M\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
     "C:\\Users\\Tom M\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
     "C:\\Users\\Tom M\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
-    "C:\\Users\\Tom M\\.nuget\\packages\\modernwpfui\\0.9.3\\modernwpfui.0.9.3.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\modernwpfui\\0.9.4\\modernwpfui.0.9.4.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\ookii.dialogs.wpf\\3.1.0\\ookii.dialogs.wpf.3.1.0.nupkg.sha512",
     "C:\\Users\\Tom M\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
     "C:\\Users\\Tom M\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
   ],

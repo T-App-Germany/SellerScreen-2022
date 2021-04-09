@@ -13,3 +13,4 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Debug\Inter
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.csproj.CoreCompileInputs.cache
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.pdb
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Debug\InternalShared.csprojAssemblyReference.cache

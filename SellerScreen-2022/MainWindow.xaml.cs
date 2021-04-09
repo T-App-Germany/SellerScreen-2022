@@ -2,6 +2,7 @@
 using ModernWpf.Controls;
 using SellerScreen_2022.Data;
 using SellerScreen_2022.Pages;
+using SellerScreen_2022.Pages.Error;
 using SellerScreen_2022.Pages.Home;
 using SellerScreen_2022.Pages.Settings;
 using SellerScreen_2022.Pages.Storage;
@@ -25,6 +26,7 @@ namespace SellerScreen_2022
             ("home", typeof(HomePage)),
             ("storage", typeof(StoragePage)),
             ("storage_bin", typeof(StorageBinPage)),
+            ("errors", typeof(ViewErrorPage)),
             ("settings", typeof(SettingsPage)),
         };
 
@@ -163,6 +165,11 @@ namespace SellerScreen_2022
 
             Storage storage = new Storage();
             storage.Save();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _ = ErrorList.LoadList();
         }
     }
 }
