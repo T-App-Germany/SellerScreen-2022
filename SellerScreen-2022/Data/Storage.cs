@@ -25,19 +25,36 @@ namespace SellerScreen_2022.Data
             set => _Bin = value;
         }
 
-        public Task Save()
+        public async Task<bool> Save()
         {
-            using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Create);
-            XmlSerializer XML = new XmlSerializer(typeof(Storage));
-            XML.Serialize(stream, this);
-            return Task.CompletedTask;
+            try
+            {
+                using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Create);
+                XmlSerializer XML = new XmlSerializer(typeof(Storage));
+                XML.Serialize(stream, this);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Storage_Save", true);
+                return false;
+            }
+
         }
 
-        public static Task<Storage> Load()
+        public static async Task<Storage> Load()
         {
-            using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Open);
-            XmlSerializer XML = new XmlSerializer(typeof(Storage));
-            return Task.FromResult((Storage)XML.Deserialize(stream));
+            try
+            {
+                using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Open);
+                XmlSerializer XML = new XmlSerializer(typeof(Storage));
+                return (Storage)XML.Deserialize(stream);
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Storage_Load", true);
+                return null;
+            }
         }
     }
 }

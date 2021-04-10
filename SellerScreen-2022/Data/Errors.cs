@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Xml.Serialization;
 
 namespace SellerScreen_2022.Data
@@ -34,10 +30,7 @@ namespace SellerScreen_2022.Data
 
         public Errors() { }
 
-        public string TimeToString
-        {
-            get => _Time.ToShortDateString() + ", " + _Time.ToLongTimeString();
-        }
+        public string TimeToString => _Time.ToShortDateString() + ", " + _Time.ToLongTimeString();
 
         private DateTime _Time;
         public DateTime Time
@@ -94,42 +87,40 @@ namespace SellerScreen_2022.Data
             using FileStream stream = new FileStream(filename, FileMode.Create);
             XmlSerializer XML = new XmlSerializer(typeof(Errors));
             XML.Serialize(stream, this);
-            File.Encrypt(filename);
             return Task.CompletedTask;
         }
 
         public static Task<Errors> Load(string filename)
         {
-            File.Decrypt(filename);
             using FileStream stream = new FileStream(filename, FileMode.Open);
             XmlSerializer XML = new XmlSerializer(typeof(Errors));
-            File.Encrypt(filename);
             return Task.FromResult((Errors)XML.Deserialize(stream));
         }
 
-        public static async Task ShowErrorMsg(Errors error, bool alsoSave = false)
+        public static async Task ShowErrorMsg(Exception ex, string page, bool alsoSave = false)
         {
+            Errors error = new Errors
+            {
+                Msg = ex.Message,
+                Page = page,
+                Source = ex.Source,
+                StackTrace = ex.StackTrace,
+                TargetSite = ex.TargetSite.ToString(),
+                Time = DateTime.Now,
+                Type = ex.GetType().ToString()
+            };
+
             if (alsoSave)
             {
                 await error.Save().ConfigureAwait(false);
             }
 
-            TaskDialog d = new TaskDialog
-            {
-                WindowTitle = "SellerScreen-2022: " + error.Page,
-                MainInstruction = "Fehler: " + error.Type,
-                Content = error.Msg,
-                ExpandedControlText = "Details anzeigen",
-                IsVerificationChecked = true,
-                VerificationText = "Fehlerbericht an Entwickler senden",
-                Footer = "Fehlerberichte enthalten keine personenbezogenen Daten. Es sind nur Analysedaten, die Helfen diesen Fehler in Zukunft zu vermeiden.",
-                ExpandedInformation = error.Source + "\n\n" + error.TargetSite + "\n\n" + error.StackTrace,
-                Width = 380,
-                MainIcon = TaskDialogIcon.Error,
-                FooterIcon = TaskDialogIcon.Information,
-                ExpandFooterArea = true,
-                Tag = error.Time.Ticks
-            };
+            TaskDialog d = ErrorDialogs.ShowErrorDialog;
+            d.WindowTitle += error.Page;
+            d.MainInstruction += error.Type;
+            d.Content = error.Msg;
+            d.ExpandedInformation = error.Source + "\n\n" + error.TargetSite + "\n\n" + error.StackTrace;
+            d.Tag = error.Time.Ticks;
             d.Buttons.Add(new TaskDialogButton(ButtonType.Ok));
             d.ButtonClicked += new EventHandler<TaskDialogItemClickedEventArgs>(TaskDialogClose);
             d.ShowDialog();
@@ -174,14 +165,32 @@ namespace SellerScreen_2022.Data
     {
         public static List<Errors> errors = new List<Errors>();
 
-        public static async Task LoadList()
+        public static async Task Load()
         {
             List<string> files = Directory.GetFiles(Paths.tempPath, "*.xml", SearchOption.TopDirectoryOnly).ToList();
+            errors.Clear();
             foreach (string file in files)
             {
                 Errors error = await Errors.Load(file);
                 errors.Add(error);
             }
         }
+    }
+
+    public class ErrorDialogs
+    {
+        public static TaskDialog ShowErrorDialog = new TaskDialog
+        {
+            WindowTitle = "SellerScreen-2022: ",
+            MainInstruction = "Error: ",
+            ExpandedControlText = "Show details",
+            IsVerificationChecked = true,
+            VerificationText = "Send error report to T-App Germany",
+            Footer = "Error reports do not contain any personal data. It is only analysis data that will help to avoid this error in the future.",
+            Width = 380,
+            MainIcon = TaskDialogIcon.Error,
+            FooterIcon = TaskDialogIcon.Information,
+            ExpandFooterArea = true,
+        };
     }
 }

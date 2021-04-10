@@ -21,71 +21,68 @@ namespace SellerScreen_2022.Pages.Error
 
             double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
             double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
-            double space = Vbox.ActualHeight - header - cmdBar - dGrid.Margin.Top - dGrid.Margin.Bottom - ExBox.Margin.Top - ExBox.Margin.Bottom;
+            double space = Vbox.ActualHeight - header - cmdBar - ErrorDataGrid.Margin.Top - ErrorDataGrid.Margin.Bottom - ExBox.Margin.Top - ExBox.Margin.Bottom;
             if (space < 0)
             {
                 space = 0;
             }
 
-            ExBox.MaxHeight = dGrid.MaxHeight = space / 2;
+            ExBox.MaxHeight = ErrorDataGrid.MaxHeight = space / 2;
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Directory.CreateDirectory(Paths.tempPath);
-            await ErrorList.LoadList().ConfigureAwait(false);
+            await ErrorList.Load().ConfigureAwait(false);
             await LoadErrors();
         }
 
-        private Task LoadErrors()
+        private async Task LoadErrors()
         {
             LoadProgBar.Visibility = Visibility.Visible;
             if (ErrorList.errors.Count > 0)
             {
                 foreach (Errors error in ErrorList.errors)
                 {
-                    dGrid.Items.Add(error);
+                    if (!ErrorDataGrid.Items.Contains(error))
+                    {
+                        ErrorDataGrid.Items.Add(error);
+                    }
                 }
+                ErrorDataGrid.SelectedIndex = 0;
+
+                ErrorContainer.Visibility = Visibility.Visible;
+                EmptyTxt.Visibility = Visibility.Collapsed;
             }
             else
             {
-                //ExContent.Visibility = Visibility.Collapsed;
-                //ExTitle.Text = "Kein Fehler ausgewählt";
+                await ErrorList.Load();
+                if (ErrorList.errors.Count > 0)
+                {
+                    ErrorDataGrid.Items.Clear();
+                    foreach (Errors error in ErrorList.errors)
+                    {
+                        ErrorDataGrid.Items.Add(error);
+                    }
+
+                    ErrorDataGrid.SelectedIndex = 0;
+                    ErrorContainer.Visibility = Visibility.Visible;
+                    EmptyTxt.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ErrorContainer.Visibility = Visibility.Collapsed;
+                    EmptyTxt.Visibility = Visibility.Visible;
+                }
             }
             LoadProgBar.Visibility = Visibility.Collapsed;
-            dGrid.SelectedIndex = 0;
-            return Task.CompletedTask;
         }
 
-        private async void RemoveItemBtn_Click(object sender, RoutedEventArgs e)
+        private void ErrorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Errors error = new Errors
+            if (ErrorDataGrid.SelectedItem != null)
             {
-                Page = "Lager",
-                Time = DateTime.Now
-            };
-
-            try
-            {
-                File.ReadAllText("C:\\.lol");
-            }
-            catch (Exception ex)
-            {
-                error.Msg = ex.Message;
-                error.Source = ex.Source;
-                error.TargetSite = ex.TargetSite.ToString();
-                error.StackTrace = ex.StackTrace;
-                error.Type = ex.GetType().ToString();
-                await Errors.ShowErrorMsg(error);
-            }
-            await error.Save();
-        }
-
-        private void dGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dGrid.SelectedItem != null)
-            {
-                Errors ex = (Errors)dGrid.SelectedItem;
+                Errors ex = (Errors)ErrorDataGrid.SelectedItem;
                 ExTitle.Text = ex.Type;
 
                 ExMsg.Text = ex.Msg != null ? ex.Msg.ToString() : "null";
@@ -101,7 +98,7 @@ namespace SellerScreen_2022.Pages.Error
                 ExTitle.Text = "Kein Fehler ausgewählt";
                 if (e.RemovedItems.Count > 0)
                 {
-                    dGrid.SelectedItem = e.RemovedItems[0];
+                    ErrorDataGrid.SelectedItem = e.RemovedItems[0];
                 }
             }
         }

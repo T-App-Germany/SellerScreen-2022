@@ -33,6 +33,7 @@ namespace SellerScreen_2022
         public MainWindow()
         {
             InitializeComponent();
+            Paths.CreateAllDirectories();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -169,7 +170,7 @@ namespace SellerScreen_2022
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _ = ErrorList.LoadList();
+            _ = ErrorList.Load();
         }
     }
 }

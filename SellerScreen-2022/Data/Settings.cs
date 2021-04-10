@@ -17,19 +17,35 @@ namespace SellerScreen_2022.Data
             set => _AutoUpdateChecker = value;
         }
 
-        public Task Save()
+        public async Task<bool> Save()
         {
-            using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Create);
-            XmlSerializer XML = new XmlSerializer(typeof(Settings));
-            XML.Serialize(stream, this);
-            return Task.CompletedTask;
+            try
+            {
+                using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Create);
+                XmlSerializer XML = new XmlSerializer(typeof(Settings));
+                XML.Serialize(stream, this);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Settings_Save", true);
+                return false;
+            }
         }
 
-        public static Task<Settings> Load()
+        public static async Task<Settings> Load()
         {
-            using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Open);
-            XmlSerializer XML = new XmlSerializer(typeof(Settings));
-            return Task.FromResult((Settings)XML.Deserialize(stream));
+            try
+            {
+                using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Open);
+                XmlSerializer XML = new XmlSerializer(typeof(Settings));
+                return (Settings)XML.Deserialize(stream);
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Settings_Load", true);
+                return null;
+            }
         }
     }
 }

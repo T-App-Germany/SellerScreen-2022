@@ -221,34 +221,38 @@ namespace SellerScreen_2022.Pages.Storage
             try
             {
                 Data.Storage storage = await Data.Storage.Load();
-                for (int i = 0; i < storage.Products.Count; i++)
+                if (storage != null)
                 {
-                    try
+                    for (int i = 0; i < storage.Products.Count; i++)
                     {
-                        Product product = await Load(storage.Products[i]);
-                        Products.Add(product.Id, product);
+                        try
+                        {
+                            Product product = await Load(storage.Products[i]);
+                            Products.Add(product.Id, product);
+                        }
+                        catch (Exception ex)
+                        {
+                            await Errors.ShowErrorMsg(ex, "Storage", true);
+                        }
                     }
-                    catch (Exception)
-                    {
 
-                    }
-                }
-
-                for (int i = 0; i < storage.Bin.Count; i++)
-                {
-                    try
+                    for (int i = 0; i < storage.Bin.Count; i++)
                     {
-                        Product product = await Load(storage.Bin[i]);
-                        Bin.Add(product.Id, product);
-                    }
-                    catch (Exception)
-                    {
-
+                        try
+                        {
+                            Product product = await Load(storage.Bin[i]);
+                            Bin.Add(product.Id, product);
+                        }
+                        catch (Exception ex)
+                        {
+                            await Errors.ShowErrorMsg(ex, "Storage", true);
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "Storage", true);
                 return false;
             }
 
@@ -275,8 +279,9 @@ namespace SellerScreen_2022.Pages.Storage
 
                 await storage.Save();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "Storage", true);
                 return false;
             }
 
@@ -297,8 +302,9 @@ namespace SellerScreen_2022.Pages.Storage
                 storage.Bin.Add(id);
                 await storage.Save();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "Storage", true);
                 return false;
             }
 
@@ -312,8 +318,9 @@ namespace SellerScreen_2022.Pages.Storage
             {
                 await product.Save();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "Storage", true);
                 return false;
             }
             return true;

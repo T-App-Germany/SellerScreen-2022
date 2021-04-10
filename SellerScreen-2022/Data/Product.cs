@@ -75,19 +75,35 @@ namespace SellerScreen_2022.Data
             return (ulong)DateTime.UtcNow.Ticks / 1000000;
         }
 
-        public static Task<Product> Load(ulong id)
+        public static async Task<Product> Load(ulong id)
         {
-            using FileStream stream = new FileStream(Paths.productsPath + $"{id}.xml", FileMode.Open);
-            XmlSerializer XML = new XmlSerializer(typeof(Product));
-            return Task.FromResult((Product)XML.Deserialize(stream));
+            try
+            {
+                using FileStream stream = new FileStream(Paths.productsPath + $"{id}.xml", FileMode.Open);
+                XmlSerializer XML = new XmlSerializer(typeof(Product));
+                return (Product)XML.Deserialize(stream);
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Product_Load", true);
+                return null;
+            }
         }
 
-        public Task<ulong> Save()
+        public async Task<ulong> Save()
         {
-            using FileStream stream = new FileStream(Paths.productsPath + $"{Id}.xml", FileMode.Create);
-            XmlSerializer XML = new XmlSerializer(typeof(Product));
-            XML.Serialize(stream, this);
-            return Task.FromResult(Id);
+            try
+            {
+                using FileStream stream = new FileStream(Paths.productsPath + $"{Id}.xml", FileMode.Create);
+                XmlSerializer XML = new XmlSerializer(typeof(Product));
+                XML.Serialize(stream, this);
+                return Id;
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Product_Save", true);
+                return 0;
+            }
         }
     }
 }

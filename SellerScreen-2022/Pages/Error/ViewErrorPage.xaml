@@ -28,19 +28,19 @@
             </Grid>
             <ui:ProgressBar x:Name="LoadProgBar" Grid.Row="1" Margin="5" IsIndeterminate="True" IsEnabled="False"/>
             <ui:CommandBar x:Name="CmdBar" Grid.Row="2" Margin="20,10" HorizontalAlignment="Left">
-                <ui:AppBarButton x:Name="RemoveItemBtn" Label="Fehlerbericht senden" Click="RemoveItemBtn_Click">
+                <ui:AppBarButton x:Name="RemoveItemBtn" Label="Fehlerbericht senden">
                     <ui:AppBarButton.Icon>
                         <ui:FontIcon Glyph="&#xe8ca;"/>
                     </ui:AppBarButton.Icon>
                 </ui:AppBarButton>
             </ui:CommandBar>
-            <TextBlock x:Name="EmptyTxt" Grid.Row="3" Text="Es wurden keine Fehler erkannt." Margin="20" FontSize="20" Visibility="Collapsed"/>
+            <TextBlock x:Name="EmptyTxt" Grid.Row="3" Text="Es wurden keine Fehler erkannt." Margin="20,50" FontSize="20" Visibility="Collapsed"/>
             <Grid x:Name="ErrorContainer" Grid.Row="4">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="dGrid" Grid.Row="0" SelectionChanged="dGrid_SelectionChanged" Margin="5" SelectionMode="Single" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="False" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <DataGrid x:Name="ErrorDataGrid" Grid.Row="0" SelectionChanged="ErrorDataGrid_SelectionChanged" Margin="5" SelectionMode="Single" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="False" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Time" CanUserResize="False" Binding="{Binding TimeToString}"/>
                         <DataGridTextColumn Header="Page" CanUserResize="False" Binding="{Binding Page}"/>

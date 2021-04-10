@@ -43,7 +43,11 @@ namespace SellerScreen_2022.Pages.Storage
                 double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
                 double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
                 double space = box.ActualHeight - header - cmdBar - columns - BinItemView.Margin.Top - BinItemView.Margin.Bottom - 100;
-                if (space < 0) space = 0;
+                if (space < 0)
+                {
+                    space = 0;
+                }
+
                 BinItemView.MaxHeight = space;
             }
         }
@@ -207,8 +211,9 @@ namespace SellerScreen_2022.Pages.Storage
                 }
                 Bin.OrderBy(key => key.Value.Id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "StorageBin", true);
                 return false;
             }
             InfoTxt.Visibility = Visibility.Collapsed;
@@ -234,8 +239,9 @@ namespace SellerScreen_2022.Pages.Storage
 
                 await storage.Save();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "StorageBin", true);
                 return false;
             }
 
@@ -256,8 +262,9 @@ namespace SellerScreen_2022.Pages.Storage
                 storage.Products.Add(id);
                 await storage.Save();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "StorageBin", true);
                 return false;
             }
 
@@ -275,8 +282,9 @@ namespace SellerScreen_2022.Pages.Storage
                 Bin.Remove(id);
                 await SaveBin();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                await Errors.ShowErrorMsg(ex, "StorageBin", true);
                 return false;
             }
 
@@ -367,9 +375,9 @@ namespace SellerScreen_2022.Pages.Storage
                     i--;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                await Errors.ShowErrorMsg(ex, "StorageBin", true);
             }
         }
 
@@ -390,9 +398,9 @@ namespace SellerScreen_2022.Pages.Storage
                     i--;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                await Errors.ShowErrorMsg(ex, "StorageBin", true);
             }
         }
     }
