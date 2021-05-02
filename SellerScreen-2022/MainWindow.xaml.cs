@@ -5,6 +5,7 @@ using SellerScreen_2022.Pages;
 using SellerScreen_2022.Pages.Error;
 using SellerScreen_2022.Pages.Home;
 using SellerScreen_2022.Pages.Settings;
+using SellerScreen_2022.Pages.Shop;
 using SellerScreen_2022.Pages.Storage;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,13 @@ namespace SellerScreen_2022
 {
     public partial class MainWindow
     {
+        public static StorageData storageData = new StorageData();
+
         private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
         {
             ("404", typeof(NotFoundPage)),
             ("home", typeof(HomePage)),
+            ("shop", typeof(ShopPage)),
             ("storage", typeof(StoragePage)),
             ("storage_bin", typeof(StorageBinPage)),
             ("errors", typeof(ViewErrorPage)),
@@ -33,7 +37,7 @@ namespace SellerScreen_2022
         public MainWindow()
         {
             InitializeComponent();
-            Paths.CreateAllDirectories();
+            Paths.CreateAllDirectories().ConfigureAwait(true);
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -154,7 +158,7 @@ namespace SellerScreen_2022
             WindowState = WindowState.Normal;
         }
 
-        private void OnDataButtonClick(object sender, RoutedEventArgs e)
+        private async void OnDataButtonClick(object sender, RoutedEventArgs e)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(Paths.settingsPath));
 
@@ -162,10 +166,10 @@ namespace SellerScreen_2022
             {
                 AutoUpdateChecker = true
             };
-            settings.Save();
+            await settings.Save();
 
             Storage storage = new Storage();
-            storage.Save();
+            await storage.Save();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

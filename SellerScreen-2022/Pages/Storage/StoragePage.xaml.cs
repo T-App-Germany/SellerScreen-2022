@@ -23,8 +23,6 @@ namespace SellerScreen_2022.Pages.Storage
         private readonly Dictionary<short, double> widthAvailible = new Dictionary<short, double>();
         private readonly Dictionary<short, double> widthPrice = new Dictionary<short, double>();
 
-        private readonly Dictionary<ulong, Product> Products = new Dictionary<ulong, Product>();
-        private readonly Dictionary<ulong, Product> Bin = new Dictionary<ulong, Product>();
         private bool reloading;
 
         public StoragePage()
@@ -37,7 +35,8 @@ namespace SellerScreen_2022.Pages.Storage
         {
             Directory.CreateDirectory(Path.GetDirectoryName(Paths.productsPath));
             Directory.CreateDirectory(Path.GetDirectoryName(Paths.settingsPath));
-            await LoadStorage();
+            if (MainWindow.storageData.Products.Count == 0)
+                await LoadStorage();
             await BuildStorage();
 
             //Process proc = Process.GetCurrentProcess();
@@ -203,7 +202,7 @@ namespace SellerScreen_2022.Pages.Storage
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bauen...";
             StorageItemView.Items.Clear();
-            foreach (KeyValuePair<ulong, Product> kvp in Products)
+            foreach (KeyValuePair<ulong, Product> kvp in MainWindow.storageData.Products)
             {
                 AddItemToStorage(kvp.Value);
             }
@@ -218,44 +217,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Laden...";
-            try
-            {
-                Data.Storage storage = await Data.Storage.Load();
-                if (storage != null)
-                {
-                    for (int i = 0; i < storage.Products.Count; i++)
-                    {
-                        try
-                        {
-                            Product product = await Load(storage.Products[i]);
-                            Products.Add(product.Id, product);
-                        }
-                        catch (Exception ex)
-                        {
-                            await Errors.ShowErrorMsg(ex, "Storage", true);
-                        }
-                    }
-
-                    for (int i = 0; i < storage.Bin.Count; i++)
-                    {
-                        try
-                        {
-                            Product product = await Load(storage.Bin[i]);
-                            Bin.Add(product.Id, product);
-                        }
-                        catch (Exception ex)
-                        {
-                            await Errors.ShowErrorMsg(ex, "Storage", true);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "Storage", true);
-                return false;
-            }
-
+            await MainWindow.storageData.LoadStorage();
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -264,27 +226,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Speichern...";
-            try
-            {
-                Data.Storage storage = new Data.Storage();
-                foreach (KeyValuePair<ulong, Product> kvp in Products)
-                {
-                    storage.Products.Add(kvp.Value.Id);
-                }
-
-                foreach (KeyValuePair<ulong, Product> kvp in Bin)
-                {
-                    storage.Bin.Add(kvp.Value.Id);
-                }
-
-                await storage.Save();
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "Storage", true);
-                return false;
-            }
-
+            await MainWindow.storageData.SaveStorage();
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -293,36 +235,8 @@ namespace SellerScreen_2022.Pages.Storage
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bereinigen...";
-            try
-            {
-                Data.Storage storage = await Data.Storage.Load();
-                Bin.Add(id, Products[id]);
-                Products.Remove(id);
-                storage.Products.Remove(id);
-                storage.Bin.Add(id);
-                await storage.Save();
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "Storage", true);
-                return false;
-            }
-
+            await MainWindow.storageData.RecycelProduct(id);
             InfoTxt.Visibility = Visibility.Collapsed;
-            return true;
-        }
-
-        private async Task<bool> SaveProduct(Product product)
-        {
-            try
-            {
-                await product.Save();
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "Storage", true);
-                return false;
-            }
             return true;
         }
 
@@ -413,13 +327,18 @@ namespace SellerScreen_2022.Pages.Storage
         private async void AddItemBtn_Click(object sender, RoutedEventArgs e)
         {
             Product product = new Product("n/a", false, 0, 0);
-            if (await SaveProduct(product))
+            try
             {
-                Products.Add(product.Id, product);
+                await product.Save();
+                MainWindow.storageData.Products.Add(product.Id, product);
                 if (await SaveStorage())
                 {
                     AddItemToStorage(product);
                 }
+            }
+            catch (Exception ex)
+            {
+                await Errors.ShowErrorMsg(ex, "Storage", true);
             }
         }
 
@@ -451,7 +370,7 @@ namespace SellerScreen_2022.Pages.Storage
 
                 Grid item = (Grid)StorageItemView.Items[StorageItemView.Items.IndexOf(grid)];
                 FontIcon icon = (FontIcon)item.Children[1];
-                switch (CheckProductHealth(Products[tag]))
+                switch (CheckProductHealth(MainWindow.storageData.Products[tag]))
                 {
                     case ProductHealth.Ok:
                         icon.Glyph = TempIconOk.Glyph;
@@ -497,14 +416,14 @@ namespace SellerScreen_2022.Pages.Storage
             }
         }
 
-        private void EditItemDialog(object sender, RoutedEventArgs e)
+        private async void EditItemDialog(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem item)
             {
                 ContextMenu menu = (ContextMenu)item.Parent;
                 string[] tag = (string[])menu.Tag;
                 ulong id = ulong.Parse(tag[0]);
-                Products.TryGetValue(id, out Product product);
+                MainWindow.storageData.Products.TryGetValue(id, out Product product);
                 StorageEditItemWindow window = new StorageEditItemWindow(item.Tag.ToString(), product);
                 window.ShowDialog();
 
@@ -513,8 +432,8 @@ namespace SellerScreen_2022.Pages.Storage
                     product.Name = window.productItemReturn.Name;
                     product.Availible += window.productItemReturn.Availible;
                     product.Price = window.productItemReturn.Price;
-                    Products[id] = product;
-                    product.Save();
+                    MainWindow.storageData.Products[id] = product;
+                    await product.Save();
 
                     Grid grid = (Grid)StorageItemView.Items.GetItemAt(int.Parse(tag[1]));
                     TextBlock txt = (TextBlock)grid.Children[2];

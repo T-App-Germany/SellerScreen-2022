@@ -21,9 +21,6 @@ namespace SellerScreen_2022.Pages.Storage
         private readonly Dictionary<short, double> widthAvailible = new Dictionary<short, double>();
         private readonly Dictionary<short, double> widthPrice = new Dictionary<short, double>();
 
-        private readonly Dictionary<ulong, Product> Products = new Dictionary<ulong, Product>();
-        private readonly Dictionary<ulong, Product> Bin = new Dictionary<ulong, Product>();
-
         public StorageBinPage()
         {
             InitializeComponent();
@@ -31,7 +28,8 @@ namespace SellerScreen_2022.Pages.Storage
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await LoadBin();
+            if (MainWindow.storageData.Bin.Count == 0)
+                await LoadBin();
             await BuildBin();
         }
 
@@ -175,76 +173,25 @@ namespace SellerScreen_2022.Pages.Storage
             }
         }
 
-        private Task BuildBin()
+        private async Task BuildBin()
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bauen...";
             BinItemView.Items.Clear();
-            foreach (KeyValuePair<ulong, Product> kvp in Bin)
+            foreach (KeyValuePair<ulong, Product> kvp in MainWindow.storageData.Bin)
             {
-                AddItemToBin(kvp.Value);
+                await AddItemToBin(kvp.Value);
             }
 
             CheckForItems();
             InfoTxt.Visibility = Visibility.Collapsed;
-            return Task.CompletedTask;
         }
 
         private async Task<bool> LoadBin()
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Laden...";
-            try
-            {
-                Data.Storage storage = await Data.Storage.Load();
-                Bin.Clear();
-                for (int i = 0; i < storage.Bin.Count; i++)
-                {
-                    Product product = await Product.Load(storage.Bin[i]);
-                    Bin.Add(product.Id, product);
-                }
-                Products.Clear();
-                for (int i = 0; i < storage.Products.Count; i++)
-                {
-                    Product product = await Product.Load(storage.Products[i]);
-                    Products.Add(product.Id, product);
-                }
-                Bin.OrderBy(key => key.Value.Id);
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "StorageBin", true);
-                return false;
-            }
-            InfoTxt.Visibility = Visibility.Collapsed;
-            return true;
-        }
-
-        private async Task<bool> SaveBin()
-        {
-            InfoTxt.Visibility = Visibility.Visible;
-            InfoTxt.Text = "Speichern...";
-            try
-            {
-                Data.Storage storage = new Data.Storage();
-                foreach (KeyValuePair<ulong, Product> kvp in Products)
-                {
-                    storage.Products.Add(kvp.Value.Id);
-                }
-
-                foreach (KeyValuePair<ulong, Product> kvp in Bin)
-                {
-                    storage.Bin.Add(kvp.Value.Id);
-                }
-
-                await storage.Save();
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "StorageBin", true);
-                return false;
-            }
-
+            await MainWindow.storageData.LoadBin();
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -253,21 +200,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Wiederherstellen...";
-            try
-            {
-                Data.Storage storage = await Data.Storage.Load();
-                Products.Add(id, Bin[id]);
-                Bin.Remove(id);
-                storage.Bin.Remove(id);
-                storage.Products.Add(id);
-                await storage.Save();
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "StorageBin", true);
-                return false;
-            }
-
+            await MainWindow.storageData.RestoreProduct(id);
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -276,18 +209,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Löschen...";
-            try
-            {
-                File.Delete(Paths.productsPath + id.ToString() + ".xml");
-                Bin.Remove(id);
-                await SaveBin();
-            }
-            catch (Exception ex)
-            {
-                await Errors.ShowErrorMsg(ex, "StorageBin", true);
-                return false;
-            }
-
+            await MainWindow.storageData.DeleteProduct(id);
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -327,7 +249,7 @@ namespace SellerScreen_2022.Pages.Storage
             }
         }
 
-        private void AddItemToBin(Product product)
+        private Task AddItemToBin(Product product)
         {
             ItemTempName.Text = product.Name;
             ItemTempAvailible.Text = product.Availible.ToString();
@@ -343,7 +265,6 @@ namespace SellerScreen_2022.Pages.Storage
             MenuItem menuItem = (MenuItem)item.ContextMenu.Items[0];
             menuItem.Click += new RoutedEventHandler(ShowItemInfo);
             menuItem.Tag = product.Id;
-            menuItem = null;
 
             TextBlock txt = (TextBlock)item.Children[0];
             txt.SizeChanged += new SizeChangedEventHandler(ItemId_SizeChanged);
@@ -353,9 +274,9 @@ namespace SellerScreen_2022.Pages.Storage
             txt.SizeChanged += new SizeChangedEventHandler(ItemAvailible_SizeChanged);
             txt = (TextBlock)item.Children[3];
             txt.SizeChanged += new SizeChangedEventHandler(ItemPrice_SizeChanged);
-            txt = null;
 
             BinItemView.Items.Add(item);
+            return Task.CompletedTask;
         }
 
         private async void DelItemBtn_Click(object sender, RoutedEventArgs e)
