@@ -55,22 +55,23 @@
                     </ui:AppBarButton>
                     <ui:AppBarButton x:Name="ReversePurchaseBtn" Label="Stornieren" Click="ReversePurchaseBtn_Click">
                         <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="&#xe845;"/>
+                            <ui:FontIcon Glyph="&#xe7a7;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
                     <ui:AppBarButton x:Name="RetourBtn" Label="Rücknehmen" Click="RetourBtn_Click">
                         <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="&#xe7a7;"/>
+                            <ui:FontIcon Glyph="&#xe845;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="PayBtn" Label="Bezahlen" IsEnabled="False" Click="PayBtn_Click">
+                    <ui:AppBarButton x:Name="PayBtn" Label="Bezahlen" Click="PayBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xef40;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="CancelPurchaseBtn" Icon="Cancel" Label="Abbrechen" IsEnabled="False" Click="CancelPurchaseBtn_Click"/>
+                    <ui:AppBarButton x:Name="CancelPurchaseBtn" Icon="Cancel" Label="Abbrechen" Click="CancelPurchaseBtn_Click"/>
+                    <ui:AppBarButton x:Name="ClearCardBtn" Icon="Delete" Label="Leeren" Click="ClearCardBtn_Click"/>
                 </ui:CommandBar>
-                <TextBlock Text="Gesamtpreis: 0,00 €" FontSize="15" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <TextBlock x:Name="TotalPriceTxt" Text="Gesamtpreis: 0,00 €" FontSize="15" VerticalAlignment="Center" Margin="0,0,20,0"/>
             </StackPanel>
             <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="Es sind keine Produkte aktiviert." Margin="20" FontSize="20" Visibility="Collapsed"/>
             <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="20,20,20,10" HorizontalAlignment="Left">
@@ -94,6 +95,9 @@
                 </Grid>
             </Grid>
             <ui:ListView x:Name="ShopItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" HorizontalAlignment="Left" IsSelectionEnabled="False">
+                <ui:ListView.Effect>
+                    <BlurEffect Radius="10"/>
+                </ui:ListView.Effect>
             </ui:ListView>
             <Grid Visibility="Collapsed">
                 <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>

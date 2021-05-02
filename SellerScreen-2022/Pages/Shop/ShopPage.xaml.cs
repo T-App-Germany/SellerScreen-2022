@@ -1,4 +1,5 @@
 ﻿using SellerScreen_2022.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 using System.Xml;
 using static SellerScreen_2022.Data.Product;
 
@@ -31,6 +33,7 @@ namespace SellerScreen_2022.Pages.Shop
             if (MainWindow.storageData.Products.Count == 0)
                 await MainWindow.storageData.LoadStorage();
             await BuildShop();
+            CancelPurchaseBtn_Click(sender, e);
         }
 
         private void ItemId_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -220,7 +223,27 @@ namespace SellerScreen_2022.Pages.Shop
 
         private void NewCustomerBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NewCustomerBtn.Visibility = Visibility.Collapsed;
+            ReversePurchaseBtn.Visibility = Visibility.Collapsed;
+            RetourBtn.Visibility = Visibility.Collapsed;
+            PayBtn.Visibility = Visibility.Visible;
+            CancelPurchaseBtn.Visibility = Visibility.Visible;
+            TotalPriceTxt.Visibility = Visibility.Visible;
+            ClearCardBtn.Visibility = Visibility.Visible;
+            DoubleAnimation ani = new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromMilliseconds(400),
+                EasingFunction = new QuadraticEase()
+            };
+            ani.Completed += OpeningAni_Completed;
+            ShopItemView.IsEnabled = true;
+            if (ShopItemView.Effect == null)
+            {
+                BlurEffect ef = new BlurEffect() { Radius = 10 };
+                ShopItemView.Effect = ef;
+            }
+            ShopItemView.Effect.BeginAnimation(BlurEffect.RadiusProperty, ani);
         }
 
         private void ReversePurchaseBtn_Click(object sender, RoutedEventArgs e)
@@ -240,7 +263,28 @@ namespace SellerScreen_2022.Pages.Shop
 
         private void CancelPurchaseBtn_Click(object sender, RoutedEventArgs e)
         {
+            NewCustomerBtn.Visibility = Visibility.Visible;
+            ReversePurchaseBtn.Visibility = Visibility.Visible;
+            RetourBtn.Visibility = Visibility.Visible;
+            PayBtn.Visibility = Visibility.Collapsed;
+            CancelPurchaseBtn.Visibility = Visibility.Collapsed;
+            TotalPriceTxt.Visibility = Visibility.Collapsed;
+            ClearCardBtn.Visibility = Visibility.Collapsed;
+            DoubleAnimation ani = new DoubleAnimation()
+            {
+                To = 10,
+                Duration = TimeSpan.FromMilliseconds(400),
+                EasingFunction = new QuadraticEase()
+            };
+            BlurEffect ef = new BlurEffect() { Radius = 0 };
+            ShopItemView.IsEnabled = false;
+            ShopItemView.Effect = ef;
+            ef.BeginAnimation(BlurEffect.RadiusProperty, ani);
+        }
 
+        private void OpeningAni_Completed(object sender, EventArgs e)
+        {
+            ShopItemView.Effect = null;
         }
 
         private async void ReloadBtn_Click(object sender, RoutedEventArgs e)
@@ -255,6 +299,11 @@ namespace SellerScreen_2022.Pages.Shop
                 sb.Stop();
                 reloading = false;
             }
+        }
+
+        private void ClearCardBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

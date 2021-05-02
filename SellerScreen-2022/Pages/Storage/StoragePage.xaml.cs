@@ -38,9 +38,6 @@ namespace SellerScreen_2022.Pages.Storage
             if (MainWindow.storageData.Products.Count == 0)
                 await LoadStorage();
             await BuildStorage();
-
-            //Process proc = Process.GetCurrentProcess();
-            //MessageBox.Show(proc.PrivateMemorySize64.ToString());
         }
 
         private void Viewbox_SizeChanged(object sender, SizeChangedEventArgs e)
