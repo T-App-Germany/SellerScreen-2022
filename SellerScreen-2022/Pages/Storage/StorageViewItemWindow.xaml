@@ -1,0 +1,109 @@
+﻿<Window x:Name="Window" x:Class="SellerScreen_2022.StorageItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SellerScreen_2022"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        mc:Ignorable="d" 
+        d:Background="White"
+        ui:WindowHelper.UseModernWindowStyle="True" ui:TitleBar.ExtendViewIntoTitleBar="True"
+        BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
+        Title="Produktname" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Width="793" Height="389" Initialized="Window_Initialized" MinWidth="450" MinHeight="350">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=TitleTxt}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <TextBlock x:Name="TitleTxt" Text="{Binding Title, ElementName=Window}" Style="{StaticResource HeaderTextBlockStyle}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" TextWrapping="NoWrap"/>
+        <ScrollViewer Margin="0,86,0,0">
+            <StackPanel>
+                <StackPanel Grid.Column="1" Margin="20,0,20,0" Orientation="Horizontal">
+                    <ui:FontIcon x:Name="ProductStateIcon" Glyph="&#xe73e;" Margin="10,10,5,10" FontSize="30" Foreground="LightGreen" ToolTip="Bereit" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="ProductStateTxt" Text="Bereit" VerticalAlignment="Center" FontSize="25" Margin="5,10,10,10" Foreground="{Binding Foreground, ElementName=ProductStateIcon}" TextTrimming="CharacterEllipsis"/>
+                </StackPanel>
+                <WrapPanel>
+                    <Grid Grid.Column="1" Grid.Row="3" Margin="20">
+                        <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                        <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                        <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumHighColorBrush}">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Im Lager" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="AvailibleTxt" Grid.Column="1" Grid.Row="0" Text="00" Margin="5" FontSize="20" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Preis" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="PriceTxt" Grid.Column="1" Grid.Row="1" Margin="5" VerticalAlignment="Center" Text="00,00€" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Status" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="StatusTxt" Grid.Column="1" Grid.Row="2" Margin="5" Text="Aktiv" FontSize="20" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="3" Margin="20">
+                        <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                        <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                        <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumHighColorBrush}">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="ID" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="IdTxt" Grid.Column="1" Grid.Row="0" Text="0" Margin="5" FontSize="20" VerticalAlignment="Center" >
+                                    <TextBlock.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Kopieren" Click="MenuItem_Click">
+                                                <MenuItem.Icon>
+                                                    <ui:FontIcon Glyph="&#xe8c8;"/>
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                        </ContextMenu>
+                                    </TextBlock.ContextMenu>
+                                </TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Verkauft" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="SoldTxt" Grid.Column="1" Grid.Row="1" Margin="5" VerticalAlignment="Center" Text="00" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Einnahmen" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="RevenueTxt" Grid.Column="1" Grid.Row="2" Margin="5" Text="00,00€" FontSize="20" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="3" Margin="20">
+                        <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                        <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                        <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumHighColorBrush}">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Stornierungen" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="CancellationsTxt" Grid.Column="1" Grid.Row="0" Text="00" Margin="5" FontSize="20" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Rücknahmen" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="RedemptionsTxt" Grid.Column="1" Grid.Row="1" Margin="5" VerticalAlignment="Center" Text="00" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Entsorgungen" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock x:Name="DisposalsTxt" Grid.Column="1" Grid.Row="2" Margin="5" Text="00" FontSize="20" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </WrapPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

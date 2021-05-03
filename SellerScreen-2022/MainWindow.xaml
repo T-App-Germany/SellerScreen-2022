@@ -8,14 +8,13 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-    d:Background="#CCFFFFFF" MinHeight="638" MinWidth="850" SizeChanged="acrylicWindow_SizeChanged"
+    d:Background="#CCFFFFFF" MinHeight="768" MinWidth="1024"
     ui:WindowHelper.UseModernWindowStyle="True"
     ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
-    ui:TitleBar.ExtendViewIntoTitleBar="True">
+    ui:TitleBar.ExtendViewIntoTitleBar="True" Loaded="Window_Loaded">
 
     <fw:AcrylicWindow.Resources>
         <local:PixelsToGridLengthConverter x:Key="PixelsToGridLength" />
-
         <Storyboard x:Name="NavViewOpen" x:Key="NavViewOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(FrameworkElement.Height)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="50"/>
@@ -30,7 +29,7 @@
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="TitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="OwnTitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="30,10,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut"/>
@@ -73,7 +72,7 @@
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="TitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="OwnTitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="5">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut"/>
@@ -96,23 +95,36 @@
         </Storyboard>
     </fw:AcrylicWindow.Resources>
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=TitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
+        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=OwnTitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged">
+        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="1200">
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Icon="Home" Content="Startseite" FontSize="20" Tag="home" IsSelected="True"/>
                 <ui:NavigationViewItemSeparator/>
-                <ui:NavigationViewItem Icon="Shop" Content="Kasse" FontSize="20"/>
-                <ui:NavigationViewItem Icon="AllApps" Content="Lager" FontSize="20" Tag="storage"/>
+                <ui:NavigationViewItem Icon="Shop" Content="Kasse" Tag="shop" FontSize="20"/>
+                <ui:NavigationViewItem Icon="AllApps" Content="Lager" FontSize="20" Tag="storage" IsExpanded="True">
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem x:Name="StorageBinItem" Content="Papierkorb" FontSize="20" Tag="storage_bin">
+                            <ui:NavigationViewItem.Icon>
+                                <ui:FontIcon Glyph="&#xe74d;"/>
+                            </ui:NavigationViewItem.Icon>
+                        </ui:NavigationViewItem>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="Statistiken" FontSize="20">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE9D9;"/>
+                        <ui:FontIcon Glyph="&#xE9D9;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="PlugIn-Manager" FontSize="20">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA86;"/>
+                        <ui:FontIcon Glyph="&#xEA86;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Fehlerliste" FontSize="20" Tag="errors">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xf78a;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
@@ -134,27 +146,25 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}"/>
                 </Grid.ColumnDefinitions>
 
-                <ui:TitleBarButton Grid.Column="0" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnSizeButtonClick">
-                    <StackPanel Orientation="Horizontal">
-                        <ui:FontIcon Glyph="&#xec19;" Margin="2,2,2,2" />
-                    </StackPanel>
+                <ui:TitleBarButton Grid.Column="0" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnDataButtonClick">
+                    <ui:FontIcon Glyph="&#xf61e;" Margin="2,2,2,2" />
                 </ui:TitleBarButton>
-                <ui:TitleBarButton Grid.Column="1" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnThemeButtonClick">
-                    <StackPanel Orientation="Horizontal">
-                        <ui:FontIcon Glyph="&#xE771;" Margin="2,-2,2,2" />
-                    </StackPanel>
+                <ui:TitleBarButton Grid.Column="1" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnSizeButtonClick">
+                    <ui:FontIcon Glyph="&#xec19;" Margin="2,2,2,2" />
                 </ui:TitleBarButton>
-                <ui:TitleBarButton Grid.Column="2" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0">
-                    <StackPanel Orientation="Horizontal">
-                        <ui:FontIcon Glyph="&#xe77b;" Margin="2" />
-                    </StackPanel>
+                <ui:TitleBarButton Grid.Column="2" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0" Click="OnThemeButtonClick">
+                    <ui:FontIcon Glyph="&#xE771;" Margin="2,-2,2,2" />
+                </ui:TitleBarButton>
+                <ui:TitleBarButton Grid.Column="3" Style="{StaticResource AppTitleBarButtonStyle}" FontFamily="{DynamicResource ContentControlThemeFontFamily}" FontSize="13" Padding="5,0">
+                    <ui:FontIcon Glyph="&#xe77b;" Margin="2" />
                 </ui:TitleBarButton>
             </Grid>
         </Grid>
-        <Grid x:Name="TitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
+        <Grid x:Name="OwnTitleBar" VerticalAlignment="Top" Margin="30,10,0,0">
             <Grid HorizontalAlignment="Left" Width="240">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

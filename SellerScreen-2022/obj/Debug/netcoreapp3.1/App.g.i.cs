@@ -24,6 +24,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Controls.Ribbon;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.Integration;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Markup;
@@ -52,7 +53,7 @@ namespace SellerScreen_2022 {
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.2.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.5.0")]
         public void InitializeComponent() {
             if (_contentLoaded) {
                 return;
@@ -78,7 +79,7 @@ namespace SellerScreen_2022 {
         /// </summary>
         [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.2.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.5.0")]
         public static void Main() {
             SplashScreen splashScreen = new SplashScreen("resources/splashscreen.png");
             splashScreen.Show(true);

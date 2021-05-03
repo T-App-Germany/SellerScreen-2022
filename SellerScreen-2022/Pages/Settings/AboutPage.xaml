@@ -53,12 +53,22 @@
                             <TextBlock Text="xxxxxxxxxx" TextWrapping="Wrap"/>
                         </StackPanel>
                     </Grid>
-                    <TextBlock Grid.Row="3" Text="Copyrigth © 2021" Margin="5"/>
+                    <TextBlock Grid.Row="3" Text="Copyright © 2021" Margin="5"/>
                 </Grid>
             </Grid>
             <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-                <Button Content="Auf Updates prüfen" Margin="10" Style="{StaticResource AccentButtonStyle}"/>
-                <Button Content="Nutzungsbedingungen anzeigen" Margin="10"/>
+                <Button x:Name="LookForUpdateBtn" Content="Auf Updates prüfen" Margin="10" Style="{StaticResource AccentButtonStyle}" Click="LookForUpdateBtn_Click"/>
+                <Button x:Name="ShowLicenseBtn" Content="Nutzungsbedingungen anzeigen" Margin="10" Click="ShowLicenseBtn_Click"/>
+                <ui:ContentDialog x:Name="UpdateDialog" Title="Auf Updates prüfen" CloseButtonText="Schließen">
+                    <StackPanel VerticalAlignment="Center">
+                        <ui:ProgressBar IsIndeterminate="True"/>
+                    </StackPanel>
+                </ui:ContentDialog>
+                <ui:ContentDialog x:Name="LicenseDialog" Title="Nutzungsbedingungen" CloseButtonText="Schließen">
+                    <ScrollViewer>
+                        <TextBlock x:Name="LicenseTxtBlock" FontFamily="Consolas" TextWrapping="Wrap"/>
+                    </ScrollViewer>
+                </ui:ContentDialog>
             </StackPanel>
             <Grid Grid.Row="3" Margin="20,10,20,10" VerticalAlignment="Center">
                 <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
@@ -130,7 +140,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
                                 <TextBlock Text="T-App Germany" FontSize="18" Margin="5,5,5,0"/>
-                                <TextBlock Text="Copyrigth © 2021" Margin="5,0,5,5"/>
+                                <TextBlock Text="Copyright © 2021" Margin="5,0,5,5"/>
                                 <ui:HyperlinkButton Content="Website ⭧" Margin="5,0,0,0" NavigateUri="https://t-app-germany.com" ToolTip="t-app-germany.com"/>
                                 <ui:HyperlinkButton Content="E-Mail" Margin="5,0,0,0" NavigateUri="mailto:info@t-app-germany.com" ToolTip="info@t-app-germany.com"/>
                             </StackPanel>

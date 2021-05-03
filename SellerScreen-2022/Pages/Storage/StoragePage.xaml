@@ -8,31 +8,61 @@
       mc:Ignorable="d" 
       d:Background="White"
       Title="Lager" Loaded="Page_Loaded">
-
-    <Viewbox MaxWidth="1000">
+    <Page.Resources>
+        <Storyboard x:Key="ReloadAnimation" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReloadBtnIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReloadBtnIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="180"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Viewbox SizeChanged="Viewbox_SizeChanged">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition x:Name="StorageItemsRow" Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="HeaderTxt" Grid.Row="0" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}" Margin="20"/>
+            <Grid x:Name="HeaderGrid" Grid.Row="0" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" x:Name="HeaderTxt" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}"/>
+                <TextBlock Grid.Column="1" x:Name="InfoTxt" Text="Bereit" TextTrimming="CharacterEllipsis" VerticalAlignment="Bottom" FontSize="15" FontWeight="Thin" Margin="30,0,0,0" Visibility="Visible"/>
+                <Button Grid.Column="2" x:Name="ReloadBtn" HorizontalAlignment="Right" Margin="20,0,20,0" Background="#00000000" Click="ReloadBtn_Click">
+                    <ui:FontIcon x:Name="ReloadBtnIcon" Glyph="&#xe895;" Margin="2" RenderTransformOrigin="0.5,0.5" >
+                        <ui:FontIcon.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ui:FontIcon.RenderTransform>
+                    </ui:FontIcon>
+                </Button>
+            </Grid>
             <ui:CommandBar x:Name="CmdBar" Grid.Row="1" Margin="20,10" HorizontalAlignment="Left">
-                <ui:AppBarButton Icon="Add" Label="Hinzufügen"/>
-                <ui:AppBarButton Icon="Remove" Label="Entfernen"/>
-                <ui:AppBarSeparator/>
-                <ui:AppBarButton Icon="Accept" Label="Aktivieren"/>
-                <ui:AppBarButton Icon="Cancel" Label="Deaktivieren"/>
+                <ui:AppBarToggleButton x:Name="ChangeSelectionModeBtn" Label="Mehrfachauswahl" Click="ChangeSelectionModeBtn_Click">
+                    <ui:AppBarToggleButton.Icon>
+                        <ui:FontIcon Glyph="&#xe71d;"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
+                <ui:AppBarSeparator x:Name="SelectOptionsSeperator"/>
+                <ui:AppBarButton x:Name="AddItemBtn" Icon="Add" Label="Hinzufügen" Click="AddItemBtn_Click"/>
+                <ui:AppBarButton x:Name="RemoveItemBtn" Icon="Remove" Label="Entfernen" IsEnabled="False" Click="RemoveItemBtn_Click"/>
+                <ui:AppBarButton x:Name="ActItemBtn" Icon="Accept" Label="Aktivieren" IsEnabled="False" Click="ActItemBtn_Click"/>
+                <ui:AppBarButton x:Name="DeactItemBtn" Icon="Cancel" Label="Deaktivieren" IsEnabled="False" Click="DeactItemBtn_Click"/>
             </ui:CommandBar>
-            <Grid Grid.Row="2" Margin="20,20,20,10">
-                <Grid x:Name="ColumnHeaderGrid">
+            <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="Es befindet sich nichts im Lager." Margin="20" FontSize="20" Visibility="Collapsed"/>
+            <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="20,20,20,10" HorizontalAlignment="Left">
+                <Grid x:Name="ColumnHeaderGrid" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -41,123 +71,65 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="StorageHeaderSelectTxt" Grid.Column="0" FontSize="20" FontWeight="DemiBold" MinWidth="34" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="StorageHeaderIdTxt" Grid.Column="1" Text="ID" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="42"/>
-                    <TextBlock x:Name="StorageHeaderStatusTxt" Grid.Column="2" Text="Status" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="76"/>
-                    <TextBlock x:Name="StorageHeaderNameTxt" Grid.Column="3" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="132"/>
-                    <TextBlock x:Name="StorageHeaderAvailibleTxt" Grid.Column="4" Text="Verfügbar" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
-                    <TextBlock x:Name="StorageHeaderPriceTxt" Grid.Column="5" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
+                    <TextBlock x:Name="HeaderSelectTxt" Grid.Column="0" Margin="10,0,0,0" Width="0"/>
+                    <TextBlock x:Name="HeaderNumberTxt" Grid.Column="1" Text="Nr." FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="44"/>
+                    <TextBlock x:Name="HeaderStatusTxt" Grid.Column="2" Text="Status" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="76"/>
+                    <TextBlock x:Name="HeaderNameTxt" Grid.Column="3" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
+                    <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="4" Text="Verfügbar" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
+                    <TextBlock x:Name="HeaderPriceTxt" Grid.Column="5" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
                 </Grid>
             </Grid>
-            <ScrollViewer x:Name="StorageItemView" Grid.Row="3" Margin="20,0" HorizontalAlignment="Left">
-                <StackPanel Margin="0,0,10,0">
-                    <Separator/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderSelectTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderIdTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderStatusTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderNameTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderAvailibleTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderPriceTxt}"/>
-                        </Grid.ColumnDefinitions>
+            <ui:ListView x:Name="StorageItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Extended" SelectionChanged="StorageItemView_SelectionChanged" HorizontalAlignment="Left"/>
+            <Grid Visibility="Collapsed">
+                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
+                <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="Warnung"/>
+                <ui:FontIcon x:Name="TempIconError" Glyph="&#xf78a;" Foreground="Red" ToolTip="Fehler"/>
+                <ui:FontIcon x:Name="TempIconOff" Glyph="&#xe7e8;" Foreground="Gray" ToolTip="Deaktiviert"/>
+                <Grid x:Name="ItemTemplate">
+                    <Grid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="InfoBtn" Header="Informationen" Click="ShowItemInfo">
+                                <MenuItem.Icon>
+                                    <ui:FontIcon Glyph="&#xe946;"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Namen bearbeiten" Tag="0">
+                                <MenuItem.Icon>
+                                    <ui:SymbolIcon Symbol="Edit"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Auffüllen" Tag="2">
+                                <MenuItem.Icon>
+                                    <ui:FontIcon Glyph="&#xe74a;"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Entsorgen" Tag="3">
+                                <MenuItem.Icon>
+                                    <ui:FontIcon Glyph="&#xe74b;"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Preis bearbeiten" Tag="1">
+                                <MenuItem.Icon>
+                                    <ui:FontIcon Glyph="&#xe8c7;"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Grid.ContextMenu>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
+                        <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderStatusTxt}"/>
+                        <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNameTxt}"/>
+                        <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderAvailibleTxt}"/>
+                        <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderPriceTxt}"/>
+                    </Grid.ColumnDefinitions>
 
-                        <CheckBox Grid.Column="0" MinWidth="0" Margin="10"/>
-                        <TextBlock Grid.Column="1" Text="0" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <ui:FontIcon Grid.Column="2" Glyph="&#xe73e;" Margin="10" Foreground="LightGreen" ToolTip="Bereit"/>
-                        <TextBlock Grid.Column="3" Text="Name" FontSize="20" Margin="10"/>
-                        <TextBlock Grid.Column="4" Text="00" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <TextBlock Grid.Column="5" Text="00,00€" FontSize="20" Margin="10" TextAlignment="Center"/>
-                    </Grid>
-                    <Separator/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderSelectTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderIdTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderStatusTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderNameTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderAvailibleTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderPriceTxt}"/>
-                        </Grid.ColumnDefinitions>
-
-                        <CheckBox Grid.Column="0" MinWidth="0" Margin="10"/>
-                        <TextBlock Grid.Column="1" Text="0" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <ui:FontIcon Grid.Column="2" Glyph="&#xe7ba;" Margin="10" Foreground="Orange" ToolTip="Warnung"/>
-                        <TextBlock Grid.Column="3" Text="Name" FontSize="20" Margin="10"/>
-                        <TextBlock Grid.Column="4" Text="00" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <TextBlock Grid.Column="5" Text="00,00€" FontSize="20" Margin="10" TextAlignment="Center"/>
-                    </Grid>
-                    <Separator/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderSelectTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderIdTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderStatusTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderNameTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderAvailibleTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderPriceTxt}"/>
-                        </Grid.ColumnDefinitions>
-
-                        <CheckBox Grid.Column="0" MinWidth="0" Margin="10"/>
-                        <TextBlock Grid.Column="1" Text="0" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <ui:FontIcon Grid.Column="2" Glyph="&#xf78a;" Margin="10" Foreground="Red" ToolTip="Fehler"/>
-                        <TextBlock Grid.Column="3" Text="Name" FontSize="20" Margin="10"/>
-                        <TextBlock Grid.Column="4" Text="00" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <TextBlock Grid.Column="5" Text="00,00€" FontSize="20" Margin="10" TextAlignment="Center"/>
-                    </Grid>
-                    <Separator/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderSelectTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderIdTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderStatusTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderNameTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderAvailibleTxt}"/>
-                            <ColumnDefinition Width="Auto" MinWidth="{Binding MinWidth, ElementName=StorageHeaderPriceTxt}"/>
-                        </Grid.ColumnDefinitions>
-
-                        <CheckBox Grid.Column="0" MinWidth="0" Margin="10"/>
-                        <TextBlock Grid.Column="1" Text="0" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <ui:FontIcon Grid.Column="2" Glyph="&#xe7e8;" Margin="10" Foreground="Gray" ToolTip="Deaktiviert"/>
-                        <TextBlock Grid.Column="3" Text="Name" FontSize="20" Margin="10"/>
-                        <TextBlock Grid.Column="4" Text="00" FontSize="20" Margin="10" TextAlignment="Center"/>
-                        <TextBlock Grid.Column="5" Text="00,00€" FontSize="20" Margin="10" TextAlignment="Center"/>
-                    </Grid>
-                </StackPanel>
-            </ScrollViewer>
-            <Grid Grid.Column="1" Grid.Row="3" Margin="0,0,20,20">
-                <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
-                <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
-                <Border Grid.Column="0" Background="{DynamicResource SystemAltMediumHighColorBrush}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Name" Style="{StaticResource SubtitleTextBlockStyle}" Margin="10" TextTrimming="CharacterEllipsis" FontWeight="DemiBold"/>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="1" Text="ID:" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="00" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Row="2" Text="Status:" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Column="1" Grid.Row="2" Text="Deaktiviert" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Row="3" Text="Verfügbar:" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Column="1" Grid.Row="3" Text="00" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Row="4" Text="Preis:" Margin="10,5" FontSize="20"/>
-                            <TextBlock Grid.Column="1" Grid.Row="4" Text="00,00€" Margin="10,5" FontSize="20"/>
-                        </Grid>
-                    </Grid>
-                </Border>
+                    <TextBlock x:Name="ItemTempNumber" Grid.Column="0" Text="0" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    <ui:FontIcon x:Name="ItemTempIcon" Grid.Column="1" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
+                    <TextBlock x:Name="ItemTempName" Grid.Column="2" Text="Name" FontSize="20" Padding="10,10,0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" SizeChanged="ItemName_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    <TextBlock x:Name="ItemTempAvailible" Grid.Column="3" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    <TextBlock x:Name="ItempTempPrice" Grid.Column="4" Text="00,00€" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" Margin="0,0,0,0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                </Grid>
             </Grid>
         </Grid>
     </Viewbox>

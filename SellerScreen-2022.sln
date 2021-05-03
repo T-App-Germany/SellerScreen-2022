@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SellerScreen-2022", "Seller
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalShared", "InternalShared\InternalShared.csproj", "{58195972-83B2-470F-A9F4-1D91BCD4EB2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellerScreen-2022 DataWatcher", "SellerScreen-2022 DataWatcher\SellerScreen-2022 DataWatcher.csproj", "{C22F2224-326B-4E29-A079-7B8149B5EEB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug extern|Any CPU = Debug extern|Any CPU
@@ -26,6 +28,12 @@ Global
 		{58195972-83B2-470F-A9F4-1D91BCD4EB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58195972-83B2-470F-A9F4-1D91BCD4EB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58195972-83B2-470F-A9F4-1D91BCD4EB2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C22F2224-326B-4E29-A079-7B8149B5EEB8}.Debug extern|Any CPU.ActiveCfg = Debug|Any CPU
+		{C22F2224-326B-4E29-A079-7B8149B5EEB8}.Debug extern|Any CPU.Build.0 = Debug|Any CPU
+		{C22F2224-326B-4E29-A079-7B8149B5EEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C22F2224-326B-4E29-A079-7B8149B5EEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C22F2224-326B-4E29-A079-7B8149B5EEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C22F2224-326B-4E29-A079-7B8149B5EEB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

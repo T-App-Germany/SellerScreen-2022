@@ -9,6 +9,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\Error\ViewErrorPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Home\HomePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -21,7 +24,31 @@
     <Compile Update="Pages\Settings\SettingsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Shop\ShopPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\StorageBinPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Storage\StoragePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\StorageViewItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\StorageEditItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\Editor\StorageEditItemNamePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\Editor\StorageEditItemPricePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Storage\Editor\StorageEditItemRemovePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -32,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Error\ViewErrorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Home\HomePage.xaml">
@@ -46,7 +76,31 @@
     <Page Update="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\Shop\ShopPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\StorageBinPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Storage\StoragePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\StorageViewItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\StorageEditItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\Editor\StorageEditItemNamePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\Editor\StorageEditItemPricePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Storage\Editor\StorageEditItemRemovePage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

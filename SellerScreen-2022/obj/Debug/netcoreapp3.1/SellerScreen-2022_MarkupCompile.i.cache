@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\
 SellerScreen_2022
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Tom Mohr\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
-6546027655
-5-1556615120
-19468303528
-283443029972
-MainWindow.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Storage\StoragePage.xaml;
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
+151683646919
+5-1475728319
+351721616705
+291-1785999947
+MainWindow.xaml;Pages\Error\ViewErrorPage.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Shop\ShopPage.xaml;Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml;Pages\Storage\Editor\StorageEditItemNamePage.xaml;Pages\Storage\Editor\StorageEditItemPricePage.xaml;Pages\Storage\Editor\StorageEditItemRemovePage.xaml;Pages\Storage\StorageBinPage.xaml;Pages\Storage\StorageEditItemWindow.xaml;Pages\Storage\StoragePage.xaml;Pages\Storage\StorageViewItemWindow.xaml;
 resources\splashscreen.png
-False
+True
 

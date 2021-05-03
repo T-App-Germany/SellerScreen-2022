@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "Jy2duJlVIl8z9mKzDQ4a+QPn9r1VXikGKlao5ipPW0JHtlA/oRG/gSPh7m2znXhnArO59d+OUN/ikqUlSTM8ng==",
+  "dgSpecHash": "9QnVTIt7bZeWpKTIBOYiNOEFUipFWpI3lWGk3/pDsfZYD3+7ArRtyTXW2wBXDQ94sCERsDCwgcPlitTUJ9NUFA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tom Mohr\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj",
+  "projectFilePath": "C:\\Users\\Tom M\\Documents\\GitHub\\SellerScreen-2022\\SellerScreen-2022\\SellerScreen-2022.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\fluentwpf\\0.8.0\\fluentwpf.0.8.0.nupkg.sha512",
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\modernwpfui\\0.9.3\\modernwpfui.0.9.3.nupkg.sha512",
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
-    "C:\\Users\\Tom Mohr\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
+    "C:\\Users\\Tom M\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\modernwpfui\\0.9.4\\modernwpfui.0.9.4.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\ookii.dialogs.wpf\\3.1.0\\ookii.dialogs.wpf.3.1.0.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\Tom M\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }
