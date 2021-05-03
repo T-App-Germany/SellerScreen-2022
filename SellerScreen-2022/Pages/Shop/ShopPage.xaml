@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SellerScreen_2022.Pages.Shop" xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:local="clr-namespace:SellerScreen_2022.Pages.Shop"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" d:Background="White"
       Title="Kasse" Loaded="Page_Loaded">
     <Page.Resources>
@@ -76,13 +77,13 @@
             <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="Es sind keine Produkte aktiviert." Margin="20" FontSize="20" Visibility="Collapsed"/>
             <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="20,20,20,10" HorizontalAlignment="Left">
                 <Grid.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="0"/>
                 </Grid.Effect>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid x:Name="ColumnHeaderGrid" HorizontalAlignment="Center">
+                <Grid x:Name="ColumnHeaderGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -90,17 +91,33 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="HeaderSelectTxt" Grid.Column="0" Margin="10,0,0,0" Width="0"/>
-                    <TextBlock x:Name="HeaderNumberTxt" Grid.Column="1" Text="Nr." FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="44"/>
-                    <TextBlock x:Name="HeaderStatusTxt" Grid.Column="2" Text="Status" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="76"/>
-                    <TextBlock x:Name="HeaderNameTxt" Grid.Column="3" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
-                    <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="4" Text="Verfügbar" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
-                    <TextBlock x:Name="HeaderPriceTxt" Grid.Column="5" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
-                    <TextBlock x:Name="HeaderSellTxt" Grid.Column="6" Text="Verkaufen" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="150" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="HeaderNumberTxt" Grid.Column="0" Text="Nr." FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="44" Margin="12,0,0,0"/>
+                    <TextBlock x:Name="HeaderStatusTxt" Grid.Column="1" Text="Status" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="74"/>
+                    <TextBlock x:Name="HeaderNameTxt" Grid.Column="2" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
+                    <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="3" Text="Verfügbar" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
+                    <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
+                    <TextBlock x:Name="HeaderSellTxt" Grid.Column="5" Text="Verkaufen" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="150" Margin="10,0,0,0"/>
                 </Grid>
-                <ui:ListView x:Name="ShopItemView" Grid.Row="1" Margin="0,0,20,10" Visibility="Visible" HorizontalAlignment="Left" IsSelectionEnabled="False"/>
+                <ui:ListView x:Name="ShopItemView" Grid.Row="1" Margin="0,0,20,10" Visibility="Visible" HorizontalAlignment="Left" IsSelectionEnabled="False">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderStatusTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNameTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderAvailibleTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderPriceTxt}"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="0" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <ui:FontIcon Grid.Column="1" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
+                        <TextBlock Grid.Column="2" Text="Name" FontSize="20" Padding="10,10,0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" SizeChanged="ItemName_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <TextBlock Grid.Column="3" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <TextBlock Grid.Column="4" Text="00,00€" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <ui:NumberBox Grid.Column="5" Value="0" FontSize="20" HorizontalAlignment="Center" SpinButtonPlacementMode="Inline" Margin="10,0,0,0" Minimum="0" ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" Width="150" Maximum="{Binding Text, ElementName=ItemTempAvailible}" VerticalAlignment="Center"/>
+                    </Grid>
+                </ui:ListView>
             </Grid>
             <Grid Visibility="Collapsed">
                 <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
@@ -120,7 +137,7 @@
                     <TextBlock x:Name="ItemTempName" Grid.Column="2" Text="Name" FontSize="20" Padding="10,10,0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" SizeChanged="ItemName_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                     <TextBlock x:Name="ItemTempAvailible" Grid.Column="3" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                     <TextBlock x:Name="ItemTempPrice" Grid.Column="4" Text="00,00€" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                    <!--<ui:NumberBox x:Name="ItemTempSell" Grid.Column="5" Value="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" SpinButtonPlacementMode="Inline" Margin="10,0,0,0" Minimum="0" ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" Width="150" Maximum="{Binding Text, ElementName=ItemTempAvailible}"/>-->
+                    <!--<ui:NumberBox x:Name="ItemTempSell" Grid.Column="5" Value="0" FontSize="20" HorizontalAlignment="Center" SpinButtonPlacementMode="Inline" Margin="10,0,0,0" Minimum="0" ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" Width="150" Maximum="{Binding Text, ElementName=ItemTempAvailible}"/>-->
                 </Grid>
             </Grid>
         </Grid>

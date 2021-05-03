@@ -1,4 +1,5 @@
-﻿using SellerScreen_2022.Data;
+﻿using ModernWpf.Controls;
+using SellerScreen_2022.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,11 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Xml;
 using static SellerScreen_2022.Data.Product;
+using Page = System.Windows.Controls.Page;
 
 namespace SellerScreen_2022.Pages.Shop
 {
@@ -31,7 +34,10 @@ namespace SellerScreen_2022.Pages.Shop
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (MainWindow.storageData.Products.Count == 0)
+            {
                 await MainWindow.storageData.LoadStorage();
+            }
+
             await BuildShop();
             CancelPurchaseBtn_Click(sender, e);
         }
@@ -201,6 +207,19 @@ namespace SellerScreen_2022.Pages.Shop
                 ItemTempNumber.Text = (ShopItemView.Items.Count + 1).ToString();
                 ItemTemplate.Tag = product.Id;
 
+                NumberBox nBox = new NumberBox()
+                {
+                    FontSize = 20,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    SpinButtonPlacementMode = NumberBoxSpinButtonPlacementMode.Inline,
+                    Margin = new Thickness(10, 0, 0, 0),
+                    Minimum = 0,
+                    Width = 150,
+                    Value = 0
+                };
+                Grid.SetColumn(nBox, 5);
+
                 string xamlString = XamlWriter.Save(ItemTemplate);
                 StringReader stringReader = new StringReader(xamlString);
                 XmlReader xmlReader = XmlReader.Create(stringReader);
@@ -212,8 +231,10 @@ namespace SellerScreen_2022.Pages.Shop
                 txt.SizeChanged += new SizeChangedEventHandler(ItemName_SizeChanged);
                 txt = (TextBlock)item.Children[3];
                 txt.SizeChanged += new SizeChangedEventHandler(ItemAvailible_SizeChanged);
+                nBox.Maximum = Convert.ToDouble(txt.Text);
                 txt = (TextBlock)item.Children[4];
                 txt.SizeChanged += new SizeChangedEventHandler(ItemPrice_SizeChanged);
+                item.Children.Add(nBox);
 
                 ShopItemView.Items.Add(item);
             }
@@ -282,6 +303,11 @@ namespace SellerScreen_2022.Pages.Shop
             ef.BeginAnimation(BlurEffect.RadiusProperty, ani);
         }
 
+        private void ClearCardBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void OpeningAni_Completed(object sender, EventArgs e)
         {
             ListViewGrid.Effect = null;
@@ -299,11 +325,6 @@ namespace SellerScreen_2022.Pages.Shop
                 sb.Stop();
                 reloading = false;
             }
-        }
-
-        private void ClearCardBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
