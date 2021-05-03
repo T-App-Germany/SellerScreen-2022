@@ -58,6 +58,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Languages\de-DE.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -68,6 +71,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\NotFoundPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\GeneralSettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\AboutPage.xaml">

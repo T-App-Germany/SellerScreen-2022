@@ -17,8 +17,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <RadioButton x:Name="Btn1" Grid.Column="0" Grid.Row="0" FontSize="20" Margin="10" Content="Alles Entsorgen" Checked="Btn1_Checked"/>
-        <RadioButton x:Name="Btn2" Grid.Column="0" Grid.Row="1" Content="Einzeln Entsorgen" FontSize="20" Margin="10" IsChecked="True"/>
+        <RadioButton x:Name="Btn1" Grid.Column="0" Grid.Row="0" FontSize="20" Margin="10" Content="{DynamicResource Storage.DisposeAll}" Checked="Btn1_Checked"/>
+        <RadioButton x:Name="Btn2" Grid.Column="0" Grid.Row="1" Content="{DynamicResource Storage.DisposeNumber}" FontSize="20" Margin="10" IsChecked="True"/>
         <ui:NumberBox x:Name="RemoveBox" Grid.Column="1" Grid.Row="1" MinWidth="150" FontSize="20" VerticalAlignment="Center" SpinButtonPlacementMode="Compact" Minimum="0" Value="0" ValueChanged="NumberBox_ValueChanged"/>
     </Grid>
 </Page>

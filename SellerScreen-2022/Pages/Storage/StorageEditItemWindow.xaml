@@ -14,22 +14,22 @@
     <Grid>
         <ui:NavigationView x:Name="MainNavView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="0" OpenPaneLength="0" AlwaysShowHeader="False" IsPaneToggleButtonVisible="False" IsTabStop="True" IsTitleBarAutoPaddingEnabled="False" Margin="0,0,0,47">
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem x:Name="nameItem" Content="Bezeichnung" Tag="0" IsSelected="True">
+                <ui:NavigationViewItem x:Name="nameItem" Content="{DynamicResource Shop.Name}" Tag="0" IsSelected="True">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Edit"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="priceItem" Content="Preis" Tag="1">
+                <ui:NavigationViewItem x:Name="priceItem" Content="{DynamicResource Shop.Price}" Tag="1">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xe8c7;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="addItem" Content="Auffüllen" Tag="2">
+                <ui:NavigationViewItem x:Name="addItem" Content="{DynamicResource Storage.FillUp}" Tag="2">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xe74a;"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="removeItem" Content="Entsorgen" Tag="3">
+                <ui:NavigationViewItem x:Name="removeItem" Content="{DynamicResource Storage.Dispose}" Tag="3">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xe74b;"/>
                     </ui:NavigationViewItem.Icon>
@@ -37,6 +37,6 @@
             </ui:NavigationView.MenuItems>
             <ui:Frame x:Name="ContentFrame"/>
         </ui:NavigationView>
-        <Button x:Name="SaveBtn" Content="Speichern und Schließen" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="SaveBtn_Click"/>
+        <Button x:Name="SaveBtn" Content="{DynamicResource SaveAndClose}" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="SaveBtn_Click"/>
     </Grid>
 </Window>

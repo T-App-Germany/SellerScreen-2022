@@ -8,6 +8,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- FluentWPF Controls -->
                 <ResourceDictionary Source="/FluentWPF;component/Styles/Controls.xaml" />
+                
+                <!-- Language -->
+                <ResourceDictionary Source="Languages\de-DE.xaml"/>
 
                 <ui:ThemeResources>
                     <ui:ThemeResources.ThemeDictionaries>

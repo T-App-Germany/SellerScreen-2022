@@ -17,8 +17,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Aktuell" FontSize="20" Margin="10"/>
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="Hinzufügen" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Current}" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource Storage.Add}" FontSize="20" Margin="10"/>
         <TextBlock x:Name="AvailibleTxt" Grid.Column="1" Grid.Row="0" Text="0" FontSize="20" Margin="10"/>
         <ui:NumberBox x:Name="AddBox" Grid.Column="1" Grid.Row="1" MinWidth="180" Value="0" FontSize="20" VerticalAlignment="Center" SpinButtonPlacementMode="Compact" Minimum="0" ValueChanged="NumberBox_ValueChanged"/>
     </Grid>

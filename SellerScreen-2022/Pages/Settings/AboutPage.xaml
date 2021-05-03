@@ -7,7 +7,7 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
       d:Background="White"
-      Title="Über">
+      Title="{DynamicResource About.Title}">
 
     <ScrollViewer>
         <Grid HorizontalAlignment="Left">
@@ -45,8 +45,8 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Margin="5">
-                            <TextBlock Text="Version" TextWrapping="Wrap"/>
-                            <TextBlock Grid.Row="1" Text="Produkt-ID" TextWrapping="Wrap"/>
+                            <TextBlock Text="{DynamicResource About.Version}" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Row="1" Text="{DynamicResource About.ProductId}" TextWrapping="Wrap"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Margin="5">
                             <TextBlock Text="0.0.0.0" TextWrapping="Wrap"/>
@@ -57,14 +57,14 @@
                 </Grid>
             </Grid>
             <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-                <Button x:Name="LookForUpdateBtn" Content="Auf Updates prüfen" Margin="10" Style="{StaticResource AccentButtonStyle}" Click="LookForUpdateBtn_Click"/>
-                <Button x:Name="ShowLicenseBtn" Content="Nutzungsbedingungen anzeigen" Margin="10" Click="ShowLicenseBtn_Click"/>
-                <ui:ContentDialog x:Name="UpdateDialog" Title="Auf Updates prüfen" CloseButtonText="Schließen">
+                <Button x:Name="LookForUpdateBtn" Content="{DynamicResource About.CheckForUpdated}" Margin="10" Style="{StaticResource AccentButtonStyle}" Click="LookForUpdateBtn_Click"/>
+                <Button x:Name="ShowLicenseBtn" Content="{DynamicResource About.ShowTermsOfUse}" Margin="10" Click="ShowLicenseBtn_Click"/>
+                <ui:ContentDialog x:Name="UpdateDialog" Title="{DynamicResource About.CheckForUpdated}" CloseButtonText="{DynamicResource Close}">
                     <StackPanel VerticalAlignment="Center">
                         <ui:ProgressBar IsIndeterminate="True"/>
                     </StackPanel>
                 </ui:ContentDialog>
-                <ui:ContentDialog x:Name="LicenseDialog" Title="Nutzungsbedingungen" CloseButtonText="Schließen">
+                <ui:ContentDialog x:Name="LicenseDialog" Title="{DynamicResource About.TermsOfUse}" CloseButtonText="{DynamicResource Close}">
                     <ScrollViewer>
                         <TextBlock x:Name="LicenseTxtBlock" FontFamily="Consolas" TextWrapping="Wrap"/>
                     </ScrollViewer>
@@ -108,7 +108,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Abhängigkeiten" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <TextBlock Grid.Row="0" Text="{DynamicResource About.Dependencies}" Style="{StaticResource SubtitleTextBlockStyle}"/>
                         <StackPanel Grid.Row="1">
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <ui:HyperlinkButton Grid.Row="1" Content="FluentWPF ⭧" Margin="5,0,0,0" NavigateUri="https://github.com/sourcechord/FluentWPF" ToolTip="GitHub" Cursor="Hand"/>
@@ -129,7 +129,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Herausgeber" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <TextBlock Grid.Row="0" Text="{DynamicResource About.Publisher}" Style="{StaticResource SubtitleTextBlockStyle}"/>
                         <Grid Grid.Row="1" Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -141,8 +141,8 @@
                             <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
                                 <TextBlock Text="T-App Germany" FontSize="18" Margin="5,5,5,0"/>
                                 <TextBlock Text="Copyright © 2021" Margin="5,0,5,5"/>
-                                <ui:HyperlinkButton Content="Website ⭧" Margin="5,0,0,0" NavigateUri="https://t-app-germany.com" ToolTip="t-app-germany.com"/>
-                                <ui:HyperlinkButton Content="E-Mail" Margin="5,0,0,0" NavigateUri="mailto:info@t-app-germany.com" ToolTip="info@t-app-germany.com"/>
+                                <ui:HyperlinkButton Content="{DynamicResource About.Website}" Margin="5,0,0,0" NavigateUri="https://t-app-germany.com" ToolTip="t-app-germany.com"/>
+                                <ui:HyperlinkButton Content="{DynamicResource About.Mail}" Margin="5,0,0,0" NavigateUri="mailto:info@t-app-germany.com" ToolTip="info@t-app-germany.com"/>
                             </StackPanel>
                         </Grid>
                     </Grid>

@@ -7,16 +7,16 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SettingsPage">
+      Title="{DynamicResource Settings}">
 
     <ui:NavigationView x:Name="SettingsNavView" PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" SelectionChanged="SettingsNavView_SelectionChanged">
         <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="Allgemein" Tag="general" IsSelected="True">
+            <ui:NavigationViewItem Content="{DynamicResource GeneralSettings.Title}" Tag="general" IsSelected="True">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xe9e9;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="Über" Tag="about">
+            <ui:NavigationViewItem Content="{DynamicResource About.Title}" Tag="about">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xe946;"/>
                 </ui:NavigationViewItem.Icon>
