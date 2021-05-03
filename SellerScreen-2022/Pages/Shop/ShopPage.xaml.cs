@@ -237,13 +237,13 @@ namespace SellerScreen_2022.Pages.Shop
                 EasingFunction = new QuadraticEase()
             };
             ani.Completed += OpeningAni_Completed;
-            ShopItemView.IsEnabled = true;
-            if (ShopItemView.Effect == null)
+            ListViewGrid.IsEnabled = true;
+            if (ListViewGrid.Effect == null)
             {
                 BlurEffect ef = new BlurEffect() { Radius = 10 };
-                ShopItemView.Effect = ef;
+                ListViewGrid.Effect = ef;
             }
-            ShopItemView.Effect.BeginAnimation(BlurEffect.RadiusProperty, ani);
+            ListViewGrid.Effect.BeginAnimation(BlurEffect.RadiusProperty, ani);
         }
 
         private void ReversePurchaseBtn_Click(object sender, RoutedEventArgs e)
@@ -277,14 +277,14 @@ namespace SellerScreen_2022.Pages.Shop
                 EasingFunction = new QuadraticEase()
             };
             BlurEffect ef = new BlurEffect() { Radius = 0 };
-            ShopItemView.IsEnabled = false;
-            ShopItemView.Effect = ef;
+            ListViewGrid.IsEnabled = false;
+            ListViewGrid.Effect = ef;
             ef.BeginAnimation(BlurEffect.RadiusProperty, ani);
         }
 
         private void OpeningAni_Completed(object sender, EventArgs e)
         {
-            ShopItemView.Effect = null;
+            ListViewGrid.Effect = null;
         }
 
         private async void ReloadBtn_Click(object sender, RoutedEventArgs e)

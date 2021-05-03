@@ -441,20 +441,28 @@ namespace SellerScreen_2022.Pages.Storage
                     txt.Text = product.Price.ToString("C");
 
                     FontIcon icon = (FontIcon)grid.Children[1];
-                    switch (CheckProductHealth(product))
+                    if (product.Status)
                     {
-                        case ProductHealth.Ok:
-                            icon.Glyph = TempIconOk.Glyph;
-                            icon.Foreground = TempIconOk.Foreground;
-                            break;
-                        case ProductHealth.Warning:
-                            icon.Glyph = TempIconWarn.Glyph;
-                            icon.Foreground = TempIconWarn.Foreground;
-                            break;
-                        case ProductHealth.Error:
-                            icon.Glyph = TempIconError.Glyph;
-                            icon.Foreground = TempIconError.Foreground;
-                            break;
+                        switch (CheckProductHealth(product))
+                        {
+                            case ProductHealth.Ok:
+                                icon.Glyph = TempIconOk.Glyph;
+                                icon.Foreground = TempIconOk.Foreground;
+                                break;
+                            case ProductHealth.Warning:
+                                icon.Glyph = TempIconWarn.Glyph;
+                                icon.Foreground = TempIconWarn.Foreground;
+                                break;
+                            case ProductHealth.Error:
+                                icon.Glyph = TempIconError.Glyph;
+                                icon.Foreground = TempIconError.Foreground;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        icon.Glyph = TempIconOff.Glyph;
+                        icon.Foreground = TempIconOff.Foreground;
                     }
                 }
             }
