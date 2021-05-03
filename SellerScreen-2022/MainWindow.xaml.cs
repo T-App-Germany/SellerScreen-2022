@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -52,6 +53,7 @@ namespace SellerScreen_2022
                 }
             });
 
+            SetLanguageDictionary();
             MainNavView_Navigate("home");
         }
 
@@ -175,6 +177,20 @@ namespace SellerScreen_2022
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _ = ErrorList.Load();
+        }
+
+        private void SetLanguageDictionary()
+        {
+            ResourceDictionary dict = new ResourceDictionary
+            {
+                Source = Thread.CurrentThread.CurrentCulture.ToString() switch
+                {
+                    "de-DE" => new Uri("..\\Languages\\de-DE.xaml", UriKind.Relative),
+                    //"en-US" => new Uri("..\\Languages\\en-US.xaml", UriKind.Relative),
+                    _ => new Uri("..\\Languages\\de-DE.xaml", UriKind.Relative),
+                }
+            };
+            Resources.MergedDictionaries.Add(dict);
         }
     }
 }

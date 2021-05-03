@@ -8,7 +8,7 @@
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
       mc:Ignorable="d" 
       d:DesignWidth="800" d:Background="White"
-      Title="Startseite" Loaded="Page_Loaded">
+      Title="{DynamicResource Home.Title}" Loaded="Page_Loaded">
     <Page.Resources>
         <Storyboard x:Key="BottomArrowAni" RepeatBehavior="Forever">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="fontIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
@@ -48,7 +48,7 @@
     <Grid SizeChanged="Grid_SizeChanged">
         <ScrollViewer x:Name="ContentPanel">
             <StackPanel>
-                <TextBlock x:Name="TitleTxt" Text="Willkommen bei SellerScreen-2022" HorizontalAlignment="Center" Margin="0,50,0,50" Style="{StaticResource HeaderTextBlockStyle}"/>
+                <TextBlock x:Name="TitleTxt" Text="{DynamicResource Home.Welcome}" HorizontalAlignment="Center" Margin="0,50,0,50" Style="{StaticResource HeaderTextBlockStyle}"/>
                 <Grid x:Name="DistancePanel1" Height="400"/>
                 <WrapPanel x:Name="LogoPanel" HorizontalAlignment="Center">
                     <Image x:Name="AppLogo" Source="/Resources/SellerScreen.png" Height="200" Margin="20" VerticalAlignment="Center" Width="{Binding Width, ElementName=CompanyLogo}" >
@@ -87,7 +87,7 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="5">
-                                <TextBlock Text="Dieses Produkt ist lizensiert für:" FontSize="20" TextWrapping="Wrap"/>
+                                <TextBlock Text="{DynamicResource Home.LicensedFor}" FontSize="20" TextWrapping="Wrap"/>
                                 <TextBlock Text="T-App Germany" FontSize="20" TextWrapping="Wrap"/>
                             </StackPanel>
                             <TextBlock Grid.Row="2" FontSize="20" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center">

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SellerScreen_2022.Pages.Shop"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" d:Background="White"
-      Title="Kasse" Loaded="Page_Loaded">
+      Title="{DynamicResource Shop.Title}" Loaded="Page_Loaded">
     <Page.Resources>
         <Storyboard x:Key="ReloadAnimation" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReloadBtnIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
@@ -34,7 +34,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" x:Name="HeaderTxt" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}"/>
                 <TextBlock Grid.Column="1" x:Name="InfoTxt" Text="Bereit" TextTrimming="CharacterEllipsis" VerticalAlignment="Bottom" FontSize="15" FontWeight="Thin" Margin="30,0,0,0" Visibility="Visible"/>
-                <Button Grid.Column="2" x:Name="ReloadBtn" HorizontalAlignment="Right" Margin="20,0,20,0" Background="#00000000" Click="ReloadBtn_Click">
+                <Button Grid.Column="2" x:Name="ReloadBtn" HorizontalAlignment="Right" Margin="20,0,20,0" Background="#00000000" ToolTip="{DynamicResource Reload}" Click="ReloadBtn_Click">
                     <ui:FontIcon x:Name="ReloadBtnIcon" Glyph="&#xe895;" Margin="2" RenderTransformOrigin="0.5,0.5" >
                         <ui:FontIcon.RenderTransform>
                             <TransformGroup>
@@ -49,32 +49,36 @@
             </Grid>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
                 <ui:CommandBar x:Name="CmdBar" Margin="20,10">
-                    <ui:AppBarButton x:Name="NewCustomerBtn" Label="Neuer Kunde" Click="NewCustomerBtn_Click">
+                    <ui:AppBarButton x:Name="NewCustomerBtn" Label="{DynamicResource Shop.NewCustomer}" Click="NewCustomerBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe8fa;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="ReversePurchaseBtn" Label="Stornieren" Click="ReversePurchaseBtn_Click">
+                    <ui:AppBarButton x:Name="ReversePurchaseBtn" Label="{DynamicResource Shop.ReversePurchase}" Click="ReversePurchaseBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe7a7;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="RetourBtn" Label="Rücknehmen" Click="RetourBtn_Click">
+                    <ui:AppBarButton x:Name="RetourBtn" Label="{DynamicResource Shop.RetourPurchase}" Click="RetourBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe845;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="PayBtn" Label="Bezahlen" Click="PayBtn_Click">
+                    <ui:AppBarButton x:Name="PayBtn" Label="{DynamicResource Shop.PayPurchase}" Click="PayBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xef40;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="CancelPurchaseBtn" Icon="Cancel" Label="Abbrechen" Click="CancelPurchaseBtn_Click"/>
-                    <ui:AppBarButton x:Name="ClearCardBtn" Icon="Delete" Label="Leeren" Click="ClearCardBtn_Click"/>
+                    <ui:AppBarButton x:Name="CancelPurchaseBtn" Icon="Cancel" Label="{DynamicResource Cancel}" Click="CancelPurchaseBtn_Click"/>
+                    <ui:AppBarButton x:Name="ClearCardBtn" Icon="Delete" Label="{DynamicResource Shop.ClearCard}" Click="ClearCardBtn_Click"/>
                 </ui:CommandBar>
-                <TextBlock x:Name="TotalPriceTxt" Text="Gesamtpreis: 0,00 €" FontSize="15" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <StackPanel x:Name="TotalPricePanel" Orientation="Horizontal">
+                    <TextBlock Text="{DynamicResource Shop.TotalPrice}" FontSize="15" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                    <TextBlock Text=":" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TotalPriceTxt" Text="0,00 €" FontSize="15" VerticalAlignment="Center" Margin="5,0,20,0"/>
+                </StackPanel>
             </StackPanel>
-            <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="Es sind keine Produkte aktiviert." Margin="20" FontSize="20" Visibility="Collapsed"/>
+            <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="{DynamicResource Shop.NoProducts}" Margin="20" FontSize="20" Visibility="Collapsed"/>
             <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="20,20,20,10" HorizontalAlignment="Left">
                 <Grid.Effect>
                     <BlurEffect Radius="0"/>
@@ -92,12 +96,12 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="HeaderNumberTxt" Grid.Column="0" Text="Nr." FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="44" Margin="12,0,0,0"/>
-                    <TextBlock x:Name="HeaderStatusTxt" Grid.Column="1" Text="Status" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="74"/>
-                    <TextBlock x:Name="HeaderNameTxt" Grid.Column="2" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
-                    <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="3" Text="Verfügbar" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
-                    <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
-                    <TextBlock x:Name="HeaderSellTxt" Grid.Column="5" Text="Verkaufen" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="150" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="HeaderNumberTxt" Grid.Column="0" Text="{DynamicResource Shop.Number}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="44" Margin="12,0,0,0"/>
+                    <TextBlock x:Name="HeaderStatusTxt" Grid.Column="1" Text="{DynamicResource Shop.Status}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="74"/>
+                    <TextBlock x:Name="HeaderNameTxt" Grid.Column="2" Text="{DynamicResource Shop.Name}" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
+                    <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="3" Text="{DynamicResource Shop.Availible}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
+                    <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="{DynamicResource Shop.Price}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
+                    <TextBlock x:Name="HeaderSellTxt" Grid.Column="5" Text="{DynamicResource Shop.Sell}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="150" Margin="10,0,0,0"/>
                 </Grid>
                 <ui:ListView x:Name="ShopItemView" Grid.Row="1" Margin="0,0,20,10" Visibility="Visible" HorizontalAlignment="Left" IsSelectionEnabled="False">
                     <Grid>
@@ -120,8 +124,8 @@
                 </ui:ListView>
             </Grid>
             <Grid Visibility="Collapsed">
-                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
-                <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="Warnung"/>
+                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="{DynamicResource Ready}"/>
+                <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="{DynamicResource Warning}"/>
                 <Grid x:Name="ItemTemplate">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
@@ -137,7 +141,6 @@
                     <TextBlock x:Name="ItemTempName" Grid.Column="2" Text="Name" FontSize="20" Padding="10,10,0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" SizeChanged="ItemName_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                     <TextBlock x:Name="ItemTempAvailible" Grid.Column="3" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                     <TextBlock x:Name="ItemTempPrice" Grid.Column="4" Text="00,00€" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                    <!--<ui:NumberBox x:Name="ItemTempSell" Grid.Column="5" Value="0" FontSize="20" HorizontalAlignment="Center" SpinButtonPlacementMode="Inline" Margin="10,0,0,0" Minimum="0" ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" Width="150" Maximum="{Binding Text, ElementName=ItemTempAvailible}"/>-->
                 </Grid>
             </Grid>
         </Grid>

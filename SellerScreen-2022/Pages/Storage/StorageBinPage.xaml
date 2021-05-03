@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d" d:Background="White"
-        Title="Papierkorb" Loaded="Page_Loaded">
+        Title="{DynamicResource Storage.Trash.Title}" Loaded="Page_Loaded">
     <Page.Resources>
         <Storyboard x:Key="ReloadAnimation" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReloadBtnIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
@@ -34,7 +34,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" x:Name="HeaderTxt" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}"/>
                     <TextBlock Grid.Column="1" x:Name="InfoTxt" Text="Bereit" TextTrimming="CharacterEllipsis" VerticalAlignment="Bottom" FontSize="15" FontWeight="Thin" Margin="30,0,0,0" Visibility="Visible"/>
-                    <Button Grid.Column="2" x:Name="ReloadBtn" HorizontalAlignment="Right" Margin="20,0,20,0" Background="#00000000" Click="ReloadBtn_Click">
+                    <Button Grid.Column="2" x:Name="ReloadBtn" HorizontalAlignment="Right" Margin="20,0,20,0" Background="#00000000" ToolTip="{DynamicResource Reload}" Click="ReloadBtn_Click">
                         <ui:FontIcon x:Name="ReloadBtnIcon" Glyph="&#xe895;" Margin="2" RenderTransformOrigin="0.5,0.5" >
                             <ui:FontIcon.RenderTransform>
                                 <TransformGroup>
@@ -48,24 +48,24 @@
                     </Button>
                 </Grid>
                 <ui:CommandBar x:Name="CmdBar" Grid.Row="1" Margin="20,10" HorizontalAlignment="Left">
-                    <ui:AppBarToggleButton x:Name="ChangeSelectionModeBtn" Label="Mehrfachauswahl" Click="ChangeSelectionModeBtn_Click">
+                    <ui:AppBarToggleButton x:Name="ChangeSelectionModeBtn" Label="{DynamicResource MultiSelect}" Click="ChangeSelectionModeBtn_Click">
                         <ui:AppBarToggleButton.Icon>
                             <ui:FontIcon Glyph="&#xe71d;"/>
                         </ui:AppBarToggleButton.Icon>
                     </ui:AppBarToggleButton>
                     <ui:AppBarSeparator x:Name="SelectOptionsSeperator"/>
-                    <ui:AppBarButton x:Name="DelItemBtn" Label="Endgültig Löschen" Click="DelItemBtn_Click" IsEnabled="False">
+                    <ui:AppBarButton x:Name="DelItemBtn" Label="{DynamicResource Storage.Trash.Delete}" Click="DelItemBtn_Click" IsEnabled="False">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe74d;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="RestoreItemBtn" Label="Wiederherstellen" Click="RestoreItemBtn_Click" IsEnabled="False">
+                    <ui:AppBarButton x:Name="RestoreItemBtn" Label="{DynamicResource Storage.Trash.Restore}" Click="RestoreItemBtn_Click" IsEnabled="False">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe97a;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
                 </ui:CommandBar>
-                <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="Es befindet sich nichts im Papierkorb." Margin="20" FontSize="20" Visibility="Collapsed"/>
+                <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="{DynamicResource Storage.Trash.NoProducts}" Margin="20" FontSize="20" Visibility="Collapsed"/>
                 <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="20,20,20,10" HorizontalAlignment="Left">
                     <Grid x:Name="ColumnHeaderGrid" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -76,10 +76,10 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="HeaderSelectTxt" Grid.Column="0" Margin="10,0,0,0" Width="0"/>
-                        <TextBlock x:Name="HeaderNumberTxt" Grid.Column="1" Text="Identifikationsnr." FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="160"/>
-                        <TextBlock x:Name="HeaderNameTxt" Grid.Column="2" Text="Bezeichnung" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
-                        <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="3" Text="Verfügbar" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
-                        <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="Preis" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
+                        <TextBlock x:Name="HeaderNumberTxt" Grid.Column="1" Text="{DynamicResource Storage.Trash.Id}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="160"/>
+                        <TextBlock x:Name="HeaderNameTxt" Grid.Column="2" Text="{DynamicResource Shop.Name}" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
+                        <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="3" Text="{DynamicResource Shop.Availible}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
+                        <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="{DynamicResource Shop.Price}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
                     </Grid>
                 </Grid>
                 <ui:ListView x:Name="BinItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" HorizontalAlignment="Left" SelectionChanged="StorageItemView_SelectionChanged" SelectionMode="Extended"/>

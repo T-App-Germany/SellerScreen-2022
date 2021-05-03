@@ -17,8 +17,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Aktuell" FontSize="20" Margin="10"/>
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="Neu" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Current}" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource New}" FontSize="20" Margin="10"/>
         <TextBlock x:Name="PriceBox" Grid.Column="1" Grid.Row="0" Text="00,00€" FontSize="20" Margin="10"/>
         <ui:NumberBox x:Name="NewPriceBox" Grid.Column="1" Grid.Row="1" MinWidth="200" Value="0" FontSize="20" VerticalAlignment="Center" SpinButtonPlacementMode="Compact" InputScope="CurrencyAmountAndSymbol" Minimum="0" ValueChanged="NumberBox_ValueChanged"/>
     </Grid>

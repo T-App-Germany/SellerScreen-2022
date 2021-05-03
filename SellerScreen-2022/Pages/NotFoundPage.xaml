@@ -1,4 +1,4 @@
-﻿<Page x:Class="SellerScreen_2022.Pages.NotFoundPage"
+﻿<Page x:Name="page" x:Class="SellerScreen_2022.Pages.NotFoundPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SellerScreen_2022.Pages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
-      Title="NotFoundPage">
+      Title="{DynamicResource PageNotFound}">
 
     <Grid Margin="50" VerticalAlignment="Center" HorizontalAlignment="Center">
         <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}" />
@@ -24,7 +24,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="404" FontSize="70" TextWrapping="Wrap"/>
-                    <TextBlock Grid.Row="1" Text="Seite nicht gefunden" FontSize="40" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Text="{Binding Title, ElementName=page}" FontSize="40" TextWrapping="Wrap"/>
                 </Grid>
             </Grid>
         </Border>

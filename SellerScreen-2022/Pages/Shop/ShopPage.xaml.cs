@@ -249,7 +249,7 @@ namespace SellerScreen_2022.Pages.Shop
             RetourBtn.Visibility = Visibility.Collapsed;
             PayBtn.Visibility = Visibility.Visible;
             CancelPurchaseBtn.Visibility = Visibility.Visible;
-            TotalPriceTxt.Visibility = Visibility.Visible;
+            TotalPricePanel.Visibility = Visibility.Visible;
             ClearCardBtn.Visibility = Visibility.Visible;
             DoubleAnimation ani = new DoubleAnimation()
             {
@@ -289,7 +289,7 @@ namespace SellerScreen_2022.Pages.Shop
             RetourBtn.Visibility = Visibility.Visible;
             PayBtn.Visibility = Visibility.Collapsed;
             CancelPurchaseBtn.Visibility = Visibility.Collapsed;
-            TotalPriceTxt.Visibility = Visibility.Collapsed;
+            TotalPricePanel.Visibility = Visibility.Collapsed;
             ClearCardBtn.Visibility = Visibility.Collapsed;
             DoubleAnimation ani = new DoubleAnimation()
             {
