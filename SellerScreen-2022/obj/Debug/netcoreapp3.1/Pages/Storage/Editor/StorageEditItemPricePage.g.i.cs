@@ -76,8 +76,7 @@ namespace SellerScreen_2022 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;V1.0.0.0;component/pages/storage/editor/storageedititempricepa" +
-                    "ge.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;component/pages/storage/editor/storageedititempricepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Pages\Storage\Editor\StorageEditItemPricePage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

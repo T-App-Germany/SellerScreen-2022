@@ -324,7 +324,7 @@ namespace SellerScreen_2022.Pages.Shop {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;V1.0.0.0;component/pages/shop/shoppage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;component/pages/shop/shoppage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Pages\Shop\ShopPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

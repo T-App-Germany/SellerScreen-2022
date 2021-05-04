@@ -1,32 +1,36 @@
-﻿using System;
+﻿using ModernWpf.Controls;
+using ModernWpf.Media.Animation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ModernWpf.Controls;
-using ModernWpf.Media.Animation;
+using System.Windows.Controls;
+using Page = System.Windows.Controls.Page;
 
-namespace SellerScreen_2022.Pages.Settings
+namespace SellerScreen_2022.Pages.Statics
 {
-    public partial class SettingsPage : System.Windows.Controls.Page
+    public partial class StaticsPage : Page
     {
         private readonly List<(string Tag, Type Page)> _pages = new()
         {
-            ("general", typeof(GeneralSettingsPage)),
-            ("about", typeof(AboutPage)),
+            ("total", typeof(NotFoundPage)),
+            ("year", typeof(NotFoundPage)),
+            ("month", typeof(NotFoundPage)),
+            ("day", typeof(NotFoundPage)),
         };
         private NavigationTransitionInfo _transitionInfo = null;
         private short activeIndex = -1;
 
-        public SettingsPage()
+        public StaticsPage()
         {
             InitializeComponent();
         }
 
-        private void SettingsNavView_Navigate(string navItemTag)
+        private void StaticsNavView_Navigate(string navItemTag)
         {
             Type _page = null;
             if (!string.IsNullOrEmpty(navItemTag))
             {
-                var item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
+                (string Tag, Type Page) item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
                 _page = item.Page;
             }
 
@@ -51,24 +55,24 @@ namespace SellerScreen_2022.Pages.Settings
                     ContentFrame.Navigate(_page, null, _transitionInfo);
                 }
 
-                NavigationViewItem item = (NavigationViewItem)SettingsNavView.SelectedItem;
+                NavigationViewItem item = (NavigationViewItem)StaticsNavView.SelectedItem;
                 activeIndex = index;
-                SettingsNavView.SelectedItem = SettingsNavView.MenuItems[activeIndex];
+                StaticsNavView.SelectedItem = StaticsNavView.MenuItems[activeIndex];
             }
         }
 
-        private void SettingsNavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void StaticsNavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.SelectedItemContainer != null)
             {
                 if (!(args.SelectedItemContainer.Tag is null))
                 {
-                    var navItemTag = args.SelectedItemContainer.Tag.ToString();
-                    SettingsNavView_Navigate(navItemTag);
+                    string navItemTag = args.SelectedItemContainer.Tag.ToString();
+                    StaticsNavView_Navigate(navItemTag);
                 }
                 else
                 {
-                    SettingsNavView_Navigate("");
+                    StaticsNavView_Navigate("");
                 }
             }
         }
