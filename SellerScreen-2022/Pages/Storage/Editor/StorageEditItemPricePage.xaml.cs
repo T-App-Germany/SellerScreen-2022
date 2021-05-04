@@ -8,7 +8,7 @@ namespace SellerScreen_2022
         {
             InitializeComponent();
             PriceBox.Text = StorageEditItemWindow.productItem.Price.ToString("C");
-            NewPriceBox.Value = StorageEditItemWindow.productItemEdited.Price;
+            NewPriceBox.Value = (double)StorageEditItemWindow.productItemEdited.Price;
             NewPriceBox.NumberFormatter = new CustomNumberFormatter();
         }
 
@@ -31,7 +31,7 @@ namespace SellerScreen_2022
 
         private void NumberBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
         {
-            StorageEditItemWindow.productItemEdited.Price = (float)sender.Value;
+            StorageEditItemWindow.productItemEdited.Price = (decimal)sender.Value;
         }
     }
 }

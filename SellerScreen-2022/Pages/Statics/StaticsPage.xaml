@@ -10,22 +10,22 @@
 
     <ui:NavigationView x:Name="StaticsNavView" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" PaneDisplayMode="Top" SelectionChanged="StaticsNavView_SelectionChanged">
         <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="Gesamt" Tag="total" IsSelected="True">
+            <ui:NavigationViewItem Content="{DynamicResource Statics.Total.Header}" Tag="total" IsSelected="True">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xe9f9;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="Jahr" Tag="year">
+            <ui:NavigationViewItem Content="{DynamicResource Statics.Year.Header}" Tag="year">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xe8bf;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="Monat" Tag="month">
+            <ui:NavigationViewItem Content="{DynamicResource Statics.Month.Header}" Tag="month">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xe8c0;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="Tag" Tag="day">
+            <ui:NavigationViewItem Content="{DynamicResource Statics.Day.Header}" Tag="day">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xed28;"/>
                 </ui:NavigationViewItem.Icon>

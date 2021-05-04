@@ -37,7 +37,7 @@
     <system:String x:Key="Shop.Availible">Verfügbar</system:String>
     <system:String x:Key="Shop.Price">Preis</system:String>
     <system:String x:Key="Shop.Sell">Verkaufen</system:String>
-    <system:String x:Key="Shop.NoProducts">Es sind keine Produkte aktiviert.</system:String>
+    <system:String x:Key="Shop.NoProducts">Es sind keine Produkte bereit.</system:String>
     
     <!-- Storage Page -->
     <system:String x:Key="Storage.Title">Lager</system:String>
@@ -65,6 +65,16 @@
     <system:String x:Key="Storage.Trash.Delete">Endgültig Löschen</system:String>
     <system:String x:Key="Storage.Trash.Restore">Wiederherstellen</system:String>
     <system:String x:Key="Storage.Trash.NoProducts">Es befindet sich nichts im Papierkorb.</system:String>
+
+    <!-- Statics Page -->
+    <system:String x:Key="Statics.Day.Header">Tag</system:String>
+    <system:String x:Key="Statics.Month.Header">Monat</system:String>
+    <system:String x:Key="Statics.Year.Header">Jahr</system:String>
+    <system:String x:Key="Statics.Total.Header">Gesamt</system:String>
+    <system:String x:Key="Statics.Day.Title">Tagesstatistiken</system:String>
+    <system:String x:Key="Statics.Month.Title">Monatsstatistiken</system:String>
+    <system:String x:Key="Statics.Year.Title">Jahresstatistiken</system:String>
+    <system:String x:Key="Statics.Total.Title">Gesamtstatistiken</system:String>
 
     <!-- About Page -->
     <system:String x:Key="About.Title">Über</system:String>

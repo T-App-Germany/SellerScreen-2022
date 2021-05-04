@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
@@ -19,12 +18,22 @@ namespace SellerScreen_2022.Pages.Shop
 {
     public partial class ShopPage : Page
     {
-        private readonly Dictionary<short, double> widthNumber = new Dictionary<short, double>();
-        private readonly Dictionary<short, double> widthName = new Dictionary<short, double>();
-        private readonly Dictionary<short, double> widthAvailible = new Dictionary<short, double>();
-        private readonly Dictionary<short, double> widthPrice = new Dictionary<short, double>();
+        private enum SellType
+        {
+            None,
+            Sell,
+            Cancel,
+            Redemption
+        };
+
+        private readonly Dictionary<short, double> widthNumber = new();
+        private readonly Dictionary<short, double> widthName = new();
+        private readonly Dictionary<short, double> widthAvailible = new();
+        private readonly Dictionary<short, double> widthPrice = new();
 
         private bool reloading;
+        private SellType sellType;
+        private readonly Dictionary<int, (double, double)> shoppingCard = new();
 
         public ShopPage()
         {
@@ -123,7 +132,7 @@ namespace SellerScreen_2022.Pages.Shop
             if (sender is Viewbox box)
             {
                 double header = HeaderGrid.ActualHeight + HeaderGrid.Margin.Top + HeaderGrid.Margin.Bottom;
-                double cmdBar = CmdBar.ActualHeight + CmdBar.Margin.Top + CmdBar.Margin.Bottom;
+                double cmdBar = SellCmdBar.ActualHeight + SellCmdBar.Margin.Top + SellCmdBar.Margin.Bottom;
                 double columns = ColumnHeaderGrid.ActualHeight + ColumnHeaderGrid.Margin.Top + ColumnHeaderGrid.Margin.Bottom;
                 double space = box.ActualHeight - header - cmdBar - columns - ShopItemView.Margin.Top - ShopItemView.Margin.Bottom - 100;
                 if (space < 0)
@@ -174,7 +183,7 @@ namespace SellerScreen_2022.Pages.Shop
             ShopItemView.Items.Clear();
             foreach (KeyValuePair<string, Product> kvp in MainWindow.storageData.Products)
             {
-                await AddItemToStorage(kvp.Value);
+                await AddItemToShop(kvp.Value);
             }
 
             CheckForItems();
@@ -182,7 +191,7 @@ namespace SellerScreen_2022.Pages.Shop
             InfoTxt.Visibility = Visibility.Collapsed;
         }
 
-        private Task AddItemToStorage(Product product)
+        private Task AddItemToShop(Product product)
         {
             if (product.Status && CheckProductHealth(product) <= (ProductHealth)1)
             {
@@ -207,7 +216,7 @@ namespace SellerScreen_2022.Pages.Shop
                 ItemTempNumber.Text = (ShopItemView.Items.Count + 1).ToString();
                 ItemTemplate.Tag = product.Key;
 
-                NumberBox nBox = new NumberBox()
+                NumberBox nBox = new()
                 {
                     FontSize = 20,
                     HorizontalAlignment = HorizontalAlignment.Center,
@@ -218,10 +227,11 @@ namespace SellerScreen_2022.Pages.Shop
                     Width = 150,
                     Value = 0
                 };
+                nBox.ValueChanged += NBox_ValueChanged;
                 Grid.SetColumn(nBox, 5);
 
                 string xamlString = XamlWriter.Save(ItemTemplate);
-                StringReader stringReader = new StringReader(xamlString);
+                StringReader stringReader = new(xamlString);
                 XmlReader xmlReader = XmlReader.Create(stringReader);
                 Grid item = (Grid)XamlReader.Load(xmlReader);
 
@@ -242,16 +252,41 @@ namespace SellerScreen_2022.Pages.Shop
             return Task.CompletedTask;
         }
 
+        private void NBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
+        {
+            Grid item = (Grid)sender.Parent;
+            TextBlock t = (TextBlock)item.Children[4];
+            int i = ShopItemView.Items.IndexOf(item);
+            if (shoppingCard.ContainsKey(i))
+            {
+                shoppingCard[i] = (double.Parse(t.Text.Remove(t.Text.Length - 2)), sender.Value);
+            }
+            else
+            {
+                shoppingCard.Add(i, (double.Parse(t.Text.Remove(t.Text.Length - 2)), sender.Value));
+            }
+
+            GetTotalPrice();
+        }
+
+        private double GetTotalPrice()
+        {
+            double price = 0;
+            foreach ((double d, double i) in shoppingCard.Values)
+            {
+                price += d * i;
+            }
+            TotalPriceTxt.Text = price.ToString("C");
+            return price;
+        }
+
         private void NewCustomerBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewCustomerBtn.Visibility = Visibility.Collapsed;
-            ReversePurchaseBtn.Visibility = Visibility.Collapsed;
-            RetourBtn.Visibility = Visibility.Collapsed;
-            PayBtn.Visibility = Visibility.Visible;
-            CancelPurchaseBtn.Visibility = Visibility.Visible;
+            sellType = SellType.Sell;
+            ShopCmdBar.Visibility = Visibility.Collapsed;
+            SellCmdBar.Visibility = Visibility.Visible;
             TotalPricePanel.Visibility = Visibility.Visible;
-            ClearCardBtn.Visibility = Visibility.Visible;
-            DoubleAnimation ani = new DoubleAnimation()
+            DoubleAnimation ani = new()
             {
                 To = 0,
                 Duration = TimeSpan.FromMilliseconds(400),
@@ -261,43 +296,114 @@ namespace SellerScreen_2022.Pages.Shop
             ListViewGrid.IsEnabled = true;
             if (ListViewGrid.Effect == null)
             {
-                BlurEffect ef = new BlurEffect() { Radius = 10 };
+                BlurEffect ef = new() { Radius = 10 };
                 ListViewGrid.Effect = ef;
             }
             ListViewGrid.Effect.BeginAnimation(BlurEffect.RadiusProperty, ani);
         }
 
-        private void ReversePurchaseBtn_Click(object sender, RoutedEventArgs e)
+        private void CancellationBtn_Click(object sender, RoutedEventArgs e)
         {
+            sellType = SellType.Cancel;
 
         }
 
-        private void RetourBtn_Click(object sender, RoutedEventArgs e)
+        private void RedemptionBtn_Click(object sender, RoutedEventArgs e)
         {
+            sellType = SellType.Redemption;
 
         }
 
-        private void PayBtn_Click(object sender, RoutedEventArgs e)
+        private async void PayBtn_Click(object sender, RoutedEventArgs e)
         {
+            List<int> remove = new();
 
+            if (sellType == SellType.Sell)
+            {
+                foreach (Grid item in ShopItemView.Items)
+                {
+                    NumberBox nBox = (NumberBox)item.Children[5];
+                    uint sell = Convert.ToUInt32(nBox.Value);
+
+                    if (nBox.Value > 0)
+                    {
+                        Product p = await Load(item.Tag.ToString());
+                        DayStatics d;
+                        if (!File.Exists(Paths.staticsPath + $"{DateTime.Now.Date.Ticks}.json"))
+                        {
+                            d = new();
+                        }
+                        else
+                        {
+                            d = await DayStatics.Load(DateTime.Now.Date);
+                        }
+
+                        TotalStatics t;
+                        if (!File.Exists(Paths.staticsPath + $"{DateTime.Now.Date.Ticks}.json"))
+                        {
+                            t = new();
+                        }
+                        else
+                        {
+                            t = await TotalStatics.Load();
+                        }
+
+                        p.Availible -= sell;
+                        p.Sold += sell;
+                        p.Revenue += Convert.ToDecimal(p.Price * sell);
+
+                        t.Customers++;
+                        t.Sold += sell;
+                        t.Revenue += Convert.ToDecimal(p.Price * sell);
+
+                        if (!d.SoldProducts.ContainsKey(p.Key))
+                        {
+                            d.SoldProducts.Add(p.Key, new SoldProduct(p));
+                        }
+                        d.SoldProducts[p.Key].Sold += sell;
+
+                        await t.Save();
+                        await p.Save();
+                        await d.Save();
+
+                        TextBlock txt = (TextBlock)item.Children[3];
+                        txt.Text = p.Availible.ToString();
+
+                        if (p.Availible < 1) remove.Add(ShopItemView.Items.IndexOf(item));
+                    }
+                }
+            }
+            else if (sellType == SellType.Cancel)
+            {
+
+            }
+            else if (sellType == SellType.Redemption)
+            {
+
+            }
+
+            foreach(int i in remove)
+            {
+                ShopItemView.Items.RemoveAt(i);
+            }
+
+            CancelPurchaseBtn_Click(sender, e);
+            ClearCardBtn_Click(sender, e);
         }
 
         private void CancelPurchaseBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewCustomerBtn.Visibility = Visibility.Visible;
-            ReversePurchaseBtn.Visibility = Visibility.Visible;
-            RetourBtn.Visibility = Visibility.Visible;
-            PayBtn.Visibility = Visibility.Collapsed;
-            CancelPurchaseBtn.Visibility = Visibility.Collapsed;
+            sellType = SellType.None;
+            ShopCmdBar.Visibility = Visibility.Visible;
+            SellCmdBar.Visibility = Visibility.Collapsed;
             TotalPricePanel.Visibility = Visibility.Collapsed;
-            ClearCardBtn.Visibility = Visibility.Collapsed;
-            DoubleAnimation ani = new DoubleAnimation()
+            DoubleAnimation ani = new()
             {
                 To = 10,
                 Duration = TimeSpan.FromMilliseconds(400),
                 EasingFunction = new QuadraticEase()
             };
-            BlurEffect ef = new BlurEffect() { Radius = 0 };
+            BlurEffect ef = new() { Radius = 0 };
             ListViewGrid.IsEnabled = false;
             ListViewGrid.Effect = ef;
             ef.BeginAnimation(BlurEffect.RadiusProperty, ani);
@@ -305,7 +411,11 @@ namespace SellerScreen_2022.Pages.Shop
 
         private void ClearCardBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach (Grid item in ShopItemView.Items)
+            {
+                NumberBox nBox = (NumberBox)item.Children[5];
+                nBox.Value = 0;
+            }
         }
 
         private void OpeningAni_Completed(object sender, EventArgs e)

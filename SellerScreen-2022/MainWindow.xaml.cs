@@ -24,6 +24,7 @@ namespace SellerScreen_2022
     public partial class MainWindow
     {
         public static StorageData storageData = new();
+        public static TotalStatics totalStatics = new();
 
         private readonly List<(string Tag, Type Page)> _pages = new()
         {

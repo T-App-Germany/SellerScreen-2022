@@ -1,0 +1,65 @@
+﻿<Page x:Name="Page" x:Class="SellerScreen_2022.Pages.Statics.DayStaticsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SellerScreen_2022.Pages.Statics" xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d" 
+      d:Background="White"
+      Title="{DynamicResource Statics.Day.Title}">
+
+    <Grid HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}" Margin="20"/>
+        <DatePicker x:Name="DayDatePicker" Grid.Row="1" Margin="20" FirstDayOfWeek="Monday" IsDropDownOpen="True"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="0,20,20,10" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="ColumnHeaderGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="HeaderNumberTxt" Grid.Column="0" Text="{DynamicResource Shop.Number}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="44" Margin="12,0,0,0"/>
+                    <TextBlock x:Name="HeaderNameTxt" Grid.Column="1" Text="{DynamicResource Shop.Name}" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
+                    <TextBlock x:Name="HeaderPriceTxt" Grid.Column="2" Text="{DynamicResource Shop.Price}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
+                    <TextBlock x:Name="HeaderSoldTxt" Grid.Column="3" Text="{DynamicResource Storage.Sold}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="110"/>
+                    <TextBlock x:Name="HeaderRevenueTxt" Grid.Column="4" Text="{DynamicResource Storage.Revenue}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="130"/>
+                </Grid>
+                <ui:ListView x:Name="ShopItemView" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Left">
+                    <Grid x:Name="ItemTemplate">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNameTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderPriceTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderSoldTxt}"/>
+                            <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderRevenueTxt}"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="ItemTempNumber" Grid.Column="0" Text="0" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <TextBlock x:Name="ItemTempName" Grid.Column="1" Text="Name" FontSize="20" Padding="10,10,0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" SizeChanged="ItemName_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <TextBlock x:Name="ItemTempPrice" Grid.Column="2" Text="00,00€" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <TextBlock x:Name="ItemTempSold" Grid.Column="3" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemSold_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        <TextBlock x:Name="ItemTempRevenue" Grid.Column="4" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemRevenue_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    </Grid>
+                </ui:ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

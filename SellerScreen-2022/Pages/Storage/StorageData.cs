@@ -8,8 +8,8 @@ namespace SellerScreen_2022.Pages.Storage
 {
     public class StorageData
     {
-        public Dictionary<string, Product> Products = new Dictionary<string, Product>();
-        public Dictionary<string, Product> Bin = new Dictionary<string, Product>();
+        public Dictionary<string, Product> Products = new();
+        public Dictionary<string, Product> Bin = new();
 
         public async Task<bool> LoadStorage()
         {
@@ -52,7 +52,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             try
             {
-                Data.Storage storage = new Data.Storage();
+                Data.Storage storage = new();
                 foreach (KeyValuePair<string, Product> kvp in Products)
                 {
                     storage.Products.Add(kvp.Value.Key);
@@ -115,7 +115,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             try
             {
-                Data.Storage storage = new Data.Storage();
+                Data.Storage storage = new();
                 foreach (KeyValuePair<string, Product> kvp in Products)
                 {
                     storage.Products.Add(kvp.Value.Key);

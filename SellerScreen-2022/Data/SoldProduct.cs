@@ -8,6 +8,8 @@ namespace SellerScreen_2022.Data
     [Serializable]
     public class SoldProduct
     {
+        public SoldProduct() { }
+        
         public SoldProduct(Product p)
         {
             Key = p.Key;
@@ -15,13 +17,12 @@ namespace SellerScreen_2022.Data
             Price = p.Price;
         }
 
-        private SoldProduct() { }
 
         private string _Key;
         public string Key
         {
             get => _Key;
-            set => _Key = value;
+            private set => _Key = value;
         }
 
         private string _Name;
@@ -31,8 +32,8 @@ namespace SellerScreen_2022.Data
             set => _Name = value;
         }
 
-        private float _Price;
-        public float Price
+        private decimal _Price;
+        public decimal Price
         {
             get => _Price;
             set => _Price = value;

@@ -16,7 +16,7 @@ namespace SellerScreen_2022.Data
             Error
         }
 
-        public Product(string name, bool status, uint availible, float price, string key = null)
+        public Product(string name, bool status, uint availible, decimal price, string key = null)
         {
             Key = key ?? GenKey();
             Name = name;
@@ -55,8 +55,8 @@ namespace SellerScreen_2022.Data
             set => _Availible = value;
         }
 
-        private float _Price;
-        public float Price
+        private decimal _Price;
+        public decimal Price
         {
             get => _Price;
             set => _Price = value;
@@ -69,8 +69,8 @@ namespace SellerScreen_2022.Data
             set => _Sold = value;
         }
 
-        private float _Revenue;
-        public float Revenue
+        private decimal _Revenue;
+        public decimal Revenue
         {
             get => _Revenue;
             set => _Revenue = value;

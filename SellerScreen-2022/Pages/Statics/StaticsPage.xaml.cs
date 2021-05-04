@@ -15,7 +15,7 @@ namespace SellerScreen_2022.Pages.Statics
             ("total", typeof(NotFoundPage)),
             ("year", typeof(NotFoundPage)),
             ("month", typeof(NotFoundPage)),
-            ("day", typeof(NotFoundPage)),
+            ("day", typeof(DayStaticsPage)),
         };
         private NavigationTransitionInfo _transitionInfo = null;
         private short activeIndex = -1;
