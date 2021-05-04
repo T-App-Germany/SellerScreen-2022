@@ -386,7 +386,7 @@ namespace SellerScreen_2022.Pages.Shop
             {
                 ShopItemView.Items.RemoveAt(i);
             }
-
+            CheckForItems();
             CancelPurchaseBtn_Click(sender, e);
             ClearCardBtn_Click(sender, e);
         }
