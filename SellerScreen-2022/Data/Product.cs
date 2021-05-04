@@ -9,15 +9,6 @@ namespace SellerScreen_2022.Data
     [Serializable]
     public class Product
     {
-        public enum ProductProperty
-        {
-            Name,
-            Price,
-            Availible,
-            Status,
-            Id
-        }
-
         public enum ProductHealth
         {
             Ok,
@@ -85,11 +76,11 @@ namespace SellerScreen_2022.Data
             set => _Revenue = value;
         }
 
-        private uint _PurchaseReverses;
-        public uint PurchaseReverses
+        private uint _Cancellations;
+        public uint Cancellations
         {
-            get => _PurchaseReverses;
-            set => _PurchaseReverses = value;
+            get => _Cancellations;
+            set => _Cancellations = value;
         }
 
         private uint _Redemptions;
@@ -118,12 +109,11 @@ namespace SellerScreen_2022.Data
                     rng.GetBytes(codebytes);
                 }
                 code = BitConverter.ToString(codebytes).ToLower().Replace("-", "");
-            } while (File.Exists($"products/{code}.json"));
+            } while (File.Exists(Paths.staticsPath + $"{code}.json"));
 
             Key = code;
             return code;
         }
-
 
         public static async Task<Product> Load(string key)
         {

@@ -275,7 +275,7 @@ namespace SellerScreen_2022.Pages.Storage {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;component/pages/storage/storagebinpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;V1.0.0.0;component/pages/storage/storagebinpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Pages\Storage\StorageBinPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
