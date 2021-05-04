@@ -178,7 +178,7 @@ namespace SellerScreen_2022.Pages.Storage
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bauen...";
             BinItemView.Items.Clear();
-            foreach (KeyValuePair<ulong, Product> kvp in MainWindow.storageData.Bin)
+            foreach (KeyValuePair<string, Product> kvp in MainWindow.storageData.Bin)
             {
                 await AddItemToBin(kvp.Value);
             }
@@ -196,20 +196,20 @@ namespace SellerScreen_2022.Pages.Storage
             return true;
         }
 
-        private async Task<bool> RestoreProduct(ulong id)
+        private async Task<bool> RestoreProduct(string key)
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Wiederherstellen...";
-            await MainWindow.storageData.RestoreProduct(id);
+            await MainWindow.storageData.RestoreProduct(key);
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
 
-        private async Task<bool> DeleteProduct(ulong id)
+        private async Task<bool> DeleteProduct(string key)
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Löschen...";
-            await MainWindow.storageData.DeleteProduct(id);
+            await MainWindow.storageData.DeleteProduct(key);
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -244,7 +244,7 @@ namespace SellerScreen_2022.Pages.Storage
         {
             if (sender is MenuItem item)
             {
-                StorageItemWindow window = new StorageItemWindow(ulong.Parse(item.Tag.ToString()));
+                StorageItemWindow window = new StorageItemWindow(item.Tag.ToString());
                 window.ShowDialog();
             }
         }
@@ -255,8 +255,8 @@ namespace SellerScreen_2022.Pages.Storage
             ItemTempAvailible.Text = product.Availible.ToString();
             ItempTempPrice.Text = product.Price.ToString("C");
 
-            ItemTempId.Text = product.Id.ToString();
-            ItemTemplate.Tag = product.Id;
+            ItemTempId.Text = product.Key.ToString();
+            ItemTemplate.Tag = product.Key;
 
             string xamlString = XamlWriter.Save(ItemTemplate);
             StringReader stringReader = new StringReader(xamlString);
@@ -264,7 +264,7 @@ namespace SellerScreen_2022.Pages.Storage
             Grid item = (Grid)XamlReader.Load(xmlReader);
             MenuItem menuItem = (MenuItem)item.ContextMenu.Items[0];
             menuItem.Click += new RoutedEventHandler(ShowItemInfo);
-            menuItem.Tag = product.Id;
+            menuItem.Tag = product.Key;
 
             TextBlock txt = (TextBlock)item.Children[0];
             txt.SizeChanged += new SizeChangedEventHandler(ItemId_SizeChanged);
@@ -287,8 +287,7 @@ namespace SellerScreen_2022.Pages.Storage
                 for (int i = 0; i < list.Count; i++)
                 {
                     Grid grid = (Grid)list[i];
-                    ulong id = ulong.Parse(grid.Tag.ToString());
-                    if (await DeleteProduct(id))
+                    if (await DeleteProduct(grid.Tag.ToString()))
                     {
                         BinItemView.Items.Remove(grid);
                         CheckForItems();
@@ -310,8 +309,7 @@ namespace SellerScreen_2022.Pages.Storage
                 for (int i = 0; i < list.Count; i++)
                 {
                     Grid grid = (Grid)list[i];
-                    ulong id = ulong.Parse(grid.Tag.ToString());
-                    if (await RestoreProduct(id))
+                    if (await RestoreProduct(grid.Tag.ToString()))
                     {
                         BinItemView.Items.Remove(grid);
                         CheckForItems();

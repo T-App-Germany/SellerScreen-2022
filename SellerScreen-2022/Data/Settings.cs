@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace SellerScreen_2022.Data
 {
@@ -21,9 +21,7 @@ namespace SellerScreen_2022.Data
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Create);
-                XmlSerializer XML = new XmlSerializer(typeof(Settings));
-                XML.Serialize(stream, this);
+                File.WriteAllText(Paths.settingsPath + "Settings.json", JsonConvert.SerializeObject(this, Formatting.Indented));
                 return true;
             }
             catch (Exception ex)
@@ -37,9 +35,7 @@ namespace SellerScreen_2022.Data
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.settingsPath + "Settings.xml", FileMode.Open);
-                XmlSerializer XML = new XmlSerializer(typeof(Settings));
-                return (Settings)XML.Deserialize(stream);
+                return JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Paths.settingsPath + "Settings.json"));
             }
             catch (Exception ex)
             {

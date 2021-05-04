@@ -30,7 +30,7 @@ namespace SellerScreen_2022
             productItem = product;
             productItemEdited = product;
             Frame_Navigate(pageTag);
-            Title = "Produkt: " + product.Id;
+            Title = "Produkt: " + product.Key;
         }
 
         private void Frame_Navigate(string navItemTag)

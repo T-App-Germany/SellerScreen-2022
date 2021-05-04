@@ -172,7 +172,7 @@ namespace SellerScreen_2022.Pages.Shop
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bauen...";
             ShopItemView.Items.Clear();
-            foreach (KeyValuePair<ulong, Product> kvp in MainWindow.storageData.Products)
+            foreach (KeyValuePair<string, Product> kvp in MainWindow.storageData.Products)
             {
                 await AddItemToStorage(kvp.Value);
             }
@@ -205,7 +205,7 @@ namespace SellerScreen_2022.Pages.Shop
                 }
 
                 ItemTempNumber.Text = (ShopItemView.Items.Count + 1).ToString();
-                ItemTemplate.Tag = product.Id;
+                ItemTemplate.Tag = product.Key;
 
                 NumberBox nBox = new NumberBox()
                 {

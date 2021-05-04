@@ -76,7 +76,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="HeaderSelectTxt" Grid.Column="0" Margin="10,0,0,0" Width="0"/>
-                        <TextBlock x:Name="HeaderNumberTxt" Grid.Column="1" Text="{DynamicResource Storage.Trash.Id}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="160"/>
+                        <TextBlock x:Name="HeaderNumberTxt" Grid.Column="1" Text="{DynamicResource Key}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="160"/>
                         <TextBlock x:Name="HeaderNameTxt" Grid.Column="2" Text="{DynamicResource Shop.Name}" FontSize="20" FontWeight="DemiBold" TextAlignment="Left" MinWidth="130" Padding="8,0,0,0"/>
                         <TextBlock x:Name="HeaderAvailibleTxt" Grid.Column="3" Text="{DynamicResource Shop.Availible}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="112"/>
                         <TextBlock x:Name="HeaderPriceTxt" Grid.Column="4" Text="{DynamicResource Shop.Price}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>

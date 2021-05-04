@@ -8,8 +8,8 @@ namespace SellerScreen_2022.Pages.Storage
 {
     public class StorageData
     {
-        public Dictionary<ulong, Product> Products = new Dictionary<ulong, Product>();
-        public Dictionary<ulong, Product> Bin = new Dictionary<ulong, Product>();
+        public Dictionary<string, Product> Products = new Dictionary<string, Product>();
+        public Dictionary<string, Product> Bin = new Dictionary<string, Product>();
 
         public async Task<bool> LoadStorage()
         {
@@ -23,13 +23,13 @@ namespace SellerScreen_2022.Pages.Storage
                         try
                         {
                             Product product = await Product.Load(storage.Products[i]);
-                            if (Products.ContainsKey(product.Id))
+                            if (Products.ContainsKey(product.Key))
                             {
-                                Products[product.Id] = product;
+                                Products[product.Key] = product;
                             }
                             else
                             {
-                                Products.Add(product.Id, product);
+                                Products.Add(product.Key, product);
                             }
                         }
                         catch (Exception ex)
@@ -53,14 +53,14 @@ namespace SellerScreen_2022.Pages.Storage
             try
             {
                 Data.Storage storage = new Data.Storage();
-                foreach (KeyValuePair<ulong, Product> kvp in Products)
+                foreach (KeyValuePair<string, Product> kvp in Products)
                 {
-                    storage.Products.Add(kvp.Value.Id);
+                    storage.Products.Add(kvp.Value.Key);
                 }
 
-                foreach (KeyValuePair<ulong, Product> kvp in Bin)
+                foreach (KeyValuePair<string, Product> kvp in Bin)
                 {
-                    storage.Bin.Add(kvp.Value.Id);
+                    storage.Bin.Add(kvp.Value.Key);
                 }
 
                 await storage.Save();
@@ -86,13 +86,13 @@ namespace SellerScreen_2022.Pages.Storage
                         try
                         {
                             Product product = await Product.Load(storage.Bin[i]);
-                            if (Bin.ContainsKey(product.Id))
+                            if (Bin.ContainsKey(product.Key))
                             {
-                                Bin[product.Id] = product;
+                                Bin[product.Key] = product;
                             }
                             else
                             {
-                                Bin.Add(product.Id, product);
+                                Bin.Add(product.Key, product);
                             }
                         }
                         catch (Exception ex)
@@ -116,14 +116,14 @@ namespace SellerScreen_2022.Pages.Storage
             try
             {
                 Data.Storage storage = new Data.Storage();
-                foreach (KeyValuePair<ulong, Product> kvp in Products)
+                foreach (KeyValuePair<string, Product> kvp in Products)
                 {
-                    storage.Products.Add(kvp.Value.Id);
+                    storage.Products.Add(kvp.Value.Key);
                 }
 
-                foreach (KeyValuePair<ulong, Product> kvp in Bin)
+                foreach (KeyValuePair<string, Product> kvp in Bin)
                 {
-                    storage.Bin.Add(kvp.Value.Id);
+                    storage.Bin.Add(kvp.Value.Key);
                 }
 
                 await storage.Save();
@@ -137,15 +137,15 @@ namespace SellerScreen_2022.Pages.Storage
             return true;
         }
 
-        public async Task<bool> RecycelProduct(ulong id)
+        public async Task<bool> RecycelProduct(string key)
         {
             try
             {
                 Data.Storage storage = await Data.Storage.Load();
-                Bin.Add(id, Products[id]);
-                Products.Remove(id);
-                storage.Products.Remove(id);
-                storage.Bin.Add(id);
+                Bin.Add(key, Products[key]);
+                Products.Remove(key);
+                storage.Products.Remove(key);
+                storage.Bin.Add(key);
                 await storage.Save();
             }
             catch (Exception ex)
@@ -157,15 +157,15 @@ namespace SellerScreen_2022.Pages.Storage
             return true;
         }
 
-        public async Task<bool> RestoreProduct(ulong id)
+        public async Task<bool> RestoreProduct(string key)
         {
             try
             {
                 Data.Storage storage = await Data.Storage.Load();
-                Products.Add(id, Bin[id]);
-                Bin.Remove(id);
-                storage.Bin.Remove(id);
-                storage.Products.Add(id);
+                Products.Add(key, Bin[key]);
+                Bin.Remove(key);
+                storage.Bin.Remove(key);
+                storage.Products.Add(key);
                 await storage.Save();
                 await SaveBin();
             }
@@ -178,12 +178,12 @@ namespace SellerScreen_2022.Pages.Storage
             return true;
         }
 
-        public async Task<bool> DeleteProduct(ulong id)
+        public async Task<bool> DeleteProduct(string key)
         {
             try
             {
-                File.Delete(Paths.productsPath + id.ToString() + ".xml");
-                Bin.Remove(id);
+                File.Delete(Paths.productsPath + key.ToString() + ".xml");
+                Bin.Remove(key);
                 await SaveBin();
             }
             catch (Exception ex)

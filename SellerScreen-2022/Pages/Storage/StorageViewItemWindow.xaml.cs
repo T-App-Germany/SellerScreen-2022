@@ -8,18 +8,18 @@ namespace SellerScreen_2022
     {
         Product product;
 
-        public StorageItemWindow(ulong id)
+        public StorageItemWindow(string key)
         {
-            Tag = id;
+            Tag = key;
             InitializeComponent();
         }
 
         private async void Window_Initialized(object sender, EventArgs e)
         {
-            product = await Product.Load(ulong.Parse(Tag.ToString()));
+            product = await Product.Load(Tag.ToString());
 
             Title = product.Name;
-            IdTxt.Text = product.Id.ToString();
+            IdTxt.Text = product.Key.ToString();
             AvailibleTxt.Text = product.Availible.ToString();
             PriceTxt.Text = product.Price.ToString("C");
             SoldTxt.Text = product.Sold.ToString();
@@ -42,7 +42,7 @@ namespace SellerScreen_2022
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(product.Id.ToString());
+            Clipboard.SetText(product.Key.ToString());
         }
     }
 }

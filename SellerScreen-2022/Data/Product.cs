@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace SellerScreen_2022.Data
 {
@@ -24,9 +25,9 @@ namespace SellerScreen_2022.Data
             Error
         }
 
-        public Product(string name, bool status, uint availible, float price, ulong? id = null)
+        public Product(string name, bool status, uint availible, float price, string key = null)
         {
-            Id = id == null ? GenId() : (ulong)id;
+            Key = key ?? GenKey();
             Name = name;
             Status = status;
             Availible = availible;
@@ -35,11 +36,11 @@ namespace SellerScreen_2022.Data
 
         private Product() { }
 
-        private ulong _Id;
-        public ulong Id
+        private string _Key;
+        public string Key
         {
-            get => _Id;
-            set => _Id = value;
+            get => _Key;
+            set => _Key = value;
         }
 
         private string _Name;
@@ -105,18 +106,30 @@ namespace SellerScreen_2022.Data
             set => _Disposals = value;
         }
 
-        public static ulong GenId()
+        public string GenKey()
         {
-            return (ulong)DateTime.UtcNow.Ticks / 1000000;
+            byte[] codebytes = new byte[8];
+            string code;
+
+            do
+            {
+                using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+                {
+                    rng.GetBytes(codebytes);
+                }
+                code = BitConverter.ToString(codebytes).ToLower().Replace("-", "");
+            } while (File.Exists($"products/{code}.json"));
+
+            Key = code;
+            return code;
         }
 
-        public static async Task<Product> Load(ulong id)
+
+        public static async Task<Product> Load(string key)
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.productsPath + $"{id}.xml", FileMode.Open);
-                XmlSerializer XML = new XmlSerializer(typeof(Product));
-                return (Product)XML.Deserialize(stream);
+                return JsonConvert.DeserializeObject<Product>(File.ReadAllText(Paths.productsPath + $"{key}.json"));
             }
             catch (Exception ex)
             {
@@ -125,19 +138,17 @@ namespace SellerScreen_2022.Data
             }
         }
 
-        public async Task<ulong> Save()
+        public async Task<string> Save()
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.productsPath + $"{Id}.xml", FileMode.Create);
-                XmlSerializer XML = new XmlSerializer(typeof(Product));
-                XML.Serialize(stream, this);
-                return Id;
+                File.WriteAllText(Paths.productsPath + $"{Key}.json", JsonConvert.SerializeObject(this, Formatting.Indented));
+                return Key;
             }
             catch (Exception ex)
             {
                 await Errors.ShowErrorMsg(ex, "Product_Save", true);
-                return 0;
+                return "";
             }
         }
     }

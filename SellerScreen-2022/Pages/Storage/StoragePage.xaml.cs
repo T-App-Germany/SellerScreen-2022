@@ -199,7 +199,7 @@ namespace SellerScreen_2022.Pages.Storage
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bauen...";
             StorageItemView.Items.Clear();
-            foreach (KeyValuePair<ulong, Product> kvp in MainWindow.storageData.Products)
+            foreach (KeyValuePair<string, Product> kvp in MainWindow.storageData.Products)
             {
                 AddItemToStorage(kvp.Value);
             }
@@ -228,11 +228,11 @@ namespace SellerScreen_2022.Pages.Storage
             return true;
         }
 
-        private async Task<bool> RecycelProduct(ulong id)
+        private async Task<bool> RecycelProduct(string key)
         {
             InfoTxt.Visibility = Visibility.Visible;
             InfoTxt.Text = "Bereinigen...";
-            await MainWindow.storageData.RecycelProduct(id);
+            await MainWindow.storageData.RecycelProduct(key);
             InfoTxt.Visibility = Visibility.Collapsed;
             return true;
         }
@@ -288,9 +288,9 @@ namespace SellerScreen_2022.Pages.Storage
             }
 
             ItemTempNumber.Text = (StorageItemView.Items.Count + 1).ToString();
-            ItemTemplate.Tag = product.Id;
+            ItemTemplate.Tag = product.Key;
 
-            string[] tag = { product.Id.ToString(), "" };
+            string[] tag = { product.Key.ToString(), "" };
 
             string xamlString = XamlWriter.Save(ItemTemplate);
             StringReader stringReader = new StringReader(xamlString);
@@ -327,7 +327,7 @@ namespace SellerScreen_2022.Pages.Storage
             try
             {
                 await product.Save();
-                MainWindow.storageData.Products.Add(product.Id, product);
+                MainWindow.storageData.Products.Add(product.Key, product);
                 if (await SaveStorage())
                 {
                     AddItemToStorage(product);
@@ -345,8 +345,7 @@ namespace SellerScreen_2022.Pages.Storage
             for (int i = 0; i < list.Count; i++)
             {
                 Grid grid = (Grid)list[i];
-                ulong id = ulong.Parse(grid.Tag.ToString());
-                if (await RecycelProduct(id))
+                if (await RecycelProduct(grid.Tag.ToString()))
                 {
                     StorageItemView.Items.Remove(grid);
                     CheckForItems();
@@ -360,14 +359,13 @@ namespace SellerScreen_2022.Pages.Storage
             IList list = StorageItemView.SelectedItems;
             foreach (Grid grid in list)
             {
-                ulong tag = ulong.Parse(grid.Tag.ToString());
-                Product product = await Load(tag);
+                Product product = await Load(grid.Tag.ToString());
                 product.Status = true;
                 await product.Save();
 
                 Grid item = (Grid)StorageItemView.Items[StorageItemView.Items.IndexOf(grid)];
                 FontIcon icon = (FontIcon)item.Children[1];
-                switch (CheckProductHealth(MainWindow.storageData.Products[tag]))
+                switch (CheckProductHealth(MainWindow.storageData.Products[grid.Tag.ToString()]))
                 {
                     case ProductHealth.Ok:
                         icon.Glyph = TempIconOk.Glyph;
@@ -390,7 +388,7 @@ namespace SellerScreen_2022.Pages.Storage
             IList list = StorageItemView.SelectedItems;
             foreach (Grid item in list)
             {
-                Product product = await Load(ulong.Parse(item.Tag.ToString()));
+                Product product = await Load(item.Tag.ToString());
                 product.Status = false;
                 await product.Save();
 
@@ -407,8 +405,7 @@ namespace SellerScreen_2022.Pages.Storage
             {
                 ContextMenu menu = (ContextMenu)item.Parent;
                 string[] tag = (string[])menu.Tag;
-                ulong id = ulong.Parse(tag[0]);
-                StorageItemWindow window = new StorageItemWindow(id);
+                StorageItemWindow window = new StorageItemWindow(tag[0]);
                 window.ShowDialog();
             }
         }
@@ -419,8 +416,7 @@ namespace SellerScreen_2022.Pages.Storage
             {
                 ContextMenu menu = (ContextMenu)item.Parent;
                 string[] tag = (string[])menu.Tag;
-                ulong id = ulong.Parse(tag[0]);
-                MainWindow.storageData.Products.TryGetValue(id, out Product product);
+                MainWindow.storageData.Products.TryGetValue(tag[0], out Product product);
                 StorageEditItemWindow window = new StorageEditItemWindow(item.Tag.ToString(), product);
                 window.ShowDialog();
 
@@ -429,7 +425,7 @@ namespace SellerScreen_2022.Pages.Storage
                     product.Name = window.productItemReturn.Name;
                     product.Availible += window.productItemReturn.Availible;
                     product.Price = window.productItemReturn.Price;
-                    MainWindow.storageData.Products[id] = product;
+                    MainWindow.storageData.Products[tag[0]] = product;
                     await product.Save();
 
                     Grid grid = (Grid)StorageItemView.Items.GetItemAt(int.Parse(tag[1]));
@@ -479,6 +475,16 @@ namespace SellerScreen_2022.Pages.Storage
                 await BuildStorage();
                 sb.Stop();
                 reloading = false;
+            }
+        }
+
+        private void StorageItemView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (StorageItemView.SelectedItem != null && ChangeSelectionModeBtn.IsChecked == false)
+            {
+                Grid item = (Grid)StorageItemView.SelectedItem;
+                StorageItemWindow window = new StorageItemWindow(item.Tag.ToString());
+                window.ShowDialog();
             }
         }
     }

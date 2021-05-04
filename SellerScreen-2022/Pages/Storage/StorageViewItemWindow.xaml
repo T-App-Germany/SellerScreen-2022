@@ -60,7 +60,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Id}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Key}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
                                 <TextBlock x:Name="IdTxt" Grid.Column="1" Grid.Row="0" Text="0" Margin="5" FontSize="20" VerticalAlignment="Center" >
                                     <TextBlock.ContextMenu>
                                         <ContextMenu>
