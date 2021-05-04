@@ -8,7 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- FluentWPF Controls -->
                 <ResourceDictionary Source="/FluentWPF;component/Styles/Controls.xaml" />
-                
+
                 <!-- Language -->
                 <ResourceDictionary Source="Languages\de-DE.xaml"/>
 
@@ -25,8 +25,10 @@
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Dark">
                             <ResourceDictionary.MergedDictionaries>
+                                <!-- FluentWPF theme resources -->
                                 <ResourceDictionary Source="/FluentWPF;component/Styles/Colors.Dark.xaml" />
                                 <ResourceDictionary Source="/FluentWPF;component/Styles/Brushes.xaml" />
+                                <!-- ModernWPF theme resources -->
                                 <ResourceDictionary Source="/ModernWpf;component/ThemeResources/Dark.xaml" />
                             </ResourceDictionary.MergedDictionaries>
                             <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="{StaticResource SystemBaseMediumHighColor}" />
@@ -38,6 +40,7 @@
                 <ui:XamlControlsResources />
 
             </ResourceDictionary.MergedDictionaries>
+            
             <!-- Other app resources here -->
             <Style x:Key="AppTitleBarStyle" TargetType="ui:TitleBarControl">
                 <Setter Property="ui:ThemeManager.RequestedTheme" Value="Dark" />

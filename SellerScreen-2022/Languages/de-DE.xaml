@@ -54,8 +54,8 @@
     <system:String x:Key="Storage.InStorage">Im Lager</system:String>
     <system:String x:Key="Storage.Sold">Verkauft</system:String>
     <system:String x:Key="Storage.Revenue">Einnahmen</system:String>
-    <system:String x:Key="Storage.PurchaseReverses">Stornierungen</system:String>
-    <system:String x:Key="Storage.PurchaseRetours">Rücknahmen</system:String>
+    <system:String x:Key="Storage.Cancellations">Stornierungen</system:String>
+    <system:String x:Key="Storage.Redemptions">Rücknahmen</system:String>
     <system:String x:Key="Storage.Disposals">Entsorgungen</system:String>
     <system:String x:Key="Storage.DisposeAll">Alles Entsorgen</system:String>
     <system:String x:Key="Storage.DisposeNumber">Einzeln Entsorgen</system:String>

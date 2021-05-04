@@ -22,6 +22,11 @@ namespace SellerScreen_2022
             IdTxt.Text = product.Id.ToString();
             AvailibleTxt.Text = product.Availible.ToString();
             PriceTxt.Text = product.Price.ToString("C");
+            SoldTxt.Text = product.Sold.ToString();
+            RevenueTxt.Text = product.Revenue.ToString("C");
+            CancellationsTxt.Text = product.PurchaseReverses.ToString();
+            RedemptionsTxt.Text = product.Redemptions.ToString();
+            DisposalsTxt.Text = product.Disposals.ToString();
 
             switch (product.Status)
             {

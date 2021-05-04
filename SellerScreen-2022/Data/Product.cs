@@ -24,7 +24,7 @@ namespace SellerScreen_2022.Data
             Error
         }
 
-        public Product(string name, bool status, int availible, double price, ulong? id = null)
+        public Product(string name, bool status, uint availible, float price, ulong? id = null)
         {
             Id = id == null ? GenId() : (ulong)id;
             Name = name;
@@ -56,18 +56,53 @@ namespace SellerScreen_2022.Data
             set => _Status = value;
         }
 
-        private int _Availible;
-        public int Availible
+        private uint _Availible;
+        public uint Availible
         {
             get => _Availible;
             set => _Availible = value;
         }
 
-        private double _Price;
-        public double Price
+        private float _Price;
+        public float Price
         {
             get => _Price;
             set => _Price = value;
+        }
+
+        private uint _Sold;
+        public uint Sold
+        {
+            get => _Sold;
+            set => _Sold = value;
+        }
+
+        private float _Revenue;
+        public float Revenue
+        {
+            get => _Revenue;
+            set => _Revenue = value;
+        }
+
+        private uint _PurchaseReverses;
+        public uint PurchaseReverses
+        {
+            get => _PurchaseReverses;
+            set => _PurchaseReverses = value;
+        }
+
+        private uint _Redemptions;
+        public uint Redemptions
+        {
+            get => _Redemptions;
+            set => _Redemptions = value;
+        }
+
+        private uint _Disposals;
+        public uint Disposals
+        {
+            get => _Disposals;
+            set => _Disposals = value;
         }
 
         public static ulong GenId()

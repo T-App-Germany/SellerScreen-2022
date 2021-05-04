@@ -31,7 +31,7 @@ namespace SellerScreen_2022
 
         private void NumberBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
         {
-            StorageEditItemWindow.productItemEdited.Price = sender.Value;
+            StorageEditItemWindow.productItemEdited.Price = (float)sender.Value;
         }
     }
 }
