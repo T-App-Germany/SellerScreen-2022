@@ -15,6 +15,7 @@
     <PackageIcon>SellerScreen.png</PackageIcon>
     <ApplicationIcon>Resources\sellerscreen.ico</ApplicationIcon>
     <Configurations>Debug;Release;Debug extern</Configurations>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
