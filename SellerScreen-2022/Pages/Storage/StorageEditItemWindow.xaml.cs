@@ -10,7 +10,7 @@ namespace SellerScreen_2022
 {
     public partial class StorageEditItemWindow : Window
     {
-        private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
+        private readonly List<(string Tag, Type Page)> _pages = new()
         {
             ("0", typeof(StorageEditItemNamePage)),
             ("1", typeof(StorageEditItemPricePage)),
@@ -30,7 +30,7 @@ namespace SellerScreen_2022
             productItem = product;
             productItemEdited = product;
             Frame_Navigate(pageTag);
-            Title = "Produkt: " + product.Id;
+            Title = "Produkt: " + product.Key;
         }
 
         private void Frame_Navigate(string navItemTag)

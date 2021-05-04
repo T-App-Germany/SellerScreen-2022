@@ -1,22 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace SellerScreen_2022.Data
 {
     [Serializable]
     public class Product
     {
-        public enum ProductProperty
-        {
-            Name,
-            Price,
-            Availible,
-            Status,
-            Id
-        }
-
         public enum ProductHealth
         {
             Ok,
@@ -24,9 +16,9 @@ namespace SellerScreen_2022.Data
             Error
         }
 
-        public Product(string name, bool status, int availible, double price, ulong? id = null)
+        public Product(string name, bool status, uint availible, decimal price, string key = null)
         {
-            Id = id == null ? GenId() : (ulong)id;
+            Key = key ?? GenKey();
             Name = name;
             Status = status;
             Availible = availible;
@@ -35,11 +27,11 @@ namespace SellerScreen_2022.Data
 
         private Product() { }
 
-        private ulong _Id;
-        public ulong Id
+        private string _Key;
+        public string Key
         {
-            get => _Id;
-            set => _Id = value;
+            get => _Key;
+            set => _Key = value;
         }
 
         private string _Name;
@@ -56,32 +48,78 @@ namespace SellerScreen_2022.Data
             set => _Status = value;
         }
 
-        private int _Availible;
-        public int Availible
+        private uint _Availible;
+        public uint Availible
         {
             get => _Availible;
             set => _Availible = value;
         }
 
-        private double _Price;
-        public double Price
+        private decimal _Price;
+        public decimal Price
         {
             get => _Price;
             set => _Price = value;
         }
 
-        public static ulong GenId()
+        private uint _Sold;
+        public uint Sold
         {
-            return (ulong)DateTime.UtcNow.Ticks / 1000000;
+            get => _Sold;
+            set => _Sold = value;
         }
 
-        public static async Task<Product> Load(ulong id)
+        private decimal _Revenue;
+        public decimal Revenue
+        {
+            get => _Revenue;
+            set => _Revenue = value;
+        }
+
+        private uint _Cancellations;
+        public uint Cancellations
+        {
+            get => _Cancellations;
+            set => _Cancellations = value;
+        }
+
+        private uint _Redemptions;
+        public uint Redemptions
+        {
+            get => _Redemptions;
+            set => _Redemptions = value;
+        }
+
+        private uint _Disposals;
+        public uint Disposals
+        {
+            get => _Disposals;
+            set => _Disposals = value;
+        }
+
+        public string GenKey()
+        {
+            byte[] codebytes = new byte[8];
+            string code;
+
+            do
+            {
+                using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+                {
+                    rng.GetBytes(codebytes);
+                }
+                code = BitConverter.ToString(codebytes).ToLower().Replace("-", "");
+            } while (File.Exists(Paths.staticsPath + $"{code}.json"));
+
+            Key = code;
+            return code;
+        }
+
+        public static async Task<Product> Load(string key)
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.productsPath + $"{id}.xml", FileMode.Open);
-                XmlSerializer XML = new XmlSerializer(typeof(Product));
-                return (Product)XML.Deserialize(stream);
+                return JsonConvert.DeserializeObject<Product>(File.ReadAllText(Paths.productsPath + $"{key}.json"));
             }
             catch (Exception ex)
             {
@@ -90,19 +128,17 @@ namespace SellerScreen_2022.Data
             }
         }
 
-        public async Task<ulong> Save()
+        public async Task<string> Save()
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.productsPath + $"{Id}.xml", FileMode.Create);
-                XmlSerializer XML = new XmlSerializer(typeof(Product));
-                XML.Serialize(stream, this);
-                return Id;
+                File.WriteAllText(Paths.productsPath + $"{Key}.json", JsonConvert.SerializeObject(this, Formatting.Indented));
+                return Key;
             }
             catch (Exception ex)
             {
                 await Errors.ShowErrorMsg(ex, "Product_Save", true);
-                return 0;
+                return "";
             }
         }
     }

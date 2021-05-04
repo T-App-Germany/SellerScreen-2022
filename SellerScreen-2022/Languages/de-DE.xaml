@@ -11,7 +11,7 @@
     <system:String x:Key="Deactivated">Deaktiviert</system:String>
     <system:String x:Key="Reload">Neu laden</system:String>
     <system:String x:Key="MultiSelect">Mehrfachauswahl</system:String>
-    <system:String x:Key="Id">ID</system:String>
+    <system:String x:Key="Key">Schlüssel</system:String>
     <system:String x:Key="SaveAndClose">Speichern und Schließen</system:String>
     <system:String x:Key="Current">Aktuell</system:String>
     <system:String x:Key="New">Neu</system:String>
@@ -37,7 +37,7 @@
     <system:String x:Key="Shop.Availible">Verfügbar</system:String>
     <system:String x:Key="Shop.Price">Preis</system:String>
     <system:String x:Key="Shop.Sell">Verkaufen</system:String>
-    <system:String x:Key="Shop.NoProducts">Es sind keine Produkte aktiviert.</system:String>
+    <system:String x:Key="Shop.NoProducts">Es sind keine Produkte bereit.</system:String>
     
     <!-- Storage Page -->
     <system:String x:Key="Storage.Title">Lager</system:String>
@@ -54,8 +54,8 @@
     <system:String x:Key="Storage.InStorage">Im Lager</system:String>
     <system:String x:Key="Storage.Sold">Verkauft</system:String>
     <system:String x:Key="Storage.Revenue">Einnahmen</system:String>
-    <system:String x:Key="Storage.PurchaseReverses">Stornierungen</system:String>
-    <system:String x:Key="Storage.PurchaseRetours">Rücknahmen</system:String>
+    <system:String x:Key="Storage.Cancellations">Stornierungen</system:String>
+    <system:String x:Key="Storage.Redemptions">Rücknahmen</system:String>
     <system:String x:Key="Storage.Disposals">Entsorgungen</system:String>
     <system:String x:Key="Storage.DisposeAll">Alles Entsorgen</system:String>
     <system:String x:Key="Storage.DisposeNumber">Einzeln Entsorgen</system:String>
@@ -64,8 +64,17 @@
     <system:String x:Key="Storage.Trash.Title">Papierkorb</system:String>
     <system:String x:Key="Storage.Trash.Delete">Endgültig Löschen</system:String>
     <system:String x:Key="Storage.Trash.Restore">Wiederherstellen</system:String>
-    <system:String x:Key="Storage.Trash.Id">Identifikationsnr.</system:String>
     <system:String x:Key="Storage.Trash.NoProducts">Es befindet sich nichts im Papierkorb.</system:String>
+
+    <!-- Statics Page -->
+    <system:String x:Key="Statics.Day.Header">Tag</system:String>
+    <system:String x:Key="Statics.Month.Header">Monat</system:String>
+    <system:String x:Key="Statics.Year.Header">Jahr</system:String>
+    <system:String x:Key="Statics.Total.Header">Gesamt</system:String>
+    <system:String x:Key="Statics.Day.Title">Tagesstatistiken</system:String>
+    <system:String x:Key="Statics.Month.Title">Monatsstatistiken</system:String>
+    <system:String x:Key="Statics.Year.Title">Jahresstatistiken</system:String>
+    <system:String x:Key="Statics.Total.Title">Gesamtstatistiken</system:String>
 
     <!-- About Page -->
     <system:String x:Key="About.Title">Über</system:String>

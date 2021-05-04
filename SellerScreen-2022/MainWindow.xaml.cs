@@ -6,6 +6,7 @@ using SellerScreen_2022.Pages.Error;
 using SellerScreen_2022.Pages.Home;
 using SellerScreen_2022.Pages.Settings;
 using SellerScreen_2022.Pages.Shop;
+using SellerScreen_2022.Pages.Statics;
 using SellerScreen_2022.Pages.Storage;
 using System;
 using System.Collections.Generic;
@@ -22,15 +23,17 @@ namespace SellerScreen_2022
 {
     public partial class MainWindow
     {
-        public static StorageData storageData = new StorageData();
+        public static StorageData storageData = new();
+        public static TotalStatics totalStatics = new();
 
-        private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
+        private readonly List<(string Tag, Type Page)> _pages = new()
         {
             ("404", typeof(NotFoundPage)),
             ("home", typeof(HomePage)),
             ("shop", typeof(ShopPage)),
             ("storage", typeof(StoragePage)),
             ("storage_bin", typeof(StorageBinPage)),
+            ("statics", typeof(StaticsPage)),
             ("errors", typeof(ViewErrorPage)),
             ("settings", typeof(SettingsPage)),
         };
@@ -129,7 +132,7 @@ namespace SellerScreen_2022
 
             if (!(_page is null))
             {
-                ContentFrame.Navigate(_page);
+                ContentFrame.Navigate(_page, null);
             }
         }
 
@@ -164,13 +167,13 @@ namespace SellerScreen_2022
         {
             Directory.CreateDirectory(Path.GetDirectoryName(Paths.settingsPath));
 
-            Settings settings = new Settings()
+            Settings settings = new()
             {
                 AutoUpdateChecker = true
             };
             await settings.Save();
 
-            Storage storage = new Storage();
+            Storage storage = new();
             await storage.Save();
         }
 
@@ -181,7 +184,7 @@ namespace SellerScreen_2022
 
         private void SetLanguageDictionary()
         {
-            ResourceDictionary dict = new ResourceDictionary
+            ResourceDictionary dict = new()
             {
                 Source = Thread.CurrentThread.CurrentCulture.ToString() switch
                 {

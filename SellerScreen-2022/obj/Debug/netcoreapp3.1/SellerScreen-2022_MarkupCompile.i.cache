@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
-17-1721394325
+19-1409640339
 5-1475728319
-36-1115460069
-291-1785999947
-Languages\de-DE.xaml;MainWindow.xaml;Pages\Error\ViewErrorPage.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\GeneralSettingsPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Shop\ShopPage.xaml;Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml;Pages\Storage\Editor\StorageEditItemNamePage.xaml;Pages\Storage\Editor\StorageEditItemPricePage.xaml;Pages\Storage\Editor\StorageEditItemRemovePage.xaml;Pages\Storage\StorageBinPage.xaml;Pages\Storage\StorageEditItemWindow.xaml;Pages\Storage\StoragePage.xaml;Pages\Storage\StorageViewItemWindow.xaml;
+40-717223146
+292-752646654
+Languages\de-DE.xaml;MainWindow.xaml;Pages\Error\ViewErrorPage.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\GeneralSettingsPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Shop\ShopPage.xaml;Pages\Statics\DayStaticsPage.xaml;Pages\Statics\StaticsPage.xaml;Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml;Pages\Storage\Editor\StorageEditItemNamePage.xaml;Pages\Storage\Editor\StorageEditItemPricePage.xaml;Pages\Storage\Editor\StorageEditItemRemovePage.xaml;Pages\Storage\StorageBinPage.xaml;Pages\Storage\StorageEditItemWindow.xaml;Pages\Storage\StoragePage.xaml;Pages\Storage\StorageViewItemWindow.xaml;
 resources\splashscreen.png
 True
 

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace SellerScreen_2022.Data
 {
@@ -11,15 +11,15 @@ namespace SellerScreen_2022.Data
     {
         public Storage() { }
 
-        private List<ulong> _Products = new List<ulong>();
-        public List<ulong> Products
+        private List<string> _Products = new List<string>();
+        public List<string> Products
         {
             get => _Products;
             set => _Products = value;
         }
 
-        private List<ulong> _Bin = new List<ulong>();
-        public List<ulong> Bin
+        private List<string> _Bin = new List<string>();
+        public List<string> Bin
         {
             get => _Bin;
             set => _Bin = value;
@@ -29,9 +29,7 @@ namespace SellerScreen_2022.Data
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Create);
-                XmlSerializer XML = new XmlSerializer(typeof(Storage));
-                XML.Serialize(stream, this);
+                File.WriteAllText(Paths.settingsPath + "Storage.json", JsonConvert.SerializeObject(this, Formatting.Indented));
                 return true;
             }
             catch (Exception ex)
@@ -46,9 +44,7 @@ namespace SellerScreen_2022.Data
         {
             try
             {
-                using FileStream stream = new FileStream(Paths.settingsPath + "Storage.xml", FileMode.Open);
-                XmlSerializer XML = new XmlSerializer(typeof(Storage));
-                return (Storage)XML.Deserialize(stream);
+                return JsonConvert.DeserializeObject<Storage>(File.ReadAllText(Paths.settingsPath + "Storage.json"));
             }
             catch (Exception ex)
             {

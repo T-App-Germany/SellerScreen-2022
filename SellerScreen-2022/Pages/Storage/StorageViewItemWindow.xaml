@@ -60,7 +60,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Id}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Key}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
                                 <TextBlock x:Name="IdTxt" Grid.Column="1" Grid.Row="0" Text="0" Margin="5" FontSize="20" VerticalAlignment="Center" >
                                     <TextBlock.ContextMenu>
                                         <ContextMenu>
@@ -93,9 +93,9 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Storage.PurchaseReverses}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Storage.Cancellations}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
                                 <TextBlock x:Name="CancellationsTxt" Grid.Column="1" Grid.Row="0" Text="00" Margin="5" FontSize="20" VerticalAlignment="Center" />
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource Storage.PurchaseRetours}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource Storage.Redemptions}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
                                 <TextBlock x:Name="RedemptionsTxt" Grid.Column="1" Grid.Row="1" Margin="5" VerticalAlignment="Center" Text="00" FontSize="20"/>
                                 <TextBlock Grid.Column="0" Grid.Row="2" Text="{DynamicResource Storage.Disposals}" Margin="10" TextTrimming="CharacterEllipsis" FontSize="20"/>
                                 <TextBlock x:Name="DisposalsTxt" Grid.Column="1" Grid.Row="2" Margin="5" Text="00" FontSize="20" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>

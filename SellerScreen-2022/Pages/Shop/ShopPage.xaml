@@ -48,22 +48,24 @@
                 </Button>
             </Grid>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-                <ui:CommandBar x:Name="CmdBar" Margin="20,10">
+                <ui:CommandBar x:Name="ShopCmdBar" Margin="20,10">
                     <ui:AppBarButton x:Name="NewCustomerBtn" Label="{DynamicResource Shop.NewCustomer}" Click="NewCustomerBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe8fa;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="ReversePurchaseBtn" Label="{DynamicResource Shop.ReversePurchase}" Click="ReversePurchaseBtn_Click">
+                    <ui:AppBarButton x:Name="CancellationBtn" Label="{DynamicResource Shop.ReversePurchase}" Click="CancellationBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe7a7;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="RetourBtn" Label="{DynamicResource Shop.RetourPurchase}" Click="RetourBtn_Click">
+                    <ui:AppBarButton x:Name="RedemptionBtn" Label="{DynamicResource Shop.RetourPurchase}" Click="RedemptionBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xe845;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
+                </ui:CommandBar>
+                <ui:CommandBar x:Name="SellCmdBar" Margin="20,10">
                     <ui:AppBarButton x:Name="PayBtn" Label="{DynamicResource Shop.PayPurchase}" Click="PayBtn_Click">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="&#xef40;"/>

@@ -27,6 +27,12 @@
     <Compile Update="Pages\Shop\ShopPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Statics\DayStaticsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Statics\StaticsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Storage\StorageBinPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +89,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Shop\ShopPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Statics\DayStaticsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Statics\StaticsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Storage\StorageBinPage.xaml">

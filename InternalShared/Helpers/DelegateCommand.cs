@@ -36,12 +36,7 @@ namespace InternalShared
         /// </summary>
         public DelegateCommand(Action executeMethod, Func<bool> canExecuteMethod, bool isAutomaticRequeryDisabled)
         {
-            if (executeMethod == null)
-            {
-                throw new ArgumentNullException("executeMethod");
-            }
-
-            _executeMethod = executeMethod;
+            _executeMethod = executeMethod ?? throw new ArgumentNullException("executeMethod");
             _canExecuteMethod = canExecuteMethod;
             _isAutomaticRequeryDisabled = isAutomaticRequeryDisabled;
         }
@@ -67,10 +62,7 @@ namespace InternalShared
         /// </summary>
         public void Execute()
         {
-            if (_executeMethod != null)
-            {
-                _executeMethod();
-            }
+            _executeMethod?.Invoke();
         }
 
         /// <summary>
@@ -194,12 +186,7 @@ namespace InternalShared
         /// </summary>
         public DelegateCommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod, bool isAutomaticRequeryDisabled)
         {
-            if (executeMethod == null)
-            {
-                throw new ArgumentNullException("executeMethod");
-            }
-
-            _executeMethod = executeMethod;
+            _executeMethod = executeMethod ?? throw new ArgumentNullException("executeMethod");
             _canExecuteMethod = canExecuteMethod;
             _isAutomaticRequeryDisabled = isAutomaticRequeryDisabled;
         }
@@ -225,10 +212,7 @@ namespace InternalShared
         /// </summary>
         public void Execute(T parameter)
         {
-            if (_executeMethod != null)
-            {
-                _executeMethod(parameter);
-            }
+            _executeMethod?.Invoke(parameter);
         }
 
         /// <summary>
@@ -349,8 +333,7 @@ namespace InternalShared
                 for (int i = handlers.Count - 1; i >= 0; i--)
                 {
                     WeakReference reference = handlers[i];
-                    EventHandler handler = reference.Target as EventHandler;
-                    if (handler == null)
+                    if (!(reference.Target is EventHandler handler))
                     {
                         // Clean up old handlers that have been collected
                         handlers.RemoveAt(i);
@@ -377,8 +360,7 @@ namespace InternalShared
             {
                 foreach (WeakReference handlerRef in handlers)
                 {
-                    EventHandler handler = handlerRef.Target as EventHandler;
-                    if (handler != null)
+                    if (handlerRef.Target is EventHandler handler)
                     {
                         CommandManager.RequerySuggested += handler;
                     }
@@ -392,8 +374,7 @@ namespace InternalShared
             {
                 foreach (WeakReference handlerRef in handlers)
                 {
-                    EventHandler handler = handlerRef.Target as EventHandler;
-                    if (handler != null)
+                    if (handlerRef.Target is EventHandler handler)
                     {
                         CommandManager.RequerySuggested -= handler;
                     }
@@ -423,8 +404,7 @@ namespace InternalShared
                 for (int i = handlers.Count - 1; i >= 0; i--)
                 {
                     WeakReference reference = handlers[i];
-                    EventHandler existingHandler = reference.Target as EventHandler;
-                    if ((existingHandler == null) || (existingHandler == handler))
+                    if ((!(reference.Target is EventHandler existingHandler)) || (existingHandler == handler))
                     {
                         // Clean up old handlers that have been collected
                         // in addition to the handler that is to be removed.

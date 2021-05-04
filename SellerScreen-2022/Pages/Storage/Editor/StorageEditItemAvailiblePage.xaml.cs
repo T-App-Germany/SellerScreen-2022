@@ -33,7 +33,7 @@ namespace SellerScreen_2022
 
             public double? ParseDouble(string text)
             {
-                if (int.TryParse(text, out int result))
+                if (uint.TryParse(text, out uint result))
                 {
                     return result;
                 }
@@ -43,7 +43,7 @@ namespace SellerScreen_2022
 
         private void NumberBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
         {
-            StorageEditItemWindow.productItemEdited.Availible = (int)sender.Value;
+            StorageEditItemWindow.productItemEdited.Availible = (uint)sender.Value;
         }
     }
 }

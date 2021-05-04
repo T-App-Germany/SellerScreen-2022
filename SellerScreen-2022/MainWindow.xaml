@@ -98,12 +98,12 @@
         <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=OwnTitleBar}" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="1200" IsPaneOpen="True">
+        <ui:NavigationView x:Name="MainNavView" Grid.Row="1" IsBackButtonVisible="Collapsed" OpenPaneLength="260" PaneOpening="MainNavView_PaneOpening" PaneClosing="MainNavView_PaneClosing" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="1200">
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Icon="Home" Content="{DynamicResource Home.Title}" FontSize="20" Tag="home" IsSelected="True"/>
                 <ui:NavigationViewItemSeparator/>
                 <ui:NavigationViewItem Icon="Shop" Content="{DynamicResource Shop.Title}" Tag="shop" FontSize="20"/>
-                <ui:NavigationViewItem Icon="AllApps" Content="{DynamicResource Storage.Title}" FontSize="20" Tag="storage" IsExpanded="True">
+                <ui:NavigationViewItem Icon="AllApps" Content="{DynamicResource Storage.Title}" FontSize="20" Tag="storage">
                     <ui:NavigationViewItem.MenuItems>
                         <ui:NavigationViewItem x:Name="StorageBinItem" Content="{DynamicResource Storage.Trash.Title}" FontSize="20" Tag="storage_bin">
                             <ui:NavigationViewItem.Icon>
@@ -112,7 +112,7 @@
                         </ui:NavigationViewItem>
                     </ui:NavigationViewItem.MenuItems>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Statistiken" FontSize="20">
+                <ui:NavigationViewItem Content="Statistiken" FontSize="20" Tag="statics">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xE9D9;"/>
                     </ui:NavigationViewItem.Icon>

@@ -79,7 +79,7 @@
                     <TextBlock x:Name="HeaderPriceTxt" Grid.Column="5" Text="{DynamicResource Shop.Price}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="90"/>
                 </Grid>
             </Grid>
-            <ui:ListView x:Name="StorageItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Extended" SelectionChanged="StorageItemView_SelectionChanged" HorizontalAlignment="Left"/>
+            <ui:ListView x:Name="StorageItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Extended" SelectionChanged="StorageItemView_SelectionChanged" HorizontalAlignment="Left" MouseDoubleClick="StorageItemView_MouseDoubleClick"/>
             <Grid Visibility="Collapsed">
                 <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="{DynamicResource Ready}"/>
                 <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="{DynamicResource Warning}"/>
