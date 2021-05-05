@@ -71,6 +71,16 @@
                             <ui:FontIcon Glyph="&#xef40;"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
+                    <ui:AppBarButton x:Name="DoCancellationBtn" Label="{DynamicResource Shop.ReversePurchase}" Click="PayBtn_Click">
+                        <ui:AppBarButton.Icon>
+                            <ui:FontIcon Glyph="&#xef40;"/>
+                        </ui:AppBarButton.Icon>
+                    </ui:AppBarButton>
+                    <ui:AppBarButton x:Name="DoRetourBtn" Label="{DynamicResource Shop.RetourPurchase}" Click="PayBtn_Click">
+                        <ui:AppBarButton.Icon>
+                            <ui:FontIcon Glyph="&#xef40;"/>
+                        </ui:AppBarButton.Icon>
+                    </ui:AppBarButton>
                     <ui:AppBarButton x:Name="CancelPurchaseBtn" Icon="Cancel" Label="{DynamicResource Cancel}" Click="CancelPurchaseBtn_Click"/>
                     <ui:AppBarButton x:Name="ClearCardBtn" Icon="Delete" Label="{DynamicResource Shop.ClearCard}" Click="ClearCardBtn_Click"/>
                 </ui:CommandBar>

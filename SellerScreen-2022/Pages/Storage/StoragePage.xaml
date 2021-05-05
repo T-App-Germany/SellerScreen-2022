@@ -59,6 +59,13 @@
                 <ui:AppBarButton x:Name="RemoveItemBtn" Icon="Remove" Label="{DynamicResource Storage.Remove}" IsEnabled="False" Click="RemoveItemBtn_Click"/>
                 <ui:AppBarButton x:Name="ActItemBtn" Icon="Accept" Label="{DynamicResource Storage.Activate}" IsEnabled="False" Click="ActItemBtn_Click"/>
                 <ui:AppBarButton x:Name="DeactItemBtn" Icon="Cancel" Label="{DynamicResource Storage.Deactivate}" IsEnabled="False" Click="DeactItemBtn_Click"/>
+                <ui:CommandBar.SecondaryCommands>
+                    <ui:AppBarButton Label="{DynamicResource Storage.IntegrateProducts}">
+                        <ui:AppBarButton.Icon>
+                            <ui:FontIcon Glyph="&#xe8de;"/>
+                        </ui:AppBarButton.Icon>
+                    </ui:AppBarButton>
+                </ui:CommandBar.SecondaryCommands>
             </ui:CommandBar>
             <TextBlock x:Name="EmptyTxt" Grid.Row="2" Text="{DynamicResource Storage.NoProducts}" Margin="20" FontSize="20" Visibility="Collapsed"/>
             <Grid x:Name="ListViewGrid" Grid.Row="2" Margin="20,20,20,10" HorizontalAlignment="Left">

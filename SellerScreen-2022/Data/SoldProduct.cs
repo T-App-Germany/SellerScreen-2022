@@ -17,7 +17,6 @@ namespace SellerScreen_2022.Data
             Price = p.Price;
         }
 
-
         private string _Key;
         public string Key
         {

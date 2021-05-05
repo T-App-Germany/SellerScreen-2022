@@ -50,6 +50,7 @@
     <system:String x:Key="Storage.FillUp">Auffüllen</system:String>
     <system:String x:Key="Storage.Dispose">Entsorgen</system:String>
     <system:String x:Key="Storage.EditPrice">Preis bearbeiten</system:String>
+    <system:String x:Key="Storage.IntegrateProducts">Produkte einbinden</system:String>
     <system:String x:Key="Storage.NoProducts">Es befinden sich keine Produkte im Lager.</system:String>
     <system:String x:Key="Storage.InStorage">Im Lager</system:String>
     <system:String x:Key="Storage.Sold">Verkauft</system:String>
