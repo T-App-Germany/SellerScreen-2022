@@ -150,12 +150,41 @@ namespace SellerScreen_2022.Pages.Shop
             {
                 EmptyTxt.Visibility = Visibility.Collapsed;
                 ListViewGrid.Visibility = Visibility.Visible;
+                NewCustomerBtn.IsEnabled = true;
                 return true;
             }
             else
             {
                 EmptyTxt.Visibility = Visibility.Visible;
                 ListViewGrid.Visibility = Visibility.Collapsed;
+                NewCustomerBtn.IsEnabled = false;
+                return false;
+            }
+        }
+
+        private bool CheckForDayStatics(bool fullCheck = false)
+        {
+            if (File.Exists(Paths.staticsPath + DateTime.Now.Date.Ticks + ".json"))
+            {
+                if (fullCheck)
+                {
+                    DayStatics d = DayStatics.Load(DateTime.Now.Date).Result;
+                    if (d.Sold == 0)
+                    {
+                        CancellationBtn.IsEnabled = false;
+                        RedemptionBtn.IsEnabled = false;
+                        return false;
+                    }
+                }
+
+                CancellationBtn.IsEnabled = true;
+                RedemptionBtn.IsEnabled = true;
+                return true;
+            }
+            else
+            {
+                CancellationBtn.IsEnabled = false;
+                RedemptionBtn.IsEnabled = false;
                 return false;
             }
         }
@@ -184,6 +213,24 @@ namespace SellerScreen_2022.Pages.Shop
             foreach (KeyValuePair<string, Product> kvp in MainWindow.storageData.Products)
             {
                 await AddItemToShop(kvp.Value);
+            }
+
+            CheckForItems();
+            CheckForDayStatics();
+
+            InfoTxt.Visibility = Visibility.Collapsed;
+        }
+
+        private async Task BuildStaticsToShop()
+        {
+            InfoTxt.Visibility = Visibility.Visible;
+            InfoTxt.Text = "Bauen...";
+            DayStatics d = await DayStatics.Load(DateTime.Now.Date);
+            ShopItemView.Items.Clear();
+            foreach (KeyValuePair<string, SoldProduct> kvp in d.SoldProducts)
+            {
+                Product p = new(kvp.Value.Name, true, kvp.Value.Sold, kvp.Value.Price, kvp.Key);
+                await AddItemToShop(p);
             }
 
             CheckForItems();
@@ -286,6 +333,10 @@ namespace SellerScreen_2022.Pages.Shop
             ShopCmdBar.Visibility = Visibility.Collapsed;
             SellCmdBar.Visibility = Visibility.Visible;
             TotalPricePanel.Visibility = Visibility.Visible;
+            PayBtn.Visibility = Visibility.Visible;
+            DoCancellationBtn.Visibility = Visibility.Collapsed;
+            DoRetourBtn.Visibility = Visibility.Collapsed;
+            _ = GetTotalPrice();
             DoubleAnimation ani = new()
             {
                 To = 0,
@@ -302,16 +353,40 @@ namespace SellerScreen_2022.Pages.Shop
             ListViewGrid.Effect.BeginAnimation(BlurEffect.RadiusProperty, ani);
         }
 
-        private void CancellationBtn_Click(object sender, RoutedEventArgs e)
+        private async void CancellationBtn_Click(object sender, RoutedEventArgs e)
         {
-            sellType = SellType.Cancel;
-
+            if (CheckForDayStatics(true))
+            {
+                await BuildStaticsToShop();
+                NewCustomerBtn_Click(sender, e);
+                PayBtn.Visibility = Visibility.Collapsed;
+                DoCancellationBtn.Visibility = Visibility.Visible;
+                DoRetourBtn.Visibility = Visibility.Collapsed;
+                sellType = SellType.Cancel;
+            }
+            else
+            {
+                CancellationBtn.IsEnabled = false;
+                RedemptionBtn.IsEnabled = false;
+            }
         }
 
-        private void RedemptionBtn_Click(object sender, RoutedEventArgs e)
+        private async void RedemptionBtn_Click(object sender, RoutedEventArgs e)
         {
-            sellType = SellType.Redemption;
-
+            if (CheckForDayStatics(true))
+            {
+                await BuildStaticsToShop();
+                NewCustomerBtn_Click(sender, e);
+                PayBtn.Visibility = Visibility.Collapsed;
+                DoCancellationBtn.Visibility = Visibility.Collapsed;
+                DoRetourBtn.Visibility = Visibility.Visible;
+                sellType = SellType.Redemption;
+            }
+            else
+            {
+                CancellationBtn.IsEnabled = false;
+                RedemptionBtn.IsEnabled = false;
+            }
         }
 
         private async void PayBtn_Click(object sender, RoutedEventArgs e)
@@ -372,28 +447,100 @@ namespace SellerScreen_2022.Pages.Shop
                         if (p.Availible < 1) remove.Add(ShopItemView.Items.IndexOf(item));
                     }
                 }
+                foreach (int i in remove)
+                {
+                    ShopItemView.Items.RemoveAt(i);
+                }
+                CheckForItems();
+                CheckForDayStatics();
             }
             else if (sellType == SellType.Cancel)
             {
+                foreach (Grid item in ShopItemView.Items)
+                {
+                    NumberBox nBox = (NumberBox)item.Children[5];
+                    uint sell = Convert.ToUInt32(nBox.Value);
 
+                    if (nBox.Value > 0)
+                    {
+                        Product p = await Load(item.Tag.ToString());
+                        DayStatics d = await DayStatics.Load(DateTime.Now.Date);
+                        TotalStatics t = await TotalStatics.Load();
+
+                        p.Availible += sell;
+                        p.Sold -= sell;
+                        p.Cancellations += sell;
+                        p.Revenue -= Convert.ToDecimal(p.Price * sell);
+
+                        t.Sold -= sell;
+                        t.Cancellations += sell;
+                        t.Revenue -= Convert.ToDecimal(p.Price * sell);
+
+                        if (!d.SoldProducts.ContainsKey(p.Key))
+                        {
+                            d.SoldProducts.Add(p.Key, new SoldProduct(p));
+                        }
+                        d.SoldProducts[p.Key].Sold -= sell;
+                        d.SoldProducts[p.Key].Cancellations += sell;
+
+                        await t.Save();
+                        await p.Save();
+                        await d.Save();
+
+                        TextBlock txt = (TextBlock)item.Children[3];
+                        txt.Text = p.Availible.ToString();
+                    }
+                }
+
+                await BuildShop();
             }
             else if (sellType == SellType.Redemption)
             {
+                foreach (Grid item in ShopItemView.Items)
+                {
+                    NumberBox nBox = (NumberBox)item.Children[5];
+                    uint sell = Convert.ToUInt32(nBox.Value);
 
-            }
+                    if (nBox.Value > 0)
+                    {
+                        Product p = await Load(item.Tag.ToString());
+                        DayStatics d = await DayStatics.Load(DateTime.Now.Date);
+                        TotalStatics t = await TotalStatics.Load();
 
-            foreach(int i in remove)
-            {
-                ShopItemView.Items.RemoveAt(i);
+                        p.Sold -= sell;
+                        p.Redemptions += sell;
+                        p.Revenue -= Convert.ToDecimal(p.Price * sell);
+
+                        t.Redemptions += sell;
+                        t.Sold -= sell;
+                        t.Revenue -= Convert.ToDecimal(p.Price * sell);
+                        t.Losses -= Convert.ToDecimal(p.Price * sell);
+
+                        if (!d.SoldProducts.ContainsKey(p.Key))
+                        {
+                            d.SoldProducts.Add(p.Key, new SoldProduct(p));
+                        }
+                        d.SoldProducts[p.Key].Sold -= sell;
+                        d.SoldProducts[p.Key].Redemptions += sell;
+
+                        await t.Save();
+                        await p.Save();
+                        await d.Save();
+
+                        TextBlock txt = (TextBlock)item.Children[3];
+                        txt.Text = p.Availible.ToString();
+                    }
+                }
+
+                await BuildShop();
             }
 
             CancelPurchaseBtn_Click(sender, e);
             ClearCardBtn_Click(sender, e);
         }
 
-        private void CancelPurchaseBtn_Click(object sender, RoutedEventArgs e)
+        private async void CancelPurchaseBtn_Click(object sender, RoutedEventArgs e)
         {
-            sellType = SellType.None;
             ShopCmdBar.Visibility = Visibility.Visible;
             SellCmdBar.Visibility = Visibility.Collapsed;
             TotalPricePanel.Visibility = Visibility.Collapsed;
@@ -407,6 +554,9 @@ namespace SellerScreen_2022.Pages.Shop
             ListViewGrid.IsEnabled = false;
             ListViewGrid.Effect = ef;
             ef.BeginAnimation(BlurEffect.RadiusProperty, ani);
+
+            if (sellType != SellType.Sell) await BuildShop();
+            sellType = SellType.None;
         }
 
         private void ClearCardBtn_Click(object sender, RoutedEventArgs e)

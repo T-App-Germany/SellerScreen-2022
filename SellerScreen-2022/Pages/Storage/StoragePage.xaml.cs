@@ -417,7 +417,7 @@ namespace SellerScreen_2022.Pages.Storage
                 ContextMenu menu = (ContextMenu)item.Parent;
                 string[] tag = (string[])menu.Tag;
                 MainWindow.storageData.Products.TryGetValue(tag[0], out Product product);
-                StorageEditItemWindow window = new StorageEditItemWindow(item.Tag.ToString(), product);
+                StorageEditItemWindow window = new(item.Tag.ToString(), product);
                 window.ShowDialog();
 
                 if (window.DialogResult == true)

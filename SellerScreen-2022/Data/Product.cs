@@ -16,16 +16,24 @@ namespace SellerScreen_2022.Data
             Error
         }
 
-        public Product(string name, bool status, uint availible, decimal price, string key = null)
+        public Product(string name, bool status, uint availible, decimal price, string key = null, ushort version = 0)
         {
             Key = key ?? GenKey();
             Name = name;
             Status = status;
             Availible = availible;
             Price = price;
+            Version = version;
         }
 
-        private Product() { }
+        public Product() { }
+
+        private ushort _Version = 0;
+        public ushort Version
+        {
+            get => _Version;
+            set => _Version = value;
+        }
 
         private string _Key;
         public string Key
@@ -140,6 +148,16 @@ namespace SellerScreen_2022.Data
                 await Errors.ShowErrorMsg(ex, "Product_Save", true);
                 return "";
             }
+        }
+
+        public Task<string> ChangeKey(string key, uint version)
+        {
+            if (File.Exists(Paths.productsPath + key + ".json"))
+            {
+                File.Move(Paths.productsPath + key + ".json", Paths.productsPath + key + version + ".json");
+                Key = key + version;
+            }
+            return Task.FromResult(key + version);
         }
     }
 }

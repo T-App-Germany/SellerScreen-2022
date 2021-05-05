@@ -44,6 +44,32 @@ namespace SellerScreen_2022.Data
             }
         }
 
+        public decimal Losses
+        {
+            get
+            {
+                decimal i = 0;
+                foreach (SoldProduct p in _soldProducts.Values)
+                {
+                    i -= Convert.ToDecimal(p.Redemptions * p.Price);
+                }
+                return i;
+            }
+        }
+
+        public uint Cancellations
+        {
+            get
+            {
+                uint i = 0;
+                foreach (SoldProduct p in _soldProducts.Values)
+                {
+                    i += p.Cancellations;
+                }
+                return i;
+            }
+        }
+
         public uint Redemptions
         {
             get
@@ -140,6 +166,35 @@ namespace SellerScreen_2022.Data
             get => _revenue;
             set => _revenue = value;
         }
+
+        private decimal _losses;
+        public decimal Losses
+        {
+            get => _losses;
+            set => _losses = value;
+        }
+
+        private uint _cancellations;
+        public uint Cancellations
+        {
+            get => _cancellations;
+            set => _cancellations = value;
+        }
+
+        private uint _redemptions;
+        public uint Redemptions
+        {
+            get => _redemptions;
+            set => _redemptions = value;
+        }
+
+        private uint _disposals;
+        public uint Disposals
+        {
+            get => _disposals;
+            set => _disposals = value;
+        }
+
 
         private List<SoldProduct> _topRevenue;
         public List<SoldProduct> TopRevenue
