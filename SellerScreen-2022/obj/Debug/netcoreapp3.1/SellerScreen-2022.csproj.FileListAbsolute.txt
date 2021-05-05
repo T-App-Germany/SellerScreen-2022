@@ -219,11 +219,10 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\GeneralSettingsPage.g.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\SettingsPage.g.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Shop\ShopPage.g.cs
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemAvailiblePage.g.cs
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemNamePage.g.cs
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemPricePage.g.cs
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemRemovePage.g.cs
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\DayStaticsPage.g.cs
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\StaticsPage.g.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageBinPage.g.cs
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageDisposeItemWindow.g.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageEditItemWindow.g.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StoragePage.g.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageViewItemWindow.g.cs
@@ -240,10 +239,9 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\GeneralSettingsPage.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Settings\SettingsPage.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Shop\ShopPage.baml
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemAvailiblePage.baml
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemNamePage.baml
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemPricePage.baml
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\Editor\StorageEditItemRemovePage.baml
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\DayStaticsPage.baml
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\StaticsPage.baml
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageDisposeItemWindow.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageEditItemWindow.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StoragePage.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageViewItemWindow.baml
@@ -257,7 +255,3 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.pdb
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.genruntimeconfig.cache
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\StaticsPage.g.cs
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\StaticsPage.baml
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\DayStaticsPage.g.cs
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Statics\DayStaticsPage.baml

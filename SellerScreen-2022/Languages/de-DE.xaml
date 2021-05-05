@@ -46,10 +46,8 @@
     <system:String x:Key="Storage.Activate">Aktivieren</system:String>
     <system:String x:Key="Storage.Deactivate">Deaktivieren</system:String>
     <system:String x:Key="Storage.Info">Informationen</system:String>
-    <system:String x:Key="Storage.EditName">Namen bearbeiten</system:String>
-    <system:String x:Key="Storage.FillUp">Auffüllen</system:String>
     <system:String x:Key="Storage.Dispose">Entsorgen</system:String>
-    <system:String x:Key="Storage.EditPrice">Preis bearbeiten</system:String>
+    <system:String x:Key="Storage.EditProperties">Eigenschaften bearbeiten</system:String>
     <system:String x:Key="Storage.IntegrateProducts">Produkte einbinden</system:String>
     <system:String x:Key="Storage.NoProducts">Es befinden sich keine Produkte im Lager.</system:String>
     <system:String x:Key="Storage.InStorage">Im Lager</system:String>

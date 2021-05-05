@@ -36,6 +36,9 @@
     <Compile Update="Pages\Storage\StorageBinPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Storage\StorageDisposeItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Storage\StoragePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,18 +46,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Storage\StorageEditItemWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\Storage\Editor\StorageEditItemNamePage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\Storage\Editor\StorageEditItemPricePage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\Storage\Editor\StorageEditItemRemovePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -100,6 +91,9 @@
     <Page Update="Pages\Storage\StorageBinPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\Storage\StorageDisposeItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Storage\StoragePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -107,18 +101,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Storage\StorageEditItemWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\Storage\Editor\StorageEditItemNamePage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\Storage\Editor\StorageEditItemPricePage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\Storage\Editor\StorageEditItemAvailiblePage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\Storage\Editor\StorageEditItemRemovePage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

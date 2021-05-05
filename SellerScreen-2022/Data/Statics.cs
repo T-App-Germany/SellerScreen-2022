@@ -52,6 +52,7 @@ namespace SellerScreen_2022.Data
                 foreach (SoldProduct p in _soldProducts.Values)
                 {
                     i -= Convert.ToDecimal(p.Redemptions * p.Price);
+                    i -= Convert.ToDecimal(p.Disposals * p.Price);
                 }
                 return i;
             }

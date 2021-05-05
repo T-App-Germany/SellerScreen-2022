@@ -3,6 +3,7 @@ using SellerScreen_2022.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,10 +19,10 @@ namespace SellerScreen_2022.Pages.Storage
 {
     public partial class StoragePage : Page
     {
-        private readonly Dictionary<short, double> widthNumber = new Dictionary<short, double>();
-        private readonly Dictionary<short, double> widthName = new Dictionary<short, double>();
-        private readonly Dictionary<short, double> widthAvailible = new Dictionary<short, double>();
-        private readonly Dictionary<short, double> widthPrice = new Dictionary<short, double>();
+        private readonly Dictionary<short, double> widthNumber = new();
+        private readonly Dictionary<short, double> widthName = new();
+        private readonly Dictionary<short, double> widthAvailible = new();
+        private readonly Dictionary<short, double> widthPrice = new();
 
         private bool reloading;
 
@@ -62,7 +63,7 @@ namespace SellerScreen_2022.Pages.Storage
             if (!(bool)ChangeSelectionModeBtn.IsChecked)
             {
                 StorageItemView.SelectionMode = SelectionMode.Extended;
-                DoubleAnimation ani = new DoubleAnimation
+                DoubleAnimation ani = new()
                 {
                     To = 0,
                     Duration = TimeSpan.FromMilliseconds(200),
@@ -73,7 +74,7 @@ namespace SellerScreen_2022.Pages.Storage
             else
             {
                 StorageItemView.SelectionMode = SelectionMode.Multiple;
-                DoubleAnimation ani = new DoubleAnimation
+                DoubleAnimation ani = new()
                 {
                     To = 32,
                     Duration = TimeSpan.FromMilliseconds(200),
@@ -253,7 +254,7 @@ namespace SellerScreen_2022.Pages.Storage
             }
         }
 
-        private void AddItemToStorage(Product product)
+        private Task AddItemToStorage(Product product, int position = -1)
         {
             ItemTempName.Text = product.Name;
             ItemTempAvailible.Text = product.Availible.ToString();
@@ -293,17 +294,15 @@ namespace SellerScreen_2022.Pages.Storage
             string[] tag = { product.Key.ToString(), "" };
 
             string xamlString = XamlWriter.Save(ItemTemplate);
-            StringReader stringReader = new StringReader(xamlString);
+            StringReader stringReader = new(xamlString);
             XmlReader xmlReader = XmlReader.Create(stringReader);
             Grid item = (Grid)XamlReader.Load(xmlReader);
             MenuItem menuItem = (MenuItem)item.ContextMenu.Items[0];
             menuItem.Click += new RoutedEventHandler(ShowItemInfo);
-            for (int i = 2; i < item.ContextMenu.Items.Count; i++)
-            {
-                menuItem = (MenuItem)item.ContextMenu.Items[i];
-                menuItem.Click += new RoutedEventHandler(EditItemDialog);
-            }
-            menuItem = null;
+            menuItem = (MenuItem)item.ContextMenu.Items[2];
+            menuItem.Click += new RoutedEventHandler(EditItemDialog);
+            menuItem = (MenuItem)item.ContextMenu.Items[3];
+            menuItem.Click += new RoutedEventHandler(DisposeItemDialog);
 
             TextBlock txt = (TextBlock)item.Children[0];
             txt.SizeChanged += new SizeChangedEventHandler(ItemId_SizeChanged);
@@ -315,22 +314,79 @@ namespace SellerScreen_2022.Pages.Storage
             txt.SizeChanged += new SizeChangedEventHandler(ItemPrice_SizeChanged);
             txt = null;
 
-            tag[1] = StorageItemView.Items.Add(item).ToString();
+            if (position == -1)
+            {
+                tag[1] = StorageItemView.Items.Add(item).ToString();
+            }
+            else
+            {
+                tag[1] = position.ToString();
+                StorageItemView.Items.Insert(position, item);
+            }
             item.ContextMenu.Tag = tag;
 
             CheckForItems();
+            return Task.CompletedTask;
+        }
+
+        private Task EditItemInStorage(int i, Product p)
+        {
+            Grid item = (Grid)StorageItemView.Items.GetItemAt(i);
+            TextBlock txt = (TextBlock)item.Children[0];
+            txt.Text = (i + 1).ToString();
+            txt.ToolTip = txt.Text;
+            txt = (TextBlock)item.Children[2];
+            txt.Text = p.Name;
+            txt.ToolTip = txt.Text;
+            txt = (TextBlock)item.Children[3];
+            txt.Text = p.Availible.ToString();
+            txt.ToolTip = txt.Text;
+            txt = (TextBlock)item.Children[4];
+            txt.Text = p.Price.ToString("C");
+            txt.ToolTip = txt.Text;
+
+            FontIcon icon = (FontIcon)item.Children[1];
+            if (p.Status)
+            {
+                switch (CheckProductHealth(p))
+                {
+                    case ProductHealth.Ok:
+                        icon.Glyph = TempIconOk.Glyph;
+                        icon.Foreground = TempIconOk.Foreground;
+                        icon.ToolTip = TempIconOk.ToolTip;
+                        break;
+                    case ProductHealth.Warning:
+                        icon.Glyph = TempIconWarn.Glyph;
+                        icon.Foreground = TempIconWarn.Foreground;
+                        icon.ToolTip = TempIconWarn.ToolTip;
+                        break;
+                    case ProductHealth.Error:
+                        icon.Glyph = TempIconError.Glyph;
+                        icon.Foreground = TempIconError.Foreground;
+                        icon.ToolTip = TempIconError.ToolTip;
+                        break;
+                }
+            }
+            else
+            {
+                icon.Glyph = TempIconOff.Glyph;
+                icon.Foreground = TempIconOff.Foreground;
+                icon.ToolTip = TempIconOff.ToolTip;
+            }
+
+            return Task.CompletedTask;
         }
 
         private async void AddItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product("n/a", false, 0, 0);
+            Product product = new("n/a", false, 0, 0);
             try
             {
                 await product.Save();
                 MainWindow.storageData.Products.Add(product.Key, product);
                 if (await SaveStorage())
                 {
-                    AddItemToStorage(product);
+                    await AddItemToStorage(product);
                 }
             }
             catch (Exception ex)
@@ -405,7 +461,7 @@ namespace SellerScreen_2022.Pages.Storage
             {
                 ContextMenu menu = (ContextMenu)item.Parent;
                 string[] tag = (string[])menu.Tag;
-                StorageItemWindow window = new StorageItemWindow(tag[0]);
+                StorageItemWindow window = new(tag[0]);
                 window.ShowDialog();
             }
         }
@@ -417,49 +473,83 @@ namespace SellerScreen_2022.Pages.Storage
                 ContextMenu menu = (ContextMenu)item.Parent;
                 string[] tag = (string[])menu.Tag;
                 MainWindow.storageData.Products.TryGetValue(tag[0], out Product product);
-                StorageEditItemWindow window = new(item.Tag.ToString(), product);
+                StorageEditItemWindow window = new(product);
                 window.ShowDialog();
 
                 if (window.DialogResult == true)
                 {
-                    product.Name = window.productItemReturn.Name;
-                    product.Availible += window.productItemReturn.Availible;
-                    product.Price = window.productItemReturn.Price;
+                    product = window.prd;
                     MainWindow.storageData.Products[tag[0]] = product;
+                    _ = SaveStorage();
                     await product.Save();
 
-                    Grid grid = (Grid)StorageItemView.Items.GetItemAt(int.Parse(tag[1]));
-                    TextBlock txt = (TextBlock)grid.Children[2];
-                    txt.Text = product.Name;
-                    txt = (TextBlock)grid.Children[3];
-                    txt.Text = product.Availible.ToString();
-                    txt = (TextBlock)grid.Children[4];
-                    txt.Text = product.Price.ToString("C");
+                    await EditItemInStorage(int.Parse(tag[1]), product);
+                }
+            }
+        }
 
-                    FontIcon icon = (FontIcon)grid.Children[1];
-                    if (product.Status)
+        private async void DisposeItemDialog(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem item)
+            {
+                ContextMenu menu = (ContextMenu)item.Parent;
+                string[] tag = (string[])menu.Tag;
+                MainWindow.storageData.Products.TryGetValue(tag[0], out Product product);
+                StorageDisposeItemWindow window = new(product.Availible, product.Key);
+                window.ShowDialog();
+
+                if (window.DialogResult == true)
+                {
+                    DayStatics d;
+                    if (!File.Exists(Paths.staticsPath + $"{DateTime.Now.Date.Ticks}.json"))
                     {
-                        switch (CheckProductHealth(product))
-                        {
-                            case ProductHealth.Ok:
-                                icon.Glyph = TempIconOk.Glyph;
-                                icon.Foreground = TempIconOk.Foreground;
-                                break;
-                            case ProductHealth.Warning:
-                                icon.Glyph = TempIconWarn.Glyph;
-                                icon.Foreground = TempIconWarn.Foreground;
-                                break;
-                            case ProductHealth.Error:
-                                icon.Glyph = TempIconError.Glyph;
-                                icon.Foreground = TempIconError.Foreground;
-                                break;
-                        }
+                        d = new();
                     }
                     else
                     {
-                        icon.Glyph = TempIconOff.Glyph;
-                        icon.Foreground = TempIconOff.Foreground;
+                        d = await DayStatics.Load(DateTime.Now.Date);
                     }
+
+                    TotalStatics t;
+                    if (!File.Exists(Paths.staticsPath + $"{DateTime.Now.Date.Ticks}.json"))
+                    {
+                        t = new();
+                    }
+                    else
+                    {
+                        t = await TotalStatics.Load();
+                    }
+
+                    if (!d.SoldProducts.ContainsKey(tag[0]))
+                    {
+                        d.SoldProducts.Add(tag[0], new SoldProduct(product));
+                    }
+
+                    if (window.DisposeAll)
+                    {
+                        d.SoldProducts[tag[0]].Disposals += product.Availible;
+                        t.Disposals += product.Availible;
+                        t.Losses -= product.Availible * product.Price;
+                        product.Disposals += product.Availible;
+                        product.Availible = 0;
+                    }
+                    else
+                    {
+                        d.SoldProducts[tag[0]].Disposals += window.Dispose;
+                        t.Disposals += window.Dispose;
+                        t.Losses -= window.Dispose * product.Price;
+                        product.Disposals += window.Dispose;
+                        product.Availible -= window.Dispose;
+                    }
+
+
+                    MainWindow.storageData.Products[tag[0]] = product;
+                    _ = SaveStorage();
+                    _ = d.Save();
+                    _ = t.Save();
+                    await product.Save();
+
+                    await EditItemInStorage(int.Parse(tag[1]), product);
                 }
             }
         }
@@ -483,7 +573,7 @@ namespace SellerScreen_2022.Pages.Storage
             if (StorageItemView.SelectedItem != null && ChangeSelectionModeBtn.IsChecked == false)
             {
                 Grid item = (Grid)StorageItemView.SelectedItem;
-                StorageItemWindow window = new StorageItemWindow(item.Tag.ToString());
+                StorageItemWindow window = new(item.Tag.ToString());
                 window.ShowDialog();
             }
         }

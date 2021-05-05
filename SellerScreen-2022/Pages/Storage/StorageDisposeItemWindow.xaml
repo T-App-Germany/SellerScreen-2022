@@ -1,0 +1,25 @@
+﻿<Window x:Class="SellerScreen_2022.Pages.Storage.StorageDisposeItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SellerScreen_2022"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        mc:Ignorable="d" d:Background="White" ui:WindowHelper.UseModernWindowStyle="True"
+        BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
+        Title="Produkt ID: " WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="300" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ui:RadioButtons x:Name="DisposeMode" SelectedIndex="1">
+            <RadioButton x:Name="Btn1" Grid.Column="0" Grid.Row="0" FontSize="20" Margin="10" Content="{DynamicResource Storage.DisposeAll}" Checked="Btn1_Checked"/>
+            <RadioButton x:Name="Btn2" Grid.Column="0" Grid.Row="1" FontSize="20" Margin="10" Content="{DynamicResource Storage.DisposeNumber}"/>
+        </ui:RadioButtons>
+        <ui:NumberBox x:Name="RemoveBox" Grid.Column="1" Grid.Row="1" MinWidth="150" FontSize="20" Margin="40,10,10,10" VerticalAlignment="Center" SpinButtonPlacementMode="Inline" Minimum="0" Value="0" ValueChanged="NumberBox_ValueChanged"/>
+        <Button Grid.Row="2" Content="{DynamicResource SaveAndClose}" HorizontalAlignment="Stretch" Margin="20" Click="Close_Click"/>
+    </Grid>
+</Window>

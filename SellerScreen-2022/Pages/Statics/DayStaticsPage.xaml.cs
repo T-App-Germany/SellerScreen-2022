@@ -121,5 +121,11 @@ namespace SellerScreen_2022.Pages.Statics
                 HeaderRevenueTxt.Width = widthRevenue[0];
             }
         }
+
+        private void Viewbox_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SView.MaxHeight = ContentVbox.ActualHeight;
+            SView.MaxWidth = ContentVbox.ActualWidth;
+        }
     }
 }

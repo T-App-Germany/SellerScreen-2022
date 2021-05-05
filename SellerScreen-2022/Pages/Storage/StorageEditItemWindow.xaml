@@ -6,37 +6,34 @@
         xmlns:local="clr-namespace:SellerScreen_2022"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        mc:Ignorable="d" 
-        d:Background="White"
-        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d" d:Background="White" ui:WindowHelper.UseModernWindowStyle="True"
         BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
-        Title="Produkt ID: " WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Height="250" Width="535" WindowStyle="ToolWindow">
-    <Grid>
-        <ui:NavigationView x:Name="MainNavView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="MainNavView_SelectionChanged" ExpandedModeThresholdWidth="0" OpenPaneLength="0" AlwaysShowHeader="False" IsPaneToggleButtonVisible="False" IsTabStop="True" IsTitleBarAutoPaddingEnabled="False" Margin="0,0,0,47">
-            <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem x:Name="nameItem" Content="{DynamicResource Shop.Name}" Tag="0" IsSelected="True">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Edit"/>
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="priceItem" Content="{DynamicResource Shop.Price}" Tag="1">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe8c7;"/>
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="addItem" Content="{DynamicResource Storage.FillUp}" Tag="2">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe74a;"/>
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="removeItem" Content="{DynamicResource Storage.Dispose}" Tag="3">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe74b;"/>
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-            </ui:NavigationView.MenuItems>
-            <ui:Frame x:Name="ContentFrame"/>
-        </ui:NavigationView>
-        <Button x:Name="SaveBtn" Content="{DynamicResource SaveAndClose}" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="SaveBtn_Click"/>
+        Title="Produkt ID: " WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="340" Width="375">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource Shop.Name}" FontSize="20" Margin="10"/>
+        <TextBox x:Name="NameBox" Grid.Column="1" Grid.Row="0" MinWidth="200" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource Storage.Add}" FontSize="20" Margin="10"/>
+        <ui:NumberBox x:Name="AddBox" Grid.Column="1" Grid.Row="1" MinWidth="180" Value="0" FontSize="20" VerticalAlignment="Center" SpinButtonPlacementMode="Compact" Minimum="0"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="{DynamicResource Shop.Price}" FontSize="20" Margin="10"/>
+        <ui:NumberBox x:Name="PriceBox" Grid.Column="1" Grid.Row="2" MinWidth="180" Value="0" FontSize="20" VerticalAlignment="Center" SpinButtonPlacementMode="Compact" Minimum="0"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="{DynamicResource Shop.Status}" FontSize="20" Margin="10" VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <ui:RadioButtons x:Name="StatusBox">
+                <RadioButton Content="{DynamicResource Storage.Activate}"/>
+                <RadioButton Content="{DynamicResource Storage.Deactivate}"/>
+            </ui:RadioButtons>
+        </StackPanel>
+        <Button Grid.Column="1" Grid.Row="4" Content="{DynamicResource SaveAndClose}" HorizontalAlignment="Stretch" Margin="0,20" Click="Close_Click"/>
     </Grid>
 </Window>

@@ -1,100 +1,72 @@
 ﻿using ModernWpf.Controls;
-using ModernWpf.Media.Animation;
 using SellerScreen_2022.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using System.Windows;
 
 namespace SellerScreen_2022
 {
     public partial class StorageEditItemWindow : Window
     {
-        private readonly List<(string Tag, Type Page)> _pages = new()
-        {
-            ("0", typeof(StorageEditItemNamePage)),
-            ("1", typeof(StorageEditItemPricePage)),
-            ("2", typeof(StorageEditItemAvailiblePage)),
-            ("3", typeof(StorageEditItemRemovePage)),
-        };
+        public Product prd;
 
-        private NavigationTransitionInfo _transitionInfo = null;
-        private short activeIndex = -1;
-        public static Product productItem;
-        public static Product productItemEdited;
-        public Product productItemReturn;
-
-        public StorageEditItemWindow(string pageTag, Product product)
+        public StorageEditItemWindow(Product p)
         {
             InitializeComponent();
-            productItem = product;
-            productItemEdited = product;
-            Frame_Navigate(pageTag);
-            Title = "Produkt: " + product.Key;
+            AddBox.NumberFormatter = new NumberFormatter1();
+            PriceBox.NumberFormatter = new NumberFormatter2();
+
+            prd = p;
+            Title = "Produkt: " + p.Key;
+            NameBox.Text = p.Name;
+            AddBox.Value = 0;
+            PriceBox.Value = (double)p.Price;
+            StatusBox.SelectedIndex = p.Status ? 0 : 1;
         }
 
-        private void Frame_Navigate(string navItemTag)
+        private class NumberFormatter1 : INumberBoxNumberFormatter
         {
-            Type _page = null;
-            if (!string.IsNullOrEmpty(navItemTag))
+            public string FormatDouble(double value)
             {
-                (string Tag, Type Page) item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag.ToLower()));
-                _page = item.Page;
+                return value.ToString();
             }
 
-            if (!(_page is null))
+            public double? ParseDouble(string text)
             {
-                if (short.Parse(navItemTag) > activeIndex)
+                if (uint.TryParse(text, out uint result))
                 {
-                    _transitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight };
+                    return result;
                 }
-                else
-                {
-                    _transitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft };
-                }
-
-                if (_transitionInfo == null)
-                {
-                    ContentFrame.Navigate(_page, null);
-                }
-                else
-                {
-                    ContentFrame.Navigate(_page, null, _transitionInfo);
-                }
-
-                MainNavView.SelectedItem = MainNavView.MenuItems[int.Parse(navItemTag.ToString())];
+                return null;
             }
         }
 
-        private void MainNavView_SelectionChanged(object sender, NavigationViewSelectionChangedEventArgs e)
+        private class NumberFormatter2 : INumberBoxNumberFormatter
         {
-            if (e.SelectedItemContainer != null)
+            public string FormatDouble(double value)
             {
+                return value.ToString("C");
+            }
 
-                if (!(e.SelectedItemContainer.Tag is null))
+            public double? ParseDouble(string text)
+            {
+                text = text.Replace(NumberFormatInfo.CurrentInfo.CurrencySymbol, string.Empty);
+                if (double.TryParse(text, out double result))
                 {
-                    string navItemTag = e.SelectedItemContainer.Tag.ToString();
-                    Frame_Navigate(navItemTag);
+                    return result;
                 }
-                else
-                {
-                    Frame_Navigate("");
-                }
-                NavigationViewItem item = (NavigationViewItem)MainNavView.SelectedItem;
-                activeIndex = short.Parse(item.Tag.ToString());
+                return null;
             }
         }
 
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
+            prd.Name = NameBox.Text;
+            prd.Availible += (uint)AddBox.Value;
+            prd.Price = (decimal)PriceBox.Value;
+            prd.Status = StatusBox.SelectedIndex == 0;
             DialogResult = true;
-            productItemReturn = productItemEdited;
             Close();
-        }
-
-        public static void SetName(string name)
-        {
-            productItemEdited.Name = name;
         }
     }
 }
