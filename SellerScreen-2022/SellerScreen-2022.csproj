@@ -16,6 +16,12 @@
     <ApplicationIcon>Resources\sellerscreen.ico</ApplicationIcon>
     <Configurations>Debug;Release;Debug extern</Configurations>
     <LangVersion>9.0</LangVersion>
+    <SignAssembly>false</SignAssembly>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -78,6 +84,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="SamplesCommon">
+      <HintPath>..\..\..\..\Downloads\ModernWpf-0.9.3\samples\SamplesCommon\bin\Debug\netcoreapp3.1\SamplesCommon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Pages\Settings\GeneralSettingsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,12 +103,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Strings\lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Strings\Lang.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Strings\Lang.resx">
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -108,6 +132,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Languages\en.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Settings\GeneralSettingsPage.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>

@@ -159,13 +159,13 @@ namespace SellerScreen_2022 {
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.5.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.6.0")]
         public void InitializeComponent() {
             if (_contentLoaded) {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;component/pages/storage/storageviewitemwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SellerScreen-2022;V1.0.0.0;component/pages/storage/storageviewitemwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Pages\Storage\StorageViewItemWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
@@ -175,7 +175,7 @@ namespace SellerScreen_2022 {
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.5.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.6.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]

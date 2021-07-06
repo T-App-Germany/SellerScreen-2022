@@ -68,6 +68,7 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SellerScreen-2022.runtimeconfig.dev.json
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SellerScreen-2022.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SellerScreen-2022.pdb
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\de\SellerScreen-2022.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\FluentWPF.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\ModernWpf.Controls.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\ModernWpf.dll
@@ -206,9 +207,12 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\zh-TW\ModernWpf.Controls.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\zh-TW\ModernWpf.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\InternalShared.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SamplesCommon.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\InternalShared.pdb
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.csprojAssemblyReference.cache
-C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Languages\de-DE.baml
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SamplesCommon.pdb
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.csproj.AssemblyReference.cache
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Languages\de.baml
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Languages\en.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageBinPage.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\App.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\MainWindow.g.cs
@@ -247,10 +251,13 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\Pages\Storage\StorageViewItemWindow.baml
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.g.resources
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen_2022.Properties.Resources.resources
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen_2022.Properties.Strings.Lang.resources
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen_2022.Properties.Strings.Lang.de.resources
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.csproj.GenerateResource.cache
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.AssemblyInfoInputs.cache
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.AssemblyInfo.cs
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.csproj.CoreCompileInputs.cache
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\de\SellerScreen-2022.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.csproj.CopyComplete
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Debug\netcoreapp3.1\SellerScreen-2022.pdb

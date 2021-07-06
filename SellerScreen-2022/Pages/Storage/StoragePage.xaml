@@ -88,7 +88,7 @@
             </Grid>
             <ui:ListView x:Name="StorageItemView" Grid.Row="3" Margin="20,0,20,10" Visibility="Visible" SelectionMode="Extended" SelectionChanged="StorageItemView_SelectionChanged" HorizontalAlignment="Left" MouseDoubleClick="StorageItemView_MouseDoubleClick"/>
             <Grid Visibility="Collapsed">
-                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="{DynamicResource Ready}"/>
+                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="{DynamicResource OkIconColor}" ToolTip="{DynamicResource Ready}" ui:ThemeManager.HasThemeResources="True"/>
                 <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="{DynamicResource Warning}"/>
                 <ui:FontIcon x:Name="TempIconError" Glyph="&#xf78a;" Foreground="Red" ToolTip="{DynamicResource Error}"/>
                 <ui:FontIcon x:Name="TempIconOff" Glyph="&#xe7e8;" Foreground="Gray" ToolTip="{DynamicResource Deactivated}"/>

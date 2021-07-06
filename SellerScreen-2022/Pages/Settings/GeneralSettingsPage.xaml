@@ -5,9 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SellerScreen_2022.Pages.Settings"
       xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:h="clr-namespace:SellerScreen_2022.Helper"
+      xmlns:resx="clr-namespace:SellerScreen_2022.Properties.Strings"
       mc:Ignorable="d" 
       d:Background="White"
-      Title="{DynamicResource GeneralSettings.Title}">
+      Title="{x:Static resx:Lang.General}">
 
     <ScrollViewer>
         <Grid HorizontalAlignment="Left">
@@ -20,6 +22,22 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}" Margin="20"/>
+            <TextBlock Grid.Row="1" Text="Darstellung" Style="{StaticResource TitleTextBlockStyle}" Margin="20"/>
+            <WrapPanel Grid.Row="2">
+                <GroupBox Header="Thema" Margin="23,0,20,20" Padding="0">
+                    <ui:RadioButtons x:Name="ThemeBtns" Grid.Column="1" SelectionChanged="RadioButtons_SelectionChanged" Margin="0,-20,0,0">
+                        <RadioButton Content="System"/>
+                        <RadioButton Content="Hell"/>
+                        <RadioButton Content="Dunkel"/>
+                    </ui:RadioButtons>
+                </GroupBox>
+                <GroupBox Header="Sprache" Margin="20,0,20,20" Padding="0">
+                    <ComboBox x:Name="LangBox" MinWidth="200" ItemsSource="{x:Static h:LocalizationHelper.SupportedLanguages}" SelectedItem="{Binding Path=(h:LocalizationHelper.CurrentLanguage)}"/>
+                </GroupBox>
+                <!--<GroupBox Header="Aktzentfarbe" Margin="20">
+                    <samplescommon:AccentColorPicker x:Name="acp" Grid.Column="1" Grid.Row="1" Margin="10"/>
+                </GroupBox>-->
+            </WrapPanel>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -1,0 +1,7 @@
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\bin\Debug\SellerScreen-2022 DataWatcher.exe.config
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\bin\Debug\SellerScreen-2022 DataWatcher.exe
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\bin\Debug\SellerScreen-2022 DataWatcher.pdb
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\obj\Debug\SellerScreen-2022 DataWatcher.csproj.AssemblyReference.cache
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\obj\Debug\SellerScreen-2022 DataWatcher.csproj.CoreCompileInputs.cache
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\obj\Debug\SellerScreen-2022 DataWatcher.exe
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022 DataWatcher\obj\Debug\SellerScreen-2022 DataWatcher.pdb

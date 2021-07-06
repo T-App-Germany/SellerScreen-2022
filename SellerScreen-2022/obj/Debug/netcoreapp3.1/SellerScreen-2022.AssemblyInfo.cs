@@ -21,6 +21,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("SellerScreen-2022")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SellerScreen-2022")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Resources.NeutralResourcesLanguageAttribute("en")]
 
 // Von der MSBuild WriteCodeFragment-Klasse generiert.
 

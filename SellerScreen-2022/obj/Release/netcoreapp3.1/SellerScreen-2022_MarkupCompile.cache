@@ -1,0 +1,20 @@
+﻿SellerScreen-2022
+
+
+winexe
+C#
+.cs
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\obj\Release\netcoreapp3.1\
+SellerScreen_2022
+none
+false
+TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\App.xaml
+16-879762002
+5-1475728319
+36-1137049675
+293-126432503
+Languages\de.xaml;MainWindow.xaml;Pages\Error\ViewErrorPage.xaml;Pages\Home\HomePage.xaml;Pages\NotFoundPage.xaml;Pages\Settings\AboutPage.xaml;Pages\Settings\GeneralSettingsPage.xaml;Pages\Settings\SettingsPage.xaml;Pages\Shop\ShopPage.xaml;Pages\Statics\DayStaticsPage.xaml;Pages\Statics\StaticsPage.xaml;Pages\Storage\StorageBinPage.xaml;Pages\Storage\StorageDisposeItemWindow.xaml;Pages\Storage\StorageEditItemWindow.xaml;Pages\Storage\StoragePage.xaml;Pages\Storage\StorageViewItemWindow.xaml;
+resources\splashscreen.png
+False
+

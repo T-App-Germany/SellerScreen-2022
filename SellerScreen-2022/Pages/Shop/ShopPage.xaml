@@ -127,7 +127,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="0" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemId_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                        <ui:FontIcon Grid.Column="1" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="Bereit"/>
+                        <ui:FontIcon Grid.Column="1" Glyph="&#xe73e;" Foreground="{DynamicResource OkIconColor}" ToolTip="Bereit"/>
                         <TextBlock Grid.Column="2" Text="Name" FontSize="20" Padding="10,10,0,10" MaxWidth="300" TextTrimming="CharacterEllipsis" SizeChanged="ItemName_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                         <TextBlock Grid.Column="3" Text="00" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemAvailible_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                         <TextBlock Grid.Column="4" Text="00,00€" FontSize="20" Padding="0,10" TextAlignment="Center" SizeChanged="ItemPrice_SizeChanged" Tag="0" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
@@ -136,7 +136,7 @@
                 </ui:ListView>
             </Grid>
             <Grid Visibility="Collapsed">
-                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="LightGreen" ToolTip="{DynamicResource Ready}"/>
+                <ui:FontIcon x:Name="TempIconOk" Glyph="&#xe73e;" Foreground="{DynamicResource OkIconColor}" ToolTip="{DynamicResource Ready}"/>
                 <ui:FontIcon x:Name="TempIconWarn" Glyph="&#xe7ba;" Foreground="Orange" ToolTip="{DynamicResource Warning}"/>
                 <Grid x:Name="ItemTemplate">
                     <Grid.ColumnDefinitions>

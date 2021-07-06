@@ -7,6 +7,9 @@
     xmlns:local="clr-namespace:SellerScreen_2022"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+    xmlns:design="clr-namespace:SellerScreen_2022.Design"
+    xmlns:data="clr-namespace:SellerScreen_2022.Data"
+    xmlns:resx="clr-namespace:SellerScreen_2022.Properties.Strings"
     mc:Ignorable="d" Title="SellerScreen-2022" Height="500" Width="1050" BorderBrush="{x:Static fw:AccentColors.ImmersiveSystemAccentBrush}" BorderThickness="1"
     d:Background="#CCFFFFFF" MinHeight="768" MinWidth="1024"
     ui:WindowHelper.UseModernWindowStyle="True"
@@ -14,6 +17,7 @@
     ui:TitleBar.ExtendViewIntoTitleBar="True" Loaded="Window_Loaded">
 
     <fw:AcrylicWindow.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:PixelsToGridLengthConverter x:Key="PixelsToGridLength" />
         <Storyboard x:Name="NavViewOpen" x:Key="NavViewOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(FrameworkElement.Height)">
@@ -42,7 +46,7 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="4"/>
             </DoubleAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="AppTitleBar" Storyboard.TargetProperty="(Grid.Margin)">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="AppTitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="260,0,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseOut"/>
@@ -85,7 +89,7 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="WindowIconImg" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="AppTitleBar" Storyboard.TargetProperty="(Grid.Margin)">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="AppTitleBar" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="0,0,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseOut"/>
@@ -128,7 +132,23 @@
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
-            <ui:Frame x:Name="ContentFrame" WindowChrome.IsHitTestVisibleInChrome="True" Margin="0,0,2,2"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ui:Frame x:Name="ContentFrame" Grid.Row="0" WindowChrome.IsHitTestVisibleInChrome="True" Margin="0,0,2,2"/>
+                <Grid x:Name="AppNeedsRestartGrid" Grid.Row="1" Height="48" Background="{DynamicResource NavigationViewExpandedPaneBackground}" Visibility="{Binding RestartRequired, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=Window}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ui:FontIcon Glyph="{x:Static design:Glyphs.Info}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{x:Static resx:Lang.RestartRequired}" FontSize="15"/>
+                    <Button Grid.Column="2" Content="Jetzt neu starten" Margin="20,0" Click="RestartBtn_Click" FontSize="15"/>
+                </Grid>
+            </Grid>
         </ui:NavigationView>
         <Grid x:Name="AppTitleBar" Background="{DynamicResource SystemAltHighColorBrush}" VerticalAlignment="Top" Margin="260,0,0,0">
             <Grid.Style>
@@ -175,7 +195,7 @@
                         <DropShadowEffect/>
                     </Image.Effect>
                 </Image>
-                <TextBlock x:Name="WindowTitleTxt" Grid.Column="1" Text="SellerScreen-2022 Enterprise" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock x:Name="WindowTitleTxt" Grid.Column="1" Text="SellerScreen-2022 Enterprise" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" VerticalAlignment="Center" FontFamily="{DynamicResource ContentControlThemeFontFamily}" />
             </Grid>
         </Grid>
     </Grid>

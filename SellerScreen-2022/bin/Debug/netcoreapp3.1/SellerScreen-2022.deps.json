@@ -12,10 +12,16 @@
           "InternalShared": "1.0.0",
           "ModernWpfUI": "0.9.4",
           "Newtonsoft.Json": "13.0.1",
-          "Ookii.Dialogs.Wpf": "3.1.0"
+          "Ookii.Dialogs.Wpf": "3.1.0",
+          "SamplesCommon": "1.0.0.0"
         },
         "runtime": {
           "SellerScreen-2022.dll": {}
+        },
+        "resources": {
+          "de/SellerScreen-2022.resources.dll": {
+            "locale": "de"
+          }
         }
       },
       "FluentWPF/0.9.0": {
@@ -477,6 +483,14 @@
         "runtime": {
           "InternalShared.dll": {}
         }
+      },
+      "SamplesCommon/1.0.0.0": {
+        "runtime": {
+          "SamplesCommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -544,6 +558,11 @@
     },
     "InternalShared/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SamplesCommon/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

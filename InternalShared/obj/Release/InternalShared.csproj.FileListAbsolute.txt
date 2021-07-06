@@ -1,0 +1,6 @@
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Release\InternalShared.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\bin\Release\InternalShared.pdb
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Release\InternalShared.csprojAssemblyReference.cache
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Release\InternalShared.csproj.CoreCompileInputs.cache
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Release\InternalShared.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\InternalShared\obj\Release\InternalShared.pdb

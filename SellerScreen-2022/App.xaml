@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="/FluentWPF;component/Styles/Controls.xaml" />
 
                 <!-- Language -->
-                <ResourceDictionary Source="Languages\de-DE.xaml"/>
+                <ResourceDictionary Source="Languages\de.xaml"/>
 
                 <ui:ThemeResources>
                     <ui:ThemeResources.ThemeDictionaries>
@@ -22,6 +22,7 @@
                                 <!-- ModernWPF theme resources -->
                                 <ResourceDictionary Source="/ModernWpf;component/ThemeResources/Light.xaml" />
                             </ResourceDictionary.MergedDictionaries>
+                            <SolidColorBrush x:Key="OkIconColor" Color="Green"/>
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Dark">
                             <ResourceDictionary.MergedDictionaries>
@@ -32,6 +33,7 @@
                                 <ResourceDictionary Source="/ModernWpf;component/ThemeResources/Dark.xaml" />
                             </ResourceDictionary.MergedDictionaries>
                             <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="{StaticResource SystemBaseMediumHighColor}" />
+                            <SolidColorBrush x:Key="OkIconColor" Color="LightGreen"/>
                         </ResourceDictionary>
                     </ui:ThemeResources.ThemeDictionaries>
                 </ui:ThemeResources>

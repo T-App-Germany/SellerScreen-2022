@@ -1,6 +1,7 @@
 ﻿using ModernWpf;
 using ModernWpf.Controls;
 using SellerScreen_2022.Data;
+using SellerScreen_2022.Helper;
 using SellerScreen_2022.Pages;
 using SellerScreen_2022.Pages.Error;
 using SellerScreen_2022.Pages.Home;
@@ -11,10 +12,12 @@ using SellerScreen_2022.Pages.Storage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Settings = SellerScreen_2022.Data.Settings;
@@ -25,6 +28,20 @@ namespace SellerScreen_2022
     {
         public static StorageData storageData = new();
         public static TotalStatics totalStatics = new();
+
+        private bool _restartRequired = false;
+        public bool RestartRequired
+        {
+            get => _restartRequired;
+            set
+            {
+                if (_restartRequired != value)
+                {
+                    _restartRequired = value;
+                    AppNeedsRestartGrid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                }
+            }
+        }
 
         private readonly List<(string Tag, Type Page)> _pages = new()
         {
@@ -40,6 +57,7 @@ namespace SellerScreen_2022
 
         public MainWindow()
         {
+            LocalizationHelper.Initialize();
             InitializeComponent();
             Paths.CreateAllDirectories().ConfigureAwait(true);
         }
@@ -54,9 +72,15 @@ namespace SellerScreen_2022
                 {
                     this.SetPlacement(Properties.Settings.Default.MainWindowPlacement);
                 }
+
+                ThemeManager.Current.ApplicationTheme = Properties.Settings.Default.AppTheme switch
+                {
+                    1 => ApplicationTheme.Light,
+                    2 => ApplicationTheme.Dark,
+                    _ => null,
+                };
             });
 
-            SetLanguageDictionary();
             MainNavView_Navigate("home");
         }
 
@@ -182,18 +206,25 @@ namespace SellerScreen_2022
             _ = ErrorList.Load();
         }
 
-        private void SetLanguageDictionary()
+        public void SetLanguageDictionary(string key = null)
         {
+            string lang = key ?? Thread.CurrentThread.CurrentCulture.Parent.ToString();
             ResourceDictionary dict = new()
             {
-                Source = Thread.CurrentThread.CurrentCulture.ToString() switch
+                Source = lang switch
                 {
-                    "de-DE" => new Uri("..\\Languages\\de-DE.xaml", UriKind.Relative),
-                    //"en-US" => new Uri("..\\Languages\\en-US.xaml", UriKind.Relative),
-                    _ => new Uri("..\\Languages\\de-DE.xaml", UriKind.Relative),
+                    "de" => new Uri("..\\Languages\\de.xaml", UriKind.Relative),
+                    //"en" => new Uri("..\\Languages\\en-US.xaml", UriKind.Relative),
+                    _ => new Uri("..\\Languages\\de.xaml", UriKind.Relative),
                 }
             };
             Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void RestartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Process.GetCurrentProcess().MainModule.FileName);
+            Application.Current.Shutdown();
         }
     }
 }
