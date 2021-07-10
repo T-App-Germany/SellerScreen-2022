@@ -16,15 +16,6 @@ namespace SellerScreen_2022.Helper
 {
     public class LocalizationHelper
     {
-        private static CultureInfo systemUICulture;
-
-        private static readonly Dictionary<Enum, string> EnumRedirectionMap = new()
-        {
-            { ModernWpf.ElementTheme.Default, "SystemDefault" }
-        };
-
-        #region Properties
-
         private static LanguageInfo _currentLanguage;
 
         public static LanguageInfo CurrentLanguage
@@ -44,16 +35,13 @@ namespace SellerScreen_2022.Helper
 
         public static ObservableCollection<LanguageInfo> SupportedLanguages { get; private set; }
 
-        #endregion
-
         public static void Initialize()
         {
-            systemUICulture = CultureInfo.CurrentCulture;
             SupportedLanguages = GetAllSupportedLanguages();
             string language = Properties.Settings.Default.Language;
             CurrentLanguage = SupportedLanguages.First(x => x.LanguageName == language);
 
-            Thread.CurrentThread.CurrentUICulture = CurrentLanguage.CultureInfo ?? systemUICulture;
+            Thread.CurrentThread.CurrentUICulture = CurrentLanguage.CultureInfo ?? CultureInfo.CurrentCulture;
         }
 
         private static ObservableCollection<LanguageInfo> GetAllSupportedLanguages()
@@ -86,33 +74,13 @@ namespace SellerScreen_2022.Helper
             return supportedLanguages;
         }
 
-        public static string GetLocalisedEnumValue(Enum value)
-        {
-            string resourceId = $"Enums.{value.GetType().Name}.{value}";
-
-            if (EnumRedirectionMap.TryGetValue(value, out string result))
-            {
-                resourceId = result;
-            }
-
-            Debug.WriteLine(resourceId);
-            try
-            {
-                return Properties.Strings.Lang.ResourceManager.GetString(resourceId, Properties.Strings.Lang.Culture);
-            }
-            catch
-            {
-                return value.ToString();
-            }
-        }
-
         public static event PropertyChangedEventHandler StaticPropertyChanged;
 
         private static void OnStaticPropertyChanged([CallerMemberName] string propertyName = "")
         {
             StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
 
-            if (CurrentLanguage.CultureInfo != null && Thread.CurrentThread.CurrentCulture.Name != CurrentLanguage.CultureInfo.Name)
+            if (CurrentLanguage.CultureInfo != null && CultureInfo.CurrentCulture.Name != CurrentLanguage.CultureInfo.Name)
             {
                 DispatcherHelper.RunOnMainThread(() =>
                 {
@@ -161,12 +129,6 @@ namespace SellerScreen_2022.Helper
                 DisplayName = Properties.Strings.Lang.SystemDefault;
                 LanguageName = string.Empty;
             }
-        }
-
-        public static bool TryParse(string value, out LanguageInfo result)
-        {
-            result = new(value);
-            return true;
         }
 
         public override string ToString()

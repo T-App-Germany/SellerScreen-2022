@@ -28,6 +28,8 @@ namespace SellerScreen_2022
     {
         public static StorageData storageData = new();
         public static TotalStatics totalStatics = new();
+        public static Dictionary<DateTime, DayStatics> dayStatics = new();
+        public static DateTime[] selectedStaticsDates = new DateTime[3];
 
         private bool _restartRequired = false;
         public bool RestartRequired
@@ -60,6 +62,10 @@ namespace SellerScreen_2022
             LocalizationHelper.Initialize();
             InitializeComponent();
             Paths.CreateAllDirectories().ConfigureAwait(true);
+            for(int i = 0; i < 3; i++)
+            {
+                selectedStaticsDates[i] = DateTime.Now.Date;
+            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)

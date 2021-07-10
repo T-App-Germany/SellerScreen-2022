@@ -18,7 +18,7 @@ namespace SellerScreen_2022.Data
 
         public Product(string name, bool status, uint availible, decimal price, string key = null, ushort version = 0)
         {
-            Key = key ?? GenKey();
+            Key ??= GenKey();
             Name = name;
             Status = status;
             Availible = availible;

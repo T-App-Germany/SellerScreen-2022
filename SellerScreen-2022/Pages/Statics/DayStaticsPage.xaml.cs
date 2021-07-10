@@ -1,16 +1,14 @@
-﻿using System;
+﻿using SellerScreen_2022.Data;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Markup;
+using System.Windows.Media.Animation;
+using System.Xml;
 
 namespace SellerScreen_2022.Pages.Statics
 {
@@ -22,9 +20,94 @@ namespace SellerScreen_2022.Pages.Statics
         private readonly Dictionary<short, double> widthSold = new();
         private readonly Dictionary<short, double> widthRevenue = new();
 
+        private bool reloading;
+
         public DayStaticsPage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            DayDatePicker.SelectedDate = MainWindow.selectedStaticsDates[0];
+        }
+
+        private async Task<bool> LoadDayStatic(DateTime date)
+        {
+            if (File.Exists(Paths.staticsPath + $"{date.Ticks}.json"))
+            {
+                DayStatics day = await DayStatics.Load(date);
+                if (MainWindow.dayStatics.ContainsKey(date))
+                {
+                    MainWindow.dayStatics[date] = day;
+                }
+                else
+                {
+                    MainWindow.dayStatics.Add(date, day);
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private async Task<bool> BuildDayStatic(DateTime date)
+        {
+            if (MainWindow.dayStatics.TryGetValue(date, out DayStatics day))
+            {
+                DayLoadingRing.IsActive = true;
+                DayItemView.Items.Clear();
+                RevenueTxt.Text = day.Revenue.ToString("C");
+                LossesTxt.Text = day.Losses.ToString("C");
+                SoldTxt.Text = day.Sold.ToString();
+                CancellationsTxt.Text = day.Cancellations.ToString();
+                RedemptionsTxt.Text = day.Redemptions.ToString();
+                DisposalsTxt.Text = day.Disposals.ToString();
+                
+                foreach (SoldProduct p in day.SoldProducts.Values)
+                {
+                    await AddItemToList(p);
+                }
+
+                DayLoadingRing.IsActive = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private Task AddItemToList(SoldProduct product)
+        {
+            ItemTempName.Text = product.Name;
+            ItemTempSold.Text = product.Sold.ToString();
+            ItemTempPrice.Text = product.Price.ToString("C");
+            ItemTempRevenue.Text = (product.Price * product.Sold).ToString("C");
+
+            ItemTempNumber.Text = (DayItemView.Items.Count + 1).ToString();
+            ItemTemplate.Tag = product.Key;
+
+            string xamlString = XamlWriter.Save(ItemTemplate);
+            StringReader stringReader = new(xamlString);
+            XmlReader xmlReader = XmlReader.Create(stringReader);
+            Grid item = (Grid)XamlReader.Load(xmlReader);
+
+            TextBlock txt = (TextBlock)item.Children[0];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemId_SizeChanged);
+            txt = (TextBlock)item.Children[1];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemName_SizeChanged);
+            txt = (TextBlock)item.Children[2];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemPrice_SizeChanged);
+            txt = (TextBlock)item.Children[3];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemSold_SizeChanged);
+            txt = (TextBlock)item.Children[4];
+            txt.SizeChanged += new SizeChangedEventHandler(ItemRevenue_SizeChanged);
+
+            DayItemView.Items.Add(item);
+            return Task.CompletedTask;
         }
 
         private void ItemId_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -41,7 +124,7 @@ namespace SellerScreen_2022.Pages.Statics
                     widthNumber.Add(tag, txt.ActualWidth);
                 }
 
-                widthNumber.OrderBy(key => key.Value);
+                _ = widthNumber.OrderBy(key => key.Value);
                 HeaderNumberTxt.Width = widthNumber[0];
             }
         }
@@ -60,7 +143,7 @@ namespace SellerScreen_2022.Pages.Statics
                     widthName.Add(tag, txt.ActualWidth);
                 }
 
-                widthName.OrderBy(key => key.Value);
+                _ = widthName.OrderBy(key => key.Value);
                 HeaderNameTxt.Width = widthName[0];
             }
         }
@@ -79,7 +162,7 @@ namespace SellerScreen_2022.Pages.Statics
                     widthPrice.Add(tag, txt.ActualWidth);
                 }
 
-                widthPrice.OrderBy(key => key.Value);
+                _ = widthPrice.OrderBy(key => key.Value);
                 HeaderPriceTxt.Width = widthPrice[0];
             }
         }
@@ -98,7 +181,7 @@ namespace SellerScreen_2022.Pages.Statics
                     widthSold.Add(tag, txt.ActualWidth);
                 }
 
-                widthSold.OrderBy(key => key.Value);
+                _ = widthSold.OrderBy(key => key.Value);
                 HeaderSoldTxt.Width = widthSold[0];
             }
         }
@@ -117,7 +200,7 @@ namespace SellerScreen_2022.Pages.Statics
                     widthRevenue.Add(tag, txt.ActualWidth);
                 }
 
-                widthRevenue.OrderBy(key => key.Value);
+                _ = widthRevenue.OrderBy(key => key.Value);
                 HeaderRevenueTxt.Width = widthRevenue[0];
             }
         }
@@ -126,6 +209,60 @@ namespace SellerScreen_2022.Pages.Statics
         {
             SView.MaxHeight = ContentVbox.ActualHeight;
             SView.MaxWidth = ContentVbox.ActualWidth;
+        }
+
+        private async void DayDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime date = DayDatePicker.SelectedDate.Value.Date;
+            MainWindow.selectedStaticsDates[0] = date;
+            DayLoadingRing.IsActive = true;
+            DayDatePicker.IsEnabled = false;
+            SView.Visibility = Visibility.Visible;
+            DayNotFoundLbl.Visibility = Visibility.Collapsed;
+            if (!MainWindow.dayStatics.ContainsKey(date))
+            {
+                if (await LoadDayStatic(date))
+                {
+                    _ = await BuildDayStatic(date);
+                }
+                else
+                {
+                    SView.Visibility = Visibility.Hidden;
+                    DayNotFoundLbl.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                _ = await BuildDayStatic(date);
+            }
+            DayDatePicker.IsEnabled = true;
+            DayLoadingRing.IsActive = false;
+        }
+
+        private async void ReloadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!reloading)
+            {
+                reloading = true;
+                DayDatePicker.IsEnabled = false;
+                Storyboard sb = (Storyboard)FindResource("ReloadAnimation");
+                sb.Begin();
+                if (await LoadDayStatic(DayDatePicker.SelectedDate.Value.Date))
+                {
+                    SView.Visibility = Visibility.Visible;
+                    DayNotFoundLbl.Visibility = Visibility.Collapsed;
+                    await BuildDayStatic(DayDatePicker.SelectedDate.Value.Date);
+                }
+                else
+                {
+                    SView.Visibility = Visibility.Hidden;
+                    DayNotFoundLbl.Visibility = Visibility.Visible;
+                }
+
+                sb.Stop();
+                DayDatePicker.IsEnabled = true;
+                reloading = false;
+            }
         }
     }
 }

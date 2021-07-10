@@ -7,17 +7,55 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
       d:Background="White"
-      Title="{DynamicResource Statics.Day.Title}">
+      Title="{DynamicResource Statics.Day.Title}" Loaded="Page_Loaded">
 
+    <Page.Resources>
+        <Storyboard x:Key="ReloadAnimation" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReloadBtnIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReloadBtnIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="180"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
     <Viewbox x:Name="ContentVbox" SizeChanged="Viewbox_SizeChanged" HorizontalAlignment="Left">
-        <Grid x:Name="ContentGrid">
+        <Grid x:Name="ContentGrid" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}" Margin="20"/>
-            <DatePicker x:Name="DayDatePicker" Grid.Row="1" Margin="20" FirstDayOfWeek="Monday" IsDropDownOpen="True"/>
+            <Grid x:Name="HeaderGrid" Grid.Row="0" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" x:Name="HeaderTxt" Text="{Binding Title, ElementName=Page}" Style="{StaticResource HeaderTextBlockStyle}"/>
+                <Button Grid.Column="2" x:Name="ReloadBtn" HorizontalAlignment="Right" Margin="20,0,20,0" Background="#00000000" ToolTip="{DynamicResource Reload}" Click="ReloadBtn_Click">
+                    <ui:FontIcon x:Name="ReloadBtnIcon" Glyph="&#xe895;" Margin="2" RenderTransformOrigin="0.5,0.5" >
+                        <ui:FontIcon.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ui:FontIcon.RenderTransform>
+                    </ui:FontIcon>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="DayDatePicker" Grid.Column="0" Margin="20" FirstDayOfWeek="Monday" SelectedDateChanged="DayDatePicker_SelectedDateChanged"/>
+                <ui:ProgressRing x:Name="DayLoadingRing" Grid.Column="1" Margin="10" Height="30" Width="30"/>
+                <Label x:Name="DayNotFoundLbl" Grid.Column="2" Content="Tag nicht gefunden!" VerticalAlignment="Center" Margin="10" Foreground="Red" FontSize="18" Visibility="Hidden"/>
+            </Grid>
             <ScrollViewer x:Name="SView" Grid.Row="2" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -49,7 +87,7 @@
                                 <TextBlock x:Name="HeaderSoldTxt" Grid.Column="3" Text="{DynamicResource Storage.Sold}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="110"/>
                                 <TextBlock x:Name="HeaderRevenueTxt" Grid.Column="4" Text="{DynamicResource Storage.Revenue}" FontSize="20" FontWeight="DemiBold" TextAlignment="Center" MinWidth="130"/>
                             </Grid>
-                            <ui:ListView x:Name="ShopItemView" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Left">
+                            <ui:ListView x:Name="DayItemView" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Left">
                                 <Grid x:Name="ItemTemplate">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition MinWidth="{Binding ActualWidth, ElementName=HeaderNumberTxt}"/>
@@ -69,8 +107,35 @@
                             </ui:ListView>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Column="1">
-                        <Rectangle Height="500" Width="2000"/>
+                    <Grid Grid.Column="1" Margin="20,10,20,10" VerticalAlignment="Center">
+                        <ui:ThemeShadowChrome Grid.Column="0" Grid.ColumnSpan="2" Depth="80" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+                        <Border Background="{DynamicResource RegionBrush}" CornerRadius="2 0 0 2"/>
+                        <Border Grid.Column="0" Background="{DynamicResource SystemAltHighColorBrush}">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <StackPanel>
+                                        <TextBlock Text="Einnahmen:" FontSize="20" Margin="10,10,5,10"/>
+                                        <TextBlock Text="Verluste:" FontSize="20" Margin="10,10,5,10"/>
+                                        <TextBlock Text="Verkäufe:" FontSize="20" Margin="10,10,5,10"/>
+                                        <TextBlock Text="Stornierungen:" FontSize="20" Margin="10,10,5,10"/>
+                                        <TextBlock Text="Rücknahmen:" FontSize="20" Margin="10,10,5,10"/>
+                                        <TextBlock Text="Entsorgungen:" FontSize="20" Margin="10,10,5,10"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock x:Name="RevenueTxt" Text="00,00 €" FontSize="20" Margin="5,10,10,10"/>
+                                        <TextBlock x:Name="LossesTxt" Text="00,00 €" FontSize="20" Margin="5,10,10,10"/>
+                                        <TextBlock x:Name="SoldTxt" Text="000" FontSize="20" Margin="5,10,10,10"/>
+                                        <TextBlock x:Name="CancellationsTxt" Text="000" FontSize="20" Margin="5,10,10,10"/>
+                                        <TextBlock x:Name="RedemptionsTxt" Text="000" FontSize="20" Margin="5,10,10,10"/>
+                                        <TextBlock x:Name="DisposalsTxt" Text="000" FontSize="20" Margin="5,10,10,10"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </Grid>
                 </Grid>
             </ScrollViewer>
