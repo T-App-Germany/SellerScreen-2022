@@ -2,7 +2,7 @@
 name: Metrics
 on:
   # Schedule updates
-  schedule: [{cron: "*/5 * * * *"}]
+  schedule: [{cron: "0"}]
   push: {branches: "main"}
 jobs:
   github-metrics:
@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
+          token: ${{ secrets.METRICS_TOKEN }}
           # ... other options
           template: repository
           user: T-App Germany
