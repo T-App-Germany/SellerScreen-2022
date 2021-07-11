@@ -16,5 +16,5 @@ jobs:
           repo: SellerScreen-2022
           plugin_licenses: yes
           plugin_licenses_setup: npm ci       # Command to setup target repository
-          plugin_licenses_ratio: yes          # Display used licenses ratio
+          plugin_licenses_ratio: no           # Display used licenses ratio
           plugin_licenses_legal: yes          # Display permissions, limitations and conditions
