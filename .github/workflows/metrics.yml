@@ -12,8 +12,8 @@ jobs:
         with:
           # ... other options
           template: repository
-          user: repository-owner
-          repo: repository-name
+          user: T-App Germany
+          repo: SellerScreen-2022
           plugin_licenses: yes
           plugin_licenses_setup: npm ci       # Command to setup target repository
           plugin_licenses_ratio: yes          # Display used licenses ratio
