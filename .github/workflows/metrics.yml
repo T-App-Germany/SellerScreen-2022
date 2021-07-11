@@ -1,0 +1,20 @@
+# Visit https://github.com/lowlighter/metrics/blob/master/action.yml for full reference
+name: Metrics
+on:
+  # Schedule updates
+  schedule: [{cron: "*/5 * * * *"}]
+  push: {branches: "main"}
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          # ... other options
+          template: repository
+          user: repository-owner
+          repo: repository-name
+          plugin_licenses: yes
+          plugin_licenses_setup: npm ci       # Command to setup target repository
+          plugin_licenses_ratio: yes          # Display used licenses ratio
+          plugin_licenses_legal: yes          # Display permissions, limitations and conditions
