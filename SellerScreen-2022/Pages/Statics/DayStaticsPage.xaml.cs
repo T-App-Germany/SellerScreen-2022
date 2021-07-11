@@ -1,4 +1,6 @@
-﻿using SellerScreen_2022.Data;
+﻿using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using SellerScreen_2022.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +23,8 @@ namespace SellerScreen_2022.Pages.Statics
         private readonly Dictionary<short, double> widthRevenue = new();
 
         private bool reloading;
+        private readonly List<ISeries> RevenueSeries = new();
+        private readonly List<ISeries> SoldSeries = new();
 
         public DayStaticsPage()
         {
@@ -65,9 +69,12 @@ namespace SellerScreen_2022.Pages.Statics
                 CancellationsTxt.Text = day.Cancellations.ToString();
                 RedemptionsTxt.Text = day.Redemptions.ToString();
                 DisposalsTxt.Text = day.Disposals.ToString();
-                
+
+                RevenueSeries.Clear();
+                SoldSeries.Clear();
                 foreach (SoldProduct p in day.SoldProducts.Values)
                 {
+                    _ = AddItemToChart(p);
                     await AddItemToList(p);
                 }
 
@@ -80,15 +87,25 @@ namespace SellerScreen_2022.Pages.Statics
             }
         }
 
-        private Task AddItemToList(SoldProduct product)
+        private Task AddItemToChart(SoldProduct p)
         {
-            ItemTempName.Text = product.Name;
-            ItemTempSold.Text = product.Sold.ToString();
-            ItemTempPrice.Text = product.Price.ToString("C");
-            ItemTempRevenue.Text = (product.Price * product.Sold).ToString("C");
+            SoldSeries.Add(new PieSeries<double> { Name = p.Name, Values = new List<double> { p.Sold }, TooltipLabelFormatter = (chartPoint) => $"{chartPoint.Context.Series.Name}: {chartPoint.PrimaryValue}" });
+            RevenueSeries.Add(new PieSeries<decimal> { Name = p.Name, Values = new List<decimal> { p.Sold * p.Price }, TooltipLabelFormatter = (chartPoint) => $"{chartPoint.Context.Series.Name}: {chartPoint.PrimaryValue:C}" });
+
+            RevenueChart.Series = RevenueSeries;
+            SoldChart.Series = SoldSeries;
+            return Task.CompletedTask;
+        }
+
+        private Task AddItemToList(SoldProduct p)
+        {
+            ItemTempName.Text = p.Name;
+            ItemTempSold.Text = p.Sold.ToString();
+            ItemTempPrice.Text = p.Price.ToString("C");
+            ItemTempRevenue.Text = (p.Price * p.Sold).ToString("C");
 
             ItemTempNumber.Text = (DayItemView.Items.Count + 1).ToString();
-            ItemTemplate.Tag = product.Key;
+            ItemTemplate.Tag = p.Key;
 
             string xamlString = XamlWriter.Save(ItemTemplate);
             StringReader stringReader = new(xamlString);
@@ -251,7 +268,7 @@ namespace SellerScreen_2022.Pages.Statics
                 {
                     SView.Visibility = Visibility.Visible;
                     DayNotFoundLbl.Visibility = Visibility.Collapsed;
-                    await BuildDayStatic(DayDatePicker.SelectedDate.Value.Date);
+                    _ = await BuildDayStatic(DayDatePicker.SelectedDate.Value.Date);
                 }
                 else
                 {

@@ -14,6 +14,41 @@
           }
         }
       },
+      "LiveChartsCore/2.0.0-beta.19": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "LiveChartsCore.SkiaSharpView/2.0.0-beta.19": {
+        "dependencies": {
+          "LiveChartsCore": "2.0.0-beta.19",
+          "SkiaSharp": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.19": {
+        "dependencies": {
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.19",
+          "SkiaSharp.Views.WPF": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/LiveChartsCore.SkiaSharpView.WPF.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/3.0.0": {},
       "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
         "dependencies": {
@@ -450,6 +485,63 @@
           }
         }
       },
+      "SkiaSharp/2.80.2": {
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SkiaSharp.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SkiaSharp.Views.Desktop.Common/2.80.2": {
+        "dependencies": {
+          "SkiaSharp": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/SkiaSharp.Views.Desktop.Common.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
+          }
+        }
+      },
+      "SkiaSharp.Views.WPF/2.80.2": {
+        "dependencies": {
+          "SkiaSharp": "2.80.2",
+          "SkiaSharp.Views.Desktop.Common": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/SkiaSharp.Views.WPF.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
+          }
+        }
+      },
+      "System.Memory/4.5.3": {},
       "System.Runtime.WindowsRuntime/4.6.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0"
@@ -499,6 +591,27 @@
       "path": "fluentwpf/0.9.0",
       "hashPath": "fluentwpf.0.9.0.nupkg.sha512"
     },
+    "LiveChartsCore/2.0.0-beta.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tz//rLXIw3MdUjbox58GpJDL8oYfyuG6yT8/cRqBSzjC+L86cK2vVVcqjmC/o56lMANiOmLFTwXG+hg4TMyrYg==",
+      "path": "livechartscore/2.0.0-beta.19",
+      "hashPath": "livechartscore.2.0.0-beta.19.nupkg.sha512"
+    },
+    "LiveChartsCore.SkiaSharpView/2.0.0-beta.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ReuOBidt34GhMLciYQyRIqxA1Hy+eU5pSY+fzM1UD/pY/g1PUZAQ67Veijipld7mL5XOm1RLL4rIUgwSCJ29Tg==",
+      "path": "livechartscore.skiasharpview/2.0.0-beta.19",
+      "hashPath": "livechartscore.skiasharpview.2.0.0-beta.19.nupkg.sha512"
+    },
+    "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jV6bhhr0ucQC8f3ZT+uq06nxU3ux02/jNRrcuVgR7YnlrqRyXTXyLEUGVszPproS3bcOYEy4pz+jgv0ccMWhCw==",
+      "path": "livechartscore.skiasharpview.wpf/2.0.0-beta.19",
+      "hashPath": "livechartscore.skiasharpview.wpf.2.0.0-beta.19.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -533,6 +646,34 @@
       "sha512": "sha512-EpUWoSLLO1aVkUmo2dPE4xO+zQZRxbp13agbbQzGBL1ACALgCD69cTwdLdPdg2LIsPcZ4uA3iID+YaazdZxyww==",
       "path": "ookii.dialogs.wpf/3.1.0",
       "hashPath": "ookii.dialogs.wpf.3.1.0.nupkg.sha512"
+    },
+    "SkiaSharp/2.80.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D25rzdCwh+3L+XyXqpNa+H/yiLJbE3/R3K/XexwHyQjGdzZvSufFW3oqf3En7hhqSIsxsJ8f5NEZ0J5W5wlGBg==",
+      "path": "skiasharp/2.80.2",
+      "hashPath": "skiasharp.2.80.2.nupkg.sha512"
+    },
+    "SkiaSharp.Views.Desktop.Common/2.80.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0vBvweMysgl1wgjuTQUhdJMD5z5nBjtYqmnHPeX+qHfkc336Wj2L3jEqwmGb0YP+RV47gFGz0EzMAW6szZch9w==",
+      "path": "skiasharp.views.desktop.common/2.80.2",
+      "hashPath": "skiasharp.views.desktop.common.2.80.2.nupkg.sha512"
+    },
+    "SkiaSharp.Views.WPF/2.80.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fzo2+MNwHDh9Cob8sk7OO26kp3bhofjXMwlEK8IncF1ehu9hi3sH9iQDJrue9a88VEJJ+yyLISPUFcmXlGHSyQ==",
+      "path": "skiasharp.views.wpf/2.80.2",
+      "hashPath": "skiasharp.views.wpf.2.80.2.nupkg.sha512"
+    },
+    "System.Memory/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
     },
     "System.Runtime.WindowsRuntime/4.6.0": {
       "type": "package",

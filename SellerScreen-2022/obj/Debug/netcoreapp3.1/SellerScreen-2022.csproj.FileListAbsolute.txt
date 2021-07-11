@@ -70,10 +70,16 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SellerScreen-2022.pdb
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\de\SellerScreen-2022.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\FluentWPF.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\LiveChartsCore.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\LiveChartsCore.SkiaSharpView.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\LiveChartsCore.SkiaSharpView.WPF.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\ModernWpf.Controls.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\ModernWpf.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\Ookii.Dialogs.Wpf.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SkiaSharp.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SkiaSharp.Views.Desktop.Common.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SkiaSharp.Views.WPF.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\af-ZA\ModernWpf.Controls.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\af-ZA\ModernWpf.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\am-ET\ModernWpf.Controls.resources.dll
@@ -206,6 +212,10 @@ C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\ne
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\zh-CN\ModernWpf.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\zh-TW\ModernWpf.Controls.resources.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\zh-TW\ModernWpf.resources.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\libSkiaSharp.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\InternalShared.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\SamplesCommon.dll
 C:\Users\Tom M\Documents\GitHub\SellerScreen-2022\SellerScreen-2022\bin\Debug\netcoreapp3.1\InternalShared.pdb

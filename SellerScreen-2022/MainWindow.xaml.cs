@@ -1,4 +1,5 @@
-﻿using ModernWpf;
+﻿using LiveChartsCore;
+using ModernWpf;
 using ModernWpf.Controls;
 using SellerScreen_2022.Data;
 using SellerScreen_2022.Helper;

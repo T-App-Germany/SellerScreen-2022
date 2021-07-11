@@ -52,6 +52,8 @@
 
   <ItemGroup>
     <PackageReference Include="FluentWPF" Version="0.9.0" />
+    <PackageReference Include="LiveChartsCore" Version="2.0.0-beta.19" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.19" />
     <PackageReference Include="ModernWpfUI" Version="0.9.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
